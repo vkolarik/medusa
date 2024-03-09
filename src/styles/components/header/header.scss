@@ -1,0 +1,26 @@
+.search-input {
+  background-image: url('../../../../public/images/icons/search.svg');
+  background-size: 1em 1em;
+  background-position: center right;
+  background-repeat: no-repeat;
+}
+
+.logo-container {
+  width: 150px;
+  height: 40px;
+  position: relative !important;
+
+  img {
+    max-height: 40px !important;
+  }
+
+  @media (max-width: 1023px) {
+    width: 120px;
+    height: 40px;
+  }
+
+  @media (max-width: 650px) {
+    width: 100px;
+    height: 20px;
+  }
+}

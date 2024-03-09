@@ -17,9 +17,16 @@
     "types": ["cypress"],
     "baseUrl": "./src",
     "paths": {
-      "@lib/*": ["lib/*"],
-      "@modules/*": ["modules/*"],
-      "@pages/*": ["pages/*"]
+      "@lib/*": ["aaa-temp/lib/*"],
+      "@modules/*": ["aaa-temp/modules/*"],
+      "@pages/*": ["aaa-temp/pages/*"],
+      "@components/*": ["components/*"],
+      "@styles/*": ["styles/*"],
+      "@constants/*": ["constants/*"],
+      "@data/*": ["data/*"],
+      "@interfaces/*": ["interfaces/*"],
+      "@utils/*": ["utils/*"],
+      "@public/*": ["public/*"],
     },
     "plugins": [
       {

@@ -1,0 +1,48 @@
+.vop {
+  color: $black;
+}
+  
+.vop__title {
+  display: inline;
+
+  width: fit-content !important;
+
+  font-size: clamp(1.2rem, 1.8vw, 2.65rem);
+  border-bottom: 1.5px solid $blue;
+}
+  
+.vop__text {
+  font-size: clamp(0.8rem, 0.8vw, 1.2rem);
+}
+
+.vop h2 {
+  font-size: clamp(1.1rem, 1.4vw, 1.75rem);
+  border-bottom: 1px solid $blue;
+  width: fit-content !important;
+  display: inline;
+}
+  
+.vop__h6 {
+  font-size: clamp(1rem, 1.1vw, 1.4rem);
+}
+
+.vop__text--bullets li {
+  margin-left: 1.5rem;
+
+  list-style-type: disc !important;
+  list-style-position: outside !important;
+
+  font-weight: 400;
+}
+
+.vop__text--numbers li {
+  margin-left: 1rem;
+
+  list-style-type: decimal !important;
+}
+
+.vop__text--no-list-style-type li {
+  margin-left: 0.5rem;
+
+  list-style-type: none !important;
+}

@@ -1,0 +1,50 @@
+.gdpr {
+  color: $black;
+}
+  
+.gdpr__title {
+  display: inline;
+
+  width: fit-content !important;
+
+  font-size: clamp(1.2rem, 1.8vw, 2.65rem);
+  border-bottom: 1.5px solid $black;
+}
+  
+.gdpr__text {
+  font-size: clamp(0.8rem, 0.8vw, 1.2rem);
+}
+
+.gdpr__h3 {
+  display: inline;
+
+  width: fit-content !important;
+
+  font-size: clamp(1.1rem, 1.4vw, 1.95rem);
+  border-bottom: 1.5px solid $blue;
+}
+  
+.gdpr__h6 {
+  font-size: clamp(1rem, 1.1vw, 1.4rem);
+}
+
+.gdpr__text--bullets li {
+  margin-left: 1.5rem;
+
+  list-style-type: disc !important;
+  list-style-position: outside !important;
+
+  font-weight: 400;
+}
+
+.gdpr__text--numbers li {
+  margin-left: 1rem;
+
+  list-style-type: decimal !important;
+}
+
+.gdpr__text--no-list-style-type li {
+  margin-left: 0.5rem;
+
+  list-style-type: none !important;
+}

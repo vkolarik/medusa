@@ -1,0 +1,9 @@
+p {
+  font-size: clamp(0.8rem, 0.8vw, 1.3rem);
+  line-height: 1.2;
+}
+
+p.small {
+  font-size: clamp(0.65rem, 0.65vw, 1.1rem);
+  color: $grey !important;
+}

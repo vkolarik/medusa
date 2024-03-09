@@ -1,0 +1,72 @@
+.cookies {
+  .first-part {
+    width: 100%;
+  }
+  * {
+    ::-webkit-scrollbar {
+      width: 0px;
+      height: 0;
+    }
+  }
+  &-wrapper {
+    margin: auto;
+    color: $black;
+    p,
+    .text {
+      font-size: clamp(0.8rem, 0.8vw, 1.2rem);
+      line-height: 1.5;
+      font-weight: light;
+    }
+    h2 {
+      font-size: clamp(1.1rem, 1.4vw, 1.75rem);
+      border-bottom: 1px solid $blue;
+      width: fit-content !important;
+      display: inline;
+    }
+    h6 {
+      font-size: clamp(1rem, 1.1vw, 1.4rem);
+    }
+  }
+  .blue {
+    color: $blue;
+    font-weight: 500;
+    transition: all 300ms;
+    border-bottom: 1px solid transparent;
+    &:hover {
+      border-bottom: 1px solid $blue;
+    }
+  }
+  .tableDiv {
+    overflow-x: auto;
+    width: 90vw;
+    max-width: 90vw !important;
+    @media (min-width: 1150px) {
+      width: 100%;
+    }
+    @media (max-width: 600px) {
+      width: 90vw !important;
+      max-width: 90vw !important;
+    }
+    table {
+      text-align: left !important;
+      width: 100%;
+      tr {
+        border-bottom: 1px solid $blue;
+        td {
+          padding: 1rem 0;
+          padding-right: 2rem;
+          font-size: clamp(0.8rem, 0.8vw, 1.2rem);
+          &:nth-child(3) {
+            min-width: 20rem !important;
+          }
+        }
+      }
+    }
+  }
+}
+  
+.cookies__list--numbers li {
+  margin-left: 1rem;
+
+  list-style-type: decimal !important;
+}
