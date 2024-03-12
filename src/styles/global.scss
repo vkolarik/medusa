@@ -48,61 +48,6 @@ body {
   background: darken($grey, 20%);
 }
 
-.button {
-  padding: 0.5rem 1rem;
-
-  text-transform: uppercase;
-  background-color: $blue;
-  color: $white;
-  font-size: clamp(0.8rem, 0.85vw, 1.35rem);
-  border: 1px solid $blue;
-
-  transition: all 350ms ease-in-out;
-
-  @media (max-width: 650px) {
-    padding: 0.25rem 0.5rem;
-  }
-
-  &:hover {
-    background-color: $blueHover;
-  }
-
-  &--light {
-    padding: 0.25rem 0.5rem;
-
-    background-color: $white;
-    color: $blue;
-
-    &:hover {
-      background-color: $blue;
-      color: $white;
-    }
-  }
-
-  &--bordered {
-    padding: 0.25rem 0.5rem;
-
-    border: 1px solid $blue;
-    color: $blue;
-    background-color: transparent;
-
-    &:hover {
-      color: $white;
-    }
-  }
-
-  &--small {
-    padding: 0.25rem 0.5rem;
-
-    font-size: clamp(0.75rem, 0.75vw, 1.25rem);
-  }
-
-  &--filter:hover {
-    background-color: lighten($blue, 35%);
-    color: $blue;
-  }
-}
-
 .page {
   padding-top: 7rem;
   padding-bottom: 7rem;

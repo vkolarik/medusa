@@ -1,20 +1,21 @@
-export const storeInStorage = (
+export const storeInStorage = <T>(
   storage: "session" | "local",
   key: string,
-  value: string
+  value: T
 ) => {
-  if (storage === "session") sessionStorage.setItem(key, value)
-  else localStorage.setItem(key, value)
+  if (storage === "session") sessionStorage.setItem(key, JSON.stringify(value))
+  else localStorage.setItem(key, JSON.stringify(value))
 }
 
-export const getFromStorage = (
+export const getFromStorage = <T>(
   storage: "session" | "local",
   key: string
-): string => {
-  return storage === "session"
-    ? sessionStorage.getItem(key) ?? ""
-    : localStorage.getItem(key) ?? ""
-}
+): T | null => {
+  const item = storage === "session" ? sessionStorage.getItem(key) : localStorage.getItem(key);
+  if (item === null) return null;
+  return JSON.parse(item) as T;
+};
+
 
 export const removeFromStorage = (
   storage: "session" | "local",

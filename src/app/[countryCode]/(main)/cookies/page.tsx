@@ -1,5 +1,5 @@
 // components
-import { ILink } from "@interfaces/Link"
+import { ILink } from "modules/Link"
 import * as ROUTES from "@constants/routes"
 import { PageHeader } from "@components/PageHeader"
 

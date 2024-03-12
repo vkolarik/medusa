@@ -1,4 +1,4 @@
-import { IHeaderDropdown, ILink, ISocialLink } from "@interfaces/Link"
+import { IHeaderDropdown, ILink, ISocialLink } from "modules/Link"
 import * as ROUTES from "@constants/routes"
 import facebookIcon from "../../public/images/icons/facebook.svg"
 import instagramIcon from "../../public/images/icons/instagram.svg"

@@ -4,7 +4,7 @@ import logo from "../../public/images/logo.svg"
 import Link from "next/link"
 import * as ROUTES from "../constants/routes"
 import { documentsLinks, mainLinks, socialsLinks } from "@data/links"
-import { IHeaderDropdown, ILink, ISocialLink } from "@interfaces/Link"
+import { IHeaderDropdown, ILink, ISocialLink } from "modules/Link"
 
 export const Footer: FC = () => {
   return (

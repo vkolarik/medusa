@@ -4,6 +4,7 @@ import "@styles/main.scss"
 import { Header } from "@components/header/Header"
 import { Footer } from "@components/Footer"
 import { Toaster } from "sonner"
+import { AppWrapper } from "@context/MainContext"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -19,14 +20,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="cs">
-      <body className="flex justify-between min-h-screen flex-col">
-        <Header />
-        <div className="flex-grow flex items-center lg:mt-10 mt-20">
-          {children}
-        </div>
-        <Toaster richColors closeButton />
-        <Footer />
-      </body>
+      <AppWrapper>
+        <body className="flex justify-between min-h-screen flex-col">
+          <Header />
+          <div className="flex-grow flex items-center lg:mt-10 mt-20">
+            {children}
+          </div>
+          <Toaster richColors closeButton />
+          <Footer />
+        </body>
+      </AppWrapper>
     </html>
   )
 }

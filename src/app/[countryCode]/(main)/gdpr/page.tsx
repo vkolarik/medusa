@@ -1,8 +1,9 @@
 import { PageHeader } from "@components/PageHeader"
-import { ILink } from "@interfaces/Link"
+import { ILink } from "modules/Link"
 import * as ROUTES from "@constants/routes"
+import { NextPage } from "next"
 
-const GDPR = () => {
+const GDPR: NextPage = () => {
   const breadcrumbs: ILink[] = [
     {
       text: "GDPR",

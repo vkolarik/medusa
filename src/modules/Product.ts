@@ -6,4 +6,5 @@ export interface IProductPreview {
   sizes: string[]
   price: number
   amount?: number
+  color: string
 }

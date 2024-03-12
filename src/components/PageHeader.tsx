@@ -1,4 +1,4 @@
-import { ILink } from "@interfaces/Link"
+import { ILink } from "modules/Link"
 import { FC } from "react"
 import { FaAngleRight } from "react-icons/fa"
 import Link from "next/link"

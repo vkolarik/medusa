@@ -1,9 +1,8 @@
 import { allSizes } from "@data/sizes"
-import { IProductPreview } from "@interfaces/Product"
+import { IProductPreview } from "modules/Product"
 import Link from "next/link"
 import { FC } from "react"
 import Image from "next/image"
-import { AddToCartButton } from "./AddToCartButton"
 
 export const ProductItemPreview: FC<{ product: IProductPreview }> = ({
   product,
@@ -45,7 +44,7 @@ export const ProductItemPreview: FC<{ product: IProductPreview }> = ({
           {title}
         </h2>
         <h3 className="font-medium lg:text-[18px] text-[14px]">{price} Kč</h3>
-        <AddToCartButton type="preview" product={product} />
+        <button className="button button--light">Detail</button>
       </div>
     </Link>
   )

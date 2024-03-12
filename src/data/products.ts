@@ -1,4 +1,4 @@
-import { IProductPreview } from "@interfaces/Product"
+import { IProductPreview } from "modules/Product"
 import image from "../../public/images/model.png"
 
 export const productsPreviewData: IProductPreview[] = [

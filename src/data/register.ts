@@ -1,4 +1,4 @@
-import { IState } from "@interfaces/Register"
+import { IState } from "modules/Register"
 
 export const statesData: IState[] = [
   {

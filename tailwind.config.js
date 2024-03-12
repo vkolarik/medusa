@@ -36,6 +36,13 @@ module.exports = {
           80: "#1F2937",
           90: "#111827",
         },
+        black: "#161a24",
+        grey: "#7e7e7e",
+        white: "#ffffff",
+        lightGrey: "#e5e7eb",
+        blue: "#3b82f6",
+        blueHover: "#0757ea",
+        error: "rgb(180, 9, 9)"
       },
       borderRadius: {
         none: "0px",

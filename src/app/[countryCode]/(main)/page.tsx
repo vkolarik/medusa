@@ -1,5 +1,5 @@
 import { categoriesData } from "@data/categories"
-import { ICategory } from "@interfaces/Category"
+import { ICategory } from "modules/Category"
 import Link from "next/link"
 
 export default function Home() {

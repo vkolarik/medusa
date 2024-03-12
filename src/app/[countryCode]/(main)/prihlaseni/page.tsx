@@ -5,7 +5,7 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import * as ROUTES from "@constants/routes"
 import { NextPage } from "next"
-import { ISigninData } from "@interfaces/Login"
+import { ISigninData } from "modules/Login"
 
 const SignIn: NextPage = () => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
@@ -15,7 +15,7 @@ const SignIn: NextPage = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm<ISigninData>()
 
   const onSubmit: any = async (data: ISigninData, e: Event) => {
     e.preventDefault()

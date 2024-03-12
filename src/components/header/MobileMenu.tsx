@@ -1,6 +1,6 @@
 import { Dispatch, FC, SetStateAction, useState } from "react"
 import { mainLinks } from "@data/links"
-import { IHeaderDropdown, ILink } from "@interfaces/Link"
+import { IHeaderDropdown, ILink } from "modules/Link"
 import { FaAngleDown } from "react-icons/fa"
 import Link from "next/link"
 

@@ -1,11 +1,10 @@
 "use client"
 
-import Link from "next/link"
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import * as ROUTES from "@constants/routes"
 import { NextPage } from "next"
-import { IRegisterData, IState } from "@interfaces/Register"
+import { IRegisterData, IState } from "modules/Register"
 import { statesData } from "@data/register"
 
 const Register: NextPage = () => {
@@ -18,9 +17,7 @@ const Register: NextPage = () => {
     setValue,
     getValues,
     formState: { errors },
-  } = useForm()
-
-  // TODO: rozjet prepinani genderu
+  } = useForm<IRegisterData>()
 
   useEffect(() => {
     setValue("gender", "male")
@@ -212,36 +209,36 @@ const Register: NextPage = () => {
             <div className="mb-4 form__input">
               <label htmlFor="cp">Číslo popisné</label>
               <input
-                className={`${errors.cp ? "mb-3" : "mb-0"}`}
+                className={`${errors.cadastral_number ? "mb-3" : "mb-0"}`}
                 id="cp"
                 type="text"
                 placeholder="Číslo popisné"
-                {...register("cp", {
+                {...register("cadastral_number", {
                   required: "Číslo popisné je povinné",
                 })}
               />
               {/* error message */}
-              {errors.cp && errors.cp.type === "required" && (
+              {errors.cadastral_number && errors.cadastral_number.type === "required" && (
                 <p className="h-6 text-left error">
-                  {errors.cp.message as string}
+                  {errors.cadastral_number.message as string}
                 </p>
               )}
             </div>
             <div className="mb-4 form__input">
-              <label htmlFor="psc">PSČ</label>
+              <label htmlFor="zip_code">PSČ</label>
               <input
-                className={`${errors.psc ? "mb-3" : "mb-0"}`}
-                id="psc"
+                className={`${errors.zip_code ? "mb-3" : "mb-0"}`}
+                id="zip_code"
                 type="text"
                 placeholder="PSČ"
-                {...register("psc", {
+                {...register("zip_code", {
                   required: "PSČ je povinné",
                 })}
               />
               {/* error message */}
-              {errors.psc && errors.psc.type === "required" && (
+              {errors.zip_code && errors.zip_code.type === "required" && (
                 <p className="h-6 text-left error">
-                  {errors.psc.message as string}
+                  {errors.zip_code.message as string}
                 </p>
               )}
             </div>
@@ -253,16 +250,15 @@ const Register: NextPage = () => {
                   id="male"
                   value="male"
                   className="hidden"
+                  defaultChecked={true}
                   {...register("gender", {
                     required: "Pohlaví je povinné",
                   })}
+                  name="gender"
                 />
                 <label
                   htmlFor="male"
-                  onClick={() => setValue("gender", "male")}
-                  className={`${
-                    getValues("gender") === "male" ? "" : " button--light"
-                  } button button--small`}
+                  className="button button--small button--light cursor-pointer"
                 >
                   MUŽ
                 </label>
@@ -275,13 +271,11 @@ const Register: NextPage = () => {
                   {...register("gender", {
                     required: "Pohlaví je povinné",
                   })}
+                  name="gender"
                 />
                 <label
                   htmlFor="female"
-                  onClick={() => setValue("gender", "female")}
-                  className={`${
-                    getValues("gender") === "female" ? "" : " button--light"
-                  } button button--small ml-2`}
+                  className="button button--small button--light ml-2 cursor-pointer"
                 >
                   ŽENA
                 </label>

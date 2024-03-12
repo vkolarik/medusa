@@ -1,4 +1,4 @@
-import { ICategory } from "@interfaces/Category"
+import { ICategory } from "modules/Category"
 import clothesImage from "../../public/images/clothes.png"
 import shoesImage from "../../public/images/shoes.png"
 import accessoriesImage from "../../public/images/accessories.png"

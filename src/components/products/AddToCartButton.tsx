@@ -1,31 +1,33 @@
 "use client"
 import React, { FC } from "react"
-import { IProductPreview } from "@interfaces/Product"
+import { IProductPreview } from "modules/Product"
 import { toast } from "sonner"
 import { getFromStorage, storeInStorage } from "@utils/storage"
-export const AddToCartButton: FC<{
-  type: "preview" | "detail"
-  product: IProductPreview
-}> = ({ type, product }) => {
+import { useAppContext } from "@context/MainContext"
+import { ICartItem } from "modules/CartItem"
+
+export const AddToCartButton: FC<{ product: ICartItem }> = ({ product }) => {
+  const { cartProducts, setCartProducts } = useAppContext()
+
   const addToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    let products: IProductPreview[] = getFromStorage("session", "products")
-      ? JSON.parse(getFromStorage("session", "products"))
-      : []
-    if (products.length === 0) {
+
+    if (cartProducts.length === 0) {
       storeInStorage(
         "session",
         "products",
-        JSON.stringify([{ ...product, amount: 1 }])
+        [{ ...product, amount: 1 }]
       )
+      setCartProducts([{ ...product, amount: 1 }])
     } else {
-      const existingProduct = products.find((p) => p.id === product.id)
+      const existingProduct = cartProducts.find((p) => p.id === product.id)
       if (existingProduct && existingProduct.amount) {
         existingProduct.amount += 1
       } else {
-        products.push({ ...product, amount: 1 })
+        cartProducts.push({ ...product, amount: 1 })
       }
-      storeInStorage("session", "products", JSON.stringify(products))
+      storeInStorage("session", "products", cartProducts)
+      setCartProducts(cartProducts)
     }
     toast.success("Produkt byl úspěšně přidán do košíku")
   }

@@ -6,9 +6,9 @@ export interface IRegisterData {
   state: string
   city: string
   street: string
-  psc: number
-  cp: number
-  gener: "male" | "female"
+  zip_code: number
+  cadastral_number: number
+  gender: "male" | "female"
 }
 
 export interface IState {
