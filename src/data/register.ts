@@ -1,12 +1,12 @@
-import { IState } from "@/interfaces/Register";
+import { IState } from "@interfaces/Register"
 
 export const statesData: IState[] = [
   {
     text: "Česká republika",
-    code: "cz"
+    code: "cz",
   },
   {
     text: "Slovenská republika",
-    code: "sk"
-  }
+    code: "sk",
+  },
 ]

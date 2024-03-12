@@ -1,7 +1,7 @@
 .vop {
   color: $black;
 }
-  
+
 .vop__title {
   display: inline;
 
@@ -10,7 +10,7 @@
   font-size: clamp(1.2rem, 1.8vw, 2.65rem);
   border-bottom: 1.5px solid $blue;
 }
-  
+
 .vop__text {
   font-size: clamp(0.8rem, 0.8vw, 1.2rem);
 }
@@ -21,7 +21,7 @@
   width: fit-content !important;
   display: inline;
 }
-  
+
 .vop__h6 {
   font-size: clamp(1rem, 1.1vw, 1.4rem);
 }

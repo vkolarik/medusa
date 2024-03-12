@@ -1,0 +1,7 @@
+.category-card {
+  &:hover {
+    .category-card__bg {
+      opacity: 0.3;
+    }
+  }
+}

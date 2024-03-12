@@ -6,8 +6,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: 'Inter', monospace, monospace;
-  color: $black;
+  font-family: "Inter", monospace, monospace;
 }
 
 body {
@@ -55,7 +54,7 @@ body {
   text-transform: uppercase;
   background-color: $blue;
   color: $white;
-  font-size: clamp(0.85rem, 0.85vw, 1.35rem);
+  font-size: clamp(0.8rem, 0.85vw, 1.35rem);
   border: 1px solid $blue;
 
   transition: all 350ms ease-in-out;
@@ -80,10 +79,27 @@ body {
     }
   }
 
+  &--bordered {
+    padding: 0.25rem 0.5rem;
+
+    border: 1px solid $blue;
+    color: $blue;
+    background-color: transparent;
+
+    &:hover {
+      color: $white;
+    }
+  }
+
   &--small {
     padding: 0.25rem 0.5rem;
 
     font-size: clamp(0.75rem, 0.75vw, 1.25rem);
+  }
+
+  &--filter:hover {
+    background-color: lighten($blue, 35%);
+    color: $blue;
   }
 }
 
@@ -100,4 +116,8 @@ body {
     padding-top: 3rem;
     padding-bottom: 3rem;
   }
+}
+
+[data-sonner-toast] {
+  will-change: opacity !important;
 }

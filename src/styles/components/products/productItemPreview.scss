@@ -1,0 +1,10 @@
+.product-item-preview {
+  &:hover {
+    .sizes {
+      height: fit-content;
+    }
+    img {
+      scale: 1.1;
+    }
+  }
+}

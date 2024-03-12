@@ -8,7 +8,7 @@ export interface IRegisterData {
   street: string
   psc: number
   cp: number
-  gener: 'male' | 'female'
+  gener: "male" | "female"
 }
 
 export interface IState {

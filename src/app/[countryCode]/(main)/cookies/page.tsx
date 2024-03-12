@@ -1,35 +1,35 @@
 // components
-import { ILink } from '@interfaces/Link'
-import * as ROUTES from '@constants/routes'
+import { ILink } from "@interfaces/Link"
+import * as ROUTES from "@constants/routes"
 import { PageHeader } from "@components/PageHeader"
 
 const Cookies = () => {
   const breadcrumbs: ILink[] = [
     {
       text: "Cookies",
-      route: ROUTES.COOKIES
-    }
+      route: ROUTES.COOKIES,
+    },
   ]
 
   return (
-    <div className='max-width page'>
-      <PageHeader title={'Cookies'}
-      breadcrumbs={breadcrumbs}/>
+    <div className="max-width page">
+      <PageHeader title={"Cookies"} breadcrumbs={breadcrumbs} />
 
       <div className="cookies">
         <div className="cookies-wrapper">
-          <div className='first-part'>
-            <p className="mt-5">Za&nbsp;účelem zlepšení našich služeb využívají naše stránky
-            soubory cookies. Cookies jsou malé soubory, které ukládají
-            informace ve&nbsp;Vašem prohlížeči.
+          <div className="first-part">
+            <p className="mt-5">
+              Za&nbsp;účelem zlepšení našich služeb využívají naše stránky
+              soubory cookies. Cookies jsou malé soubory, které ukládají
+              informace ve&nbsp;Vašem prohlížeči.
             </p>
             <div className="text mt-8">
               <h2 className="mb-5">
                 Co cookies dělají, co nedělají a&nbsp;jak je zakázat?
               </h2>
               <p className="block mt-3">
-                Cookies jsou na&nbsp;našich stránkách trendtrove.cz
-                užity za&nbsp;účelem měření návštěvnosti webů, cílení reklamy
+                Cookies jsou na&nbsp;našich stránkách trendtrove.cz užity
+                za&nbsp;účelem měření návštěvnosti webů, cílení reklamy
                 a&nbsp;přizpůsobení zobrazení webových stránek.
               </p>
               <p>
@@ -56,79 +56,86 @@ const Cookies = () => {
               <h2 className="mb-3">Kdo cookies využívá?</h2>
               <p className="pt-5">
                 Jsme Trend Trove, s.r.o., provozovatel webové stránky
-                trendtrove.cz. Vaše osobní údaje zpracováváme jako
-                správce, tedy určujeme, jak budou osobní údaje zpracovávány
-                a&nbsp;za jakým účelem, po jak dlouhou dobu a&nbsp;určujeme
-                případné další zpracovatele, kteří nám se zpracováním budou
-                pomáhat. Kteří to jsou?
+                trendtrove.cz. Vaše osobní údaje zpracováváme jako správce, tedy
+                určujeme, jak budou osobní údaje zpracovávány a&nbsp;za jakým
+                účelem, po jak dlouhou dobu a&nbsp;určujeme případné další
+                zpracovatele, kteří nám se zpracováním budou pomáhat. Kteří to
+                jsou?
               </p>
               <ul className="my-6 cookies__list--numbers">
                 <li>
-                  Služby Google Analytics, provozované společností Google
-                  Inc., sídlem 1600 Amphitheatre Parkway, Mountain View, CA
-                  94043, USA. Sesbírané cookies soubory jsou následně zpracovány
+                  Služby Google Analytics, provozované společností Google Inc.,
+                  sídlem 1600 Amphitheatre Parkway, Mountain View, CA 94043,
+                  USA. Sesbírané cookies soubory jsou následně zpracovány
                   společností Google Inc. v souladu se Zásadami ochrany
-                  soukromí, dostupnými{' '}
+                  soukromí, dostupnými{" "}
                   <span className="blue">
                     <a
                       href="https://policies.google.com/?hl=cs"
                       target="_blank"
                       rel="noreferrer"
-                    >ZDE
+                    >
+                      ZDE
                     </a>
                   </span>
                 </li>
                 <li className="mt-3">
-                Služby Facebook Pixel, provozované společností Facebook
-                Inc., sídlem 1601 Willow Road, Menlo Park, CA 94025, USA.
-                Sesbírané cookies soubory jsou následně zpracovány společností
-                Facebook Inc. &nbsp;souladu se Zásadami ochrany soukromí,
-                dostupnými{' '}
+                  Služby Facebook Pixel, provozované společností Facebook Inc.,
+                  sídlem 1601 Willow Road, Menlo Park, CA 94025, USA. Sesbírané
+                  cookies soubory jsou následně zpracovány společností Facebook
+                  Inc. &nbsp;souladu se Zásadami ochrany soukromí, dostupnými{" "}
                   <span className="blue">
                     <a
                       href="https://www.facebook.com/full_data_use_policy"
                       target="_blank"
                       rel="noreferrer"
-                    >ZDE
+                    >
+                      ZDE
                     </a>
                   </span>
                 </li>
                 <li className="mt-3">
-                Společnost LinkedIn corp, sídlem 1000 W Maude, Sunnyvale,
-                CA 94085, USA. SEsbírané cookies jsou následně zpracovány
-                společností LinkedIn v&nbsp;souladu se Zásadami ochrany
-                soukromí, dostupnými
+                  Společnost LinkedIn corp, sídlem 1000 W Maude, Sunnyvale, CA
+                  94085, USA. SEsbírané cookies jsou následně zpracovány
+                  společností LinkedIn v&nbsp;souladu se Zásadami ochrany
+                  soukromí, dostupnými
                   <span className="blue">
-                    {' '}
+                    {" "}
                     <a
                       href="https://www.linkedin.com/legal/cookie-policy?_l=cs_CZ"
                       target="_blank"
                       rel="noreferrer"
-                    >ZDE
+                    >
+                      ZDE
                     </a>
-                  </span>{' '}a{' '}
+                  </span>{" "}
+                  a{" "}
                   <span className="blue">
                     <a
                       href="https://www.linkedin.com/legal/privacy-policy"
                       target="_blank"
                       rel="noreferrer"
-                    >ZDE
+                    >
+                      ZDE
                     </a>
-                  </span>.
+                  </span>
+                  .
                 </li>
                 <li className="mt-3">
-                Společnost Twitter, Inc., sídlem 1355 Market St #900, San
-                Francisco, CA 94103, USA. Sesbírané cookies jsou následně
-                zpracovány společností Twitter v&nbsp;souladu se Zásadami
-                ochrany soukromí, dostupnými{' '}
+                  Společnost Twitter, Inc., sídlem 1355 Market St #900, San
+                  Francisco, CA 94103, USA. Sesbírané cookies jsou následně
+                  zpracovány společností Twitter v&nbsp;souladu se Zásadami
+                  ochrany soukromí, dostupnými{" "}
                   <span className="blue">
                     <a
                       href="https://twitter.com/en/privacy"
                       target="_blank"
                       rel="noreferrer"
-                    >ZDE
+                    >
+                      ZDE
                     </a>
-                  </span>.
+                  </span>
+                  .
                 </li>
               </ul>
               <p>
@@ -138,12 +145,10 @@ const Cookies = () => {
             </div>
 
             <div className="text mt-8">
-              <h2 className="mb-3">
-                Jaké cookies naše weby využívají?
-              </h2>
+              <h2 className="mb-3">Jaké cookies naše weby využívají?</h2>
               <p className="mt-5">
-              Na&nbsp;webových stránkách trendtrove.cz shromažďujeme následující
-              soubory cookies:
+                Na&nbsp;webových stránkách trendtrove.cz shromažďujeme
+                následující soubory cookies:
               </p>
             </div>
           </div>
@@ -160,13 +165,15 @@ const Cookies = () => {
                 <tr>
                   <td>preferenční</td>
                   <td>lang</td>
-                  <td>Využíváno společností LinkedIn, více informací{' '}
+                  <td>
+                    Využíváno společností LinkedIn, více informací{" "}
                     <span className="blue">
                       <a
                         href="https://www.linkedin.com/legal/cookie-policy?_l=cs_CZ"
                         target="_blank"
                         rel="noreferrer"
-                      >ZDE
+                      >
+                        ZDE
                       </a>
                     </span>
                   </td>
@@ -186,13 +193,15 @@ const Cookies = () => {
                 <tr>
                   <td>statistické</td>
                   <td>_gat</td>
-                  <td>Využíváno Google Analytics, více informací{' '}
+                  <td>
+                    Využíváno Google Analytics, více informací{" "}
                     <span className="blue">
                       <a
                         href="https://policies.google.com/?hl=cs"
                         target="_blank"
                         rel="noreferrer"
-                      >ZDE
+                      >
+                        ZDE
                       </a>
                     </span>
                   </td>
@@ -202,13 +211,15 @@ const Cookies = () => {
                 <tr>
                   <td>statistické</td>
                   <td>_gid</td>
-                  <td>Využíváno společností LinkedIn, více informací{' '}
+                  <td>
+                    Využíváno společností LinkedIn, více informací{" "}
                     <span className="blue">
                       <a
                         href="https://www.linkedin.com/legal/cookie-policy?_l=cs_CZ"
                         target="_blank"
                         rel="noreferrer"
-                      >ZDE
+                      >
+                        ZDE
                       </a>
                     </span>
                   </td>
@@ -218,13 +229,15 @@ const Cookies = () => {
                 <tr>
                   <td>marketingové</td>
                   <td>_fbp</td>
-                  <td>Využíváno společností Facebook, více informací{' '}
+                  <td>
+                    Využíváno společností Facebook, více informací{" "}
                     <span className="blue">
                       <a
                         href="https://www.facebook.com/full_data_use_policy"
                         target="_blank"
                         rel="noreferrer"
-                      >ZDE
+                      >
+                        ZDE
                       </a>
                     </span>
                   </td>
@@ -234,13 +247,15 @@ const Cookies = () => {
                 <tr>
                   <td>marketingové</td>
                   <td>bcookie</td>
-                  <td>Využíváno společností LinkedIn, více informací{' '}
+                  <td>
+                    Využíváno společností LinkedIn, více informací{" "}
                     <span className="blue">
                       <a
                         href="https://www.linkedin.com/legal/cookie-policy?_l=cs_CZ"
                         target="_blank"
                         rel="noreferrer"
-                      >ZDE
+                      >
+                        ZDE
                       </a>
                     </span>
                   </td>
@@ -260,13 +275,15 @@ const Cookies = () => {
                 <tr>
                   <td>marketingové</td>
                   <td>bscookie</td>
-                  <td>Využíváno společností LinkedIn, více informací{' '}
+                  <td>
+                    Využíváno společností LinkedIn, více informací{" "}
                     <span className="blue">
                       <a
                         href="https://www.linkedin.com/legal/cookie-policy?_l=cs_CZ"
                         target="_blank"
                         rel="noreferrer"
-                      >ZDE
+                      >
+                        ZDE
                       </a>
                     </span>
                   </td>
@@ -276,13 +293,15 @@ const Cookies = () => {
                 <tr>
                   <td>marketingové</td>
                   <td>c</td>
-                  <td>Využíváno společností IMPER CZ, více informací{' '}
+                  <td>
+                    Využíváno společností IMPER CZ, více informací{" "}
                     <span className="blue">
                       <a
                         href="https://trendtrove.cz/gdpr/"
                         target="_blank"
                         rel="noreferrer"
-                      >ZDE
+                      >
+                        ZDE
                       </a>
                     </span>
                   </td>
@@ -292,12 +311,15 @@ const Cookies = () => {
                 <tr>
                   <td>marketingové</td>
                   <td>fr</td>
-                  <td>Využíváno společností Facebook, více informací{' '}
+                  <td>
+                    Využíváno společností Facebook, více informací{" "}
                     <span className="blue">
                       <a
                         href="https://www.facebook.com/full_data_use_policy"
                         target="_blank"
-                        rel="noreferrer">ZDE
+                        rel="noreferrer"
+                      >
+                        ZDE
                       </a>
                     </span>
                   </td>
@@ -317,13 +339,15 @@ const Cookies = () => {
                 <tr>
                   <td>marketingové</td>
                   <td>lidc</td>
-                  <td>Využíváno společností LinkedIn, více informací{' '}
+                  <td>
+                    Využíváno společností LinkedIn, více informací{" "}
                     <span className="blue">
                       <a
                         href="https://www.linkedin.com/legal/cookie-policy?_l=cs_CZ"
                         target="_blank"
                         rel="noreferrer"
-                      >ZDE
+                      >
+                        ZDE
                       </a>
                     </span>
                   </td>
@@ -333,13 +357,15 @@ const Cookies = () => {
                 <tr>
                   <td>marketingové</td>
                   <td>personalization_id</td>
-                  <td>Využíváno společností Twitter, více informací{' '}
+                  <td>
+                    Využíváno společností Twitter, více informací{" "}
                     <span className="blue">
                       <a
                         href="https://twitter.com/en/privacy"
                         target="_blank"
                         rel="noreferrer"
-                      >ZDE
+                      >
+                        ZDE
                       </a>
                     </span>
                   </td>
@@ -382,13 +408,15 @@ const Cookies = () => {
                 <tr>
                   <td>nutné</td>
                   <td>__cfduid </td>
-                  <td>Využíváno společností Cloudflare, více informací{' '}
+                  <td>
+                    Využíváno společností Cloudflare, více informací{" "}
                     <span className="blue">
                       <a
                         href="https://www.cloudflare.com/gdpr/introduction/"
                         target="_blank"
                         rel="noreferrer"
-                      >ZDE
+                      >
+                        ZDE
                       </a>
                     </span>
                   </td>
@@ -398,13 +426,15 @@ const Cookies = () => {
                 <tr>
                   <td>preferenční</td>
                   <td>lang</td>
-                  <td>Využíváno společností LinkedIn, více informací{' '}
+                  <td>
+                    Využíváno společností LinkedIn, více informací{" "}
                     <span className="blue">
                       <a
                         href="https://www.linkedin.com/legal/cookie-policy?_l=cs_CZ"
                         target="_blank"
                         rel="noreferrer"
-                      >ZDE
+                      >
+                        ZDE
                       </a>
                     </span>
                   </td>
@@ -424,13 +454,15 @@ const Cookies = () => {
                 <tr>
                   <td>statistické</td>
                   <td>_gat</td>
-                  <td>Využíváno Google Aanalytics, více informací{' '}
+                  <td>
+                    Využíváno Google Aanalytics, více informací{" "}
                     <span className="blue">
                       <a
                         href="https://policies.google.com/?hl=cs"
                         target="_blank"
                         rel="noreferrer"
-                      >ZDE
+                      >
+                        ZDE
                       </a>
                     </span>
                   </td>
@@ -462,13 +494,15 @@ const Cookies = () => {
                 <tr>
                   <td>marketingové</td>
                   <td>_fbp </td>
-                  <td>Využíváno společností Facebook, více informací{' '}
+                  <td>
+                    Využíváno společností Facebook, více informací{" "}
                     <span className="blue">
                       <a
                         href="https://www.facebook.com/full_data_use_policy"
                         target="_blank"
                         rel="noreferrer"
-                      >ZDE
+                      >
+                        ZDE
                       </a>
                     </span>
                   </td>
@@ -479,13 +513,14 @@ const Cookies = () => {
                   <td>marketingové</td>
                   <td>ads/ga-audiences </td>
                   <td>
-                    Využíváno společnostíGoogle, více informací{' '}
+                    Využíváno společnostíGoogle, více informací{" "}
                     <span className="blue">
                       <a
                         href="https://policies.google.com/?hl=cs"
                         target="_blank"
                         rel="noreferrer"
-                      >ZDE
+                      >
+                        ZDE
                       </a>
                     </span>
                   </td>
@@ -495,13 +530,15 @@ const Cookies = () => {
                 <tr>
                   <td>marketingové</td>
                   <td>bcookie </td>
-                  <td>Využíváno společností LinkedIn, více informací{' '}
+                  <td>
+                    Využíváno společností LinkedIn, více informací{" "}
                     <span className="blue">
                       <a
                         href="https://www.linkedin.com/legal/cookie-policy?_l=cs_CZ"
                         target="_blank"
                         rel="noreferrer"
-                      >ZDE
+                      >
+                        ZDE
                       </a>
                     </span>
                   </td>
@@ -511,13 +548,15 @@ const Cookies = () => {
                 <tr>
                   <td>marketingové</td>
                   <td>bscookie </td>
-                  <td>Využíváno společností LinkedIn, více informací{' '}
+                  <td>
+                    Využíváno společností LinkedIn, více informací{" "}
                     <span className="blue">
                       <a
                         href="https://www.linkedin.com/legal/cookie-policy?_l=cs_CZ"
                         target="_blank"
                         rel="noreferrer"
-                      >ZDE
+                      >
+                        ZDE
                       </a>
                     </span>
                   </td>
@@ -527,13 +566,15 @@ const Cookies = () => {
                 <tr>
                   <td>marketingové</td>
                   <td>fr</td>
-                  <td>Využíváno společností Facebook, více informací{' '}
+                  <td>
+                    Využíváno společností Facebook, více informací{" "}
                     <span className="blue">
                       <a
                         href="https://www.facebook.com/full_data_use_policy"
                         target="_blank"
                         rel="noreferrer"
-                      >ZDE
+                      >
+                        ZDE
                       </a>
                     </span>
                   </td>
@@ -554,13 +595,15 @@ const Cookies = () => {
                 <tr>
                   <td>marketingové</td>
                   <td>i/adsct </td>
-                  <td>Využíváno společností LinkedIn, více informací{' '}
+                  <td>
+                    Využíváno společností LinkedIn, více informací{" "}
                     <span className="blue">
                       <a
                         href="https://www.linkedin.com/legal/cookie-policy?_l=cs_CZ"
                         target="_blank"
                         rel="noreferrer"
-                      >ZDE
+                      >
+                        ZDE
                       </a>
                     </span>
                   </td>
@@ -570,13 +613,15 @@ const Cookies = () => {
                 <tr>
                   <td>marketingové</td>
                   <td>IDE </td>
-                  <td>Využíváno Google Aanalytics, více informací{' '}
+                  <td>
+                    Využíváno Google Aanalytics, více informací{" "}
                     <span className="blue">
                       <a
                         href="https://policies.google.com/?hl=cs"
                         target="_blank"
                         rel="noreferrer"
-                      >ZDE
+                      >
+                        ZDE
                       </a>
                     </span>
                   </td>
@@ -598,13 +643,15 @@ const Cookies = () => {
                 <tr>
                   <td>marketingové</td>
                   <td>lidc</td>
-                  <td>Využíváno společností LinkedIn, více informací{' '}
+                  <td>
+                    Využíváno společností LinkedIn, více informací{" "}
                     <span className="blue">
                       <a
                         href="https://www.linkedin.com/legal/cookie-policy?_l=cs_CZ"
                         target="_blank"
                         rel="noreferrer"
-                      >ZDE
+                      >
+                        ZDE
                       </a>
                     </span>
                   </td>
@@ -614,13 +661,15 @@ const Cookies = () => {
                 <tr>
                   <td>marketingové</td>
                   <td>personalization_id </td>
-                  <td>Využíváno společností Twitter, více informací{' '}
+                  <td>
+                    Využíváno společností Twitter, více informací{" "}
                     <span className="blue">
                       <a
                         href="https://twitter.com/en/privacy"
                         target="_blank"
                         rel="noreferrer"
-                      >ZDE
+                      >
+                        ZDE
                       </a>
                     </span>
                   </td>
@@ -630,13 +679,15 @@ const Cookies = () => {
                 <tr>
                   <td>marketingové</td>
                   <td>PREF </td>
-                  <td>Využíváno společností Google/YouTube, více informací{' '}
+                  <td>
+                    Využíváno společností Google/YouTube, více informací{" "}
                     <span className="blue">
                       <a
                         href="https://policies.google.com/?hl=cs"
                         target="_blank"
                         rel="noreferrer"
-                      >ZDE
+                      >
+                        ZDE
                       </a>
                     </span>
                   </td>
@@ -656,13 +707,15 @@ const Cookies = () => {
                 <tr>
                   <td>marketingové</td>
                   <td>tr</td>
-                  <td>Využíváno společností Facebook, více informací{' '}
+                  <td>
+                    Využíváno společností Facebook, více informací{" "}
                     <span className="blue">
                       <a
                         href="https://www.facebook.com/full_data_use_policy"
                         target="_blank"
                         rel="noreferrer"
-                      >ZDE
+                      >
+                        ZDE
                       </a>
                     </span>
                   </td>
@@ -721,4 +774,3 @@ const Cookies = () => {
 }
 
 export default Cookies
-

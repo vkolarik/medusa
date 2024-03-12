@@ -17,51 +17,53 @@
     color: $black;
   }
 
-  input[type=text], input[type=password], select {
+  input[type="text"],
+  input[type="password"],
+  select {
     width: 100%;
     padding: 0.25rem 0;
     display: block;
-  
+
     border: none;
     border-bottom: 1px solid $black;
     outline: none;
     color: $black;
     font-size: clamp(0.9rem, 0.9vw, 1.35rem);
-  
+
     &::placeholder {
       color: $black;
     }
-  
+
     &:focus {
       outline: none;
     }
   }
-  
+
   .form__input label:not(.button) {
     text-transform: uppercase;
     font-size: clamp(0.7rem, 0.7vw, 1.1rem);
     color: $grey;
   }
-  
+
   .error {
     font-size: clamp(0.6rem, 0.6vw, 1.15rem);
     color: $error;
     font-weight: 500;
   }
-  
+
   input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 50px white inset;
     -webkit-text-fill-color: $black;
     outline: none !important;
   }
-  
+
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
-  
-  input[type='number'] {
+
+  input[type="number"] {
     -moz-appearance: textfield;
     appearance: textfield;
   }
