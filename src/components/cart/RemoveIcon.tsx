@@ -1,12 +1,19 @@
+import { useAppContext } from "@context/MainContext"
+import { storeInStorage } from "@utils/storage"
 import { FC } from "react"
 
-export const RemoveIcon: FC = () => {
+export const RemoveIcon: FC<{ itemId: number }> = ({ itemId }) => {
+  const { cartProducts, setCartProducts } = useAppContext()
+
   const removeProduct = () => {
-    // TODO: implement
+    const filteredProducts = cartProducts.filter(c => c.id !== itemId)
+    setCartProducts(filteredProducts)
+    storeInStorage("session", "products", filteredProducts)
   }
 
   return (
     <svg
+      onClick={() => removeProduct()}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       width="16"

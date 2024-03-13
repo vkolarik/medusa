@@ -1,41 +1,27 @@
 import { statesData } from "@data/register"
 import { ICartForm } from "modules/CartForms"
 import { IState } from "modules/Register"
-import { FC, useState } from "react"
-import { useForm } from "react-hook-form"
+import { FC } from "react"
+import { UseFormRegister } from "react-hook-form"
 
-export const CartForm: FC = () => {
-  const [loading, setLoading] = useState<boolean>(false)
-  const [isDisabled, setIsDisabled] = useState<boolean>(false)
 
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    getValues,
-    formState: { errors },
-  } = useForm<ICartForm>()
+interface CartFormProps {
+  register: UseFormRegister<ICartForm>;
+  errors: any;
+}
 
-  const onSubmit: any = async (data: ICartForm, e: Event) => {
-    e.preventDefault()
-    setIsDisabled(true)
-
-    // toast.success('Registrace byla úspěšná')
-    // toast.error('ddddddd')
-    // setBtnText('Přihlásit se')
-    // setIsDisabled(false)
-  }
+export const CartForm: FC<CartFormProps> = ({ register, errors }) => {
 
   // TODO: zobrazovat form, kdyz je uziv. prihlaseny? napr. nasetovat mu ty hodnoty do formu a dat tam readonly?
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}
+    <div
       className="basic-form py-8 basic-form--cart mt-8 w-full">
       <h2 className="uppercase font-medium mb-1 lg:text-[18px] md:text-[16px] text-[15px]">osobní informace</h2>
-      <div className="grid grid-cols-3 gap-x-6">
+      <div className="grid md:grid-cols-3 md:gap-x-6 gap-2">
 
         {/* name input */}
-        <div className="mb-4 form__input">
+        <div className="md:mb-4 form__input">
           <label htmlFor="name">Jméno a příjmení</label>
           <input
             className={`${errors.name ? "mb-3" : "mb-0"}`}
@@ -55,7 +41,7 @@ export const CartForm: FC = () => {
         </div>
 
         {/* email input */}
-        <div className="mb-4 form__input">
+        <div className="md:mb-4 form__input">
           <label htmlFor="email">Email</label>
           <input
             className={`${errors.email ? "mb-3" : "mb-0"}`}
@@ -109,10 +95,10 @@ export const CartForm: FC = () => {
       </div>
 
       <h2 className="uppercase font-medium mb-1 mt-4 lg:text-[18px] md:text-[16px] text-[15px]">doručovací adresa</h2>
-      <div className="grid grid-cols-3 gap-x-6">
+      <div className="grid md:grid-cols-3 md:gap-x-6 gap-2">
 
         {/* state input */}
-        <div className="mb-4 form__input">
+        <div className="md:mb-4 form__input">
           <label htmlFor="state">Stát</label>
           <select
             id="state"
@@ -138,7 +124,7 @@ export const CartForm: FC = () => {
         </div>
 
         {/* city input */}
-        <div className="mb-4 form__input">
+        <div className="md:mb-4 form__input">
           <label htmlFor="city">Město</label>
           <input
             className={`${errors.city ? "mb-3" : "mb-0"}`}
@@ -156,7 +142,7 @@ export const CartForm: FC = () => {
             </p>
           )}
         </div>
-        <div className="mb-4 form__input">
+        <div className="md:mb-4 form__input">
           <label htmlFor="street">Ulice</label>
           <input
             className={`${errors.street ? "mb-3" : "mb-0"}`}
@@ -176,7 +162,7 @@ export const CartForm: FC = () => {
         </div>
 
         {/* cadastral_number input */}
-        <div className="mb-4 form__input">
+        <div className="md:mb-4 form__input">
           <label htmlFor="cadastral_number">Číslo popisné</label>
           <input
             className={`${errors.cadastral_number ? "mb-3" : "mb-0"}`}
@@ -196,7 +182,7 @@ export const CartForm: FC = () => {
         </div>
 
         {/* zip_code input */}
-        <div className="mb-4 form__input">
+        <div className="md:mb-4 form__input">
           <label htmlFor="zip_code">PSČ</label>
           <input
             className={`${errors.zip_code ? "mb-3" : "mb-0"}`}
@@ -272,6 +258,6 @@ export const CartForm: FC = () => {
         </label>
       </div>
 
-    </form>
+    </div>
   )
 }

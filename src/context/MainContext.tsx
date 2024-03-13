@@ -15,11 +15,12 @@ const AppContext = createContext<AppProviderInterface>({
 export function AppWrapper({ children } : {
   children: React.ReactNode
 }) {
-  let [cartProducts, setCartProducts] = useState<ICartItem[]>([])
-  let [loading, setLoading] = useState<boolean>(false)
+  const [cartProducts, setCartProducts] = useState<ICartItem[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     setCartProducts(getFromStorage<ICartItem[]>("session", "products") as ICartItem[] ?? [])
+    setLoading(false)
   }, [])
 
   return (

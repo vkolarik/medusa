@@ -40,7 +40,7 @@ const Register: NextPage = () => {
 
   return (
     <div className="max-width md:py-36 py-12 w-full">
-      <form className="basic-form" onSubmit={handleSubmit(onSubmit)}>
+      <form className="basic-form basic-form--register" onSubmit={handleSubmit(onSubmit)}>
         <div className="w-full mb-4 md:mb-8 text-center">
           <h1 className="md:mb-1 text-[22px] md:text-[25px] uppercase">
             Registrace
@@ -50,8 +50,8 @@ const Register: NextPage = () => {
           </p>
         </div>
 
-        <div className="flex lg:gap-5 lg:flex-row flex-col">
-          <div>
+        <div className="flex lg:gap-5 lg:flex-row flex-col w-full">
+          <div className="w-full">
             <div className="mb-4 form__input">
               <label htmlFor="name">Jméno</label>
               <input
@@ -169,7 +169,7 @@ const Register: NextPage = () => {
             </div>
           </div>
 
-          <div>
+          <div className="w-full">
             <div className="mb-4 form__input">
               <label htmlFor="city">Město</label>
               <input

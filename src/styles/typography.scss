@@ -5,7 +5,7 @@ p {
 
 p.small,
 span.small {
-  font-size: clamp(0.65rem, 0.65vw, 1.1rem);
+  font-size: clamp(0.7rem, 0.7vw, 1.1rem);
   color: $grey !important;
 }
 
@@ -13,6 +13,7 @@ p.grey {
   color: $grey !important;
   line-height: 1;
 }
+
 p,
 li,
 span,

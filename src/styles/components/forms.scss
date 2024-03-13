@@ -1,10 +1,22 @@
 .basic-form {
   min-width: 25rem;
   width: fit-content;
-  margin: auto;
+  
+  &.basic-form--cart {
+    width: 100%;
+
+    @media (max-width: 1023px) {
+      padding: 0;
+    }
+  }
+
+  &.basic-form--register {
+    margin: auto;
+  }
 
   &:not(.basic-form--cart) {
     padding: 2rem;
+    margin: auto;
 
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
@@ -60,7 +72,7 @@
     font-weight: 500;
   }
 
-  input:-webkit-autofill {
+  input:-webkit-autofill, select:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 50px white inset;
     -webkit-text-fill-color: $black;
     outline: none !important;

@@ -18,15 +18,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+
   return (
     <html lang="cs">
       <AppWrapper>
         <body className="flex justify-between min-h-screen flex-col">
           <Header />
+          <Toaster richColors closeButton />
           <div className="flex-grow flex items-center lg:mt-10 mt-20">
             {children}
           </div>
-          <Toaster richColors closeButton />
           <Footer />
         </body>
       </AppWrapper>

@@ -3,6 +3,7 @@ import { IProductPreview } from "modules/Product"
 import Link from "next/link"
 import { FC } from "react"
 import Image from "next/image"
+import { storeInStorage } from "@utils/storage"
 
 export const ProductItemPreview: FC<{ product: IProductPreview }> = ({
   product,
@@ -44,7 +45,8 @@ export const ProductItemPreview: FC<{ product: IProductPreview }> = ({
           {title}
         </h2>
         <h3 className="font-medium lg:text-[18px] text-[14px]">{price} Kč</h3>
-        <button className="button button--light">Detail</button>
+        <button className="button button--light"
+          onClick={() => storeInStorage("session", "products", [product])}>Detail</button>
       </div>
     </Link>
   )

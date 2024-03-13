@@ -6,13 +6,12 @@ import * as ROUTES from "@constants/routes"
 import { ICartItem } from "modules/CartItem"
 import { HeaderCartItem } from "./HeaderCartItem"
 import { useAppContext } from "@context/MainContext"
+import { calculateTotalPrice } from "@utils/totalPrice";
 
 export const HeaderCart: FC = () => {
   const { cartProducts } = useAppContext()
 
-  const totalPrice = cartProducts.reduce((acc, currentItem) => {
-    return acc + currentItem.price * (currentItem.amount ?? 1)
-  }, 0)
+  const totalPrice = calculateTotalPrice(cartProducts)
 
   return (
     <li className="dropdown cursor-pointer relative z-[999]">
@@ -48,7 +47,7 @@ export const HeaderCart: FC = () => {
               Cena celkem: {totalPrice} Kč
             </p>
             <div className="text-center pt-3 pb-5">
-              <Link className="button button--cart block" href={ROUTES.CART}>
+              <Link className="button button--small button--cart block" href={ROUTES.CART}>
                 Přejít do košíku
               </Link>
             </div>
@@ -59,7 +58,7 @@ export const HeaderCart: FC = () => {
               Váš nákupní košík je prázdný
             </span>
             <div className="text-center pt-3 pb-5">
-              <Link className="button block" href={ROUTES.HOME}>
+                <Link className="button button--small button--cart block" href={ROUTES.HOME}>
                 Jít nakupovat
               </Link>
             </div>

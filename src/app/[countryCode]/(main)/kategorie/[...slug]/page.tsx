@@ -1,4 +1,5 @@
 "use client"
+
 import { PageHeader } from "@components/PageHeader"
 import { ILink } from "modules/Link"
 import { categoriesData } from "@data/categories"
@@ -9,12 +10,12 @@ import { ProductContainer } from "@components/products/ProductContainer"
 import { FilterButton } from "@components/products/FilterButton"
 import { useState } from "react"
 import { Filter } from "@components/products/Filter"
+
 const ProductCategory = ({ params }: { params: { slug: string } }) => {
-  const activeCategory: ICategory = categoriesData.find(
-    (c) => c.route === `/kategorie/${params.slug[0]}`
-  ) as ICategory
+  const activeCategory: ICategory = categoriesData.find((c) => c.route === `/kategorie/${params.slug[0]}`) as ICategory
   let activeSubCategory: ICategory | null = null
   const [filterIsActive, setFilterIsActive] = useState<boolean>(false)
+
   if (params.slug.length > 1 && activeCategory.data) {
     activeSubCategory = activeCategory.data.find(
       (c) =>
@@ -22,18 +23,21 @@ const ProductCategory = ({ params }: { params: { slug: string } }) => {
         `${activeCategory.route}/${params.slug[params.slug.length - 1]}`
     ) as ICategory
   }
+
   const breadcrumbs: ILink[] = [
     {
       text: activeCategory?.title,
       route: activeCategory?.route,
     },
   ]
+
   if (activeSubCategory) {
     breadcrumbs.push({
       text: activeSubCategory?.title,
       route: activeSubCategory?.route,
     })
   }
+
   return (
     <main className="max-width page w-full">
       <Filter isActive={filterIsActive} setIsActive={setFilterIsActive} />
