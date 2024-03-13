@@ -6,6 +6,10 @@ import { useForm } from "react-hook-form"
 import * as ROUTES from "@constants/routes"
 import { NextPage } from "next"
 import { ISigninData } from "modules/Login"
+import { BasicInput } from "@components/forms/BasicInput"
+import { SubmitButton } from "@components/SubmitButton"
+import { loginInputs } from "@data/forms"
+import { IBasicInput } from "modules/BasicInput"
 
 const SignIn: NextPage = () => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
@@ -21,6 +25,7 @@ const SignIn: NextPage = () => {
     e.preventDefault()
     setBtnText("Přihlašování...")
     setIsDisabled(true)
+    console.log(data)
 
     // toast.success('Přilhášení bylo úspěšné')
     // toast.error('ddddddd')
@@ -43,58 +48,23 @@ const SignIn: NextPage = () => {
             Přihlaste se k Vašemu účtu
           </p>
         </div>
-        {/* Email input */}
-        <div className="mb-4 form__input">
-          <label htmlFor="email">Email</label>
-          <input
-            className={`${errors.email ? "mb-3" : "mb-0"}`}
-            id="email"
-            type="text"
-            placeholder="Email"
-            {...register("email", {
-              required: "Email je povinný",
-              pattern: /^\S+@\S+$/i,
-            })}
-          />
-          {/* error message */}
-          {errors.email && errors.email.type === "required" && (
-            <p className="h-6 text-left error">
-              {errors.email.message as string}
-            </p>
-          )}
 
-          {errors.email && errors.email.type === "pattern" && (
-            <p className="h-6 text-left error">Email nemá správný tvar</p>
-          )}
-        </div>
-        {/* Password input */}
-        <div className="mb-4 form__input">
-          <label htmlFor="password">Heslo</label>
-          <input
-            className={`${errors.password ? "mb-3" : "mb-0"}`}
-            id="password"
-            type="password"
-            autoComplete="on"
-            placeholder="Heslo"
-            {...register("password", {
-              required: "Heslo je povinné",
-              maxLength: 40,
-              minLength: 5,
-            })}
-          />
-          {/* error message */}
-          {errors.password && errors.password.type === "required" && (
-            <p className="h-6 text-left error">
-              {errors.password.message as string}
-            </p>
-          )}
-
-          {errors.password && errors.password.type === "minLength" && (
-            <p className="h-6 text-left error">
-              Heslo musí mít alespoň 5 znaků
-            </p>
-          )}
-        </div>
+        {loginInputs.map((input: Omit<IBasicInput<ISigninData>, "register" | "errors">, key: number) => {
+          const { placeholder, id, required, pattern, type, min, max, minLengthErr, maxLengthErr } = input
+          return <BasicInput
+            key={key}
+            placeholder={placeholder}
+            id={id}
+            errors={errors}
+            register={register}
+            required={required}
+            type={type}
+            pattern={pattern}
+            min={min}
+            max={max}
+            minLengthErr={minLengthErr}
+            maxLengthErr={maxLengthErr}/>
+        })}
 
         <p className="small text-right">
           Nemáte účet?{" "}
@@ -108,13 +78,9 @@ const SignIn: NextPage = () => {
 
         <div className="ease-in duration-200 mt-5 md:mt-8 flex justify-center">
           {/* Submit button */}
-          <button
-            type="submit"
-            className="button button--light"
-            disabled={isDisabled}
-          >
-            {btnText}
-          </button>
+          <SubmitButton
+            isDisabled={isDisabled}
+            text={btnText} />
         </div>
       </form>
     </div>

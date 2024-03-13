@@ -9,6 +9,7 @@ export const productsPreviewData: IProductPreview[] = [
     route: "/obleceni/tricka/panske-tricko-s-kulatym-vystrihem",
     sizes: ["S", "M"],
     price: 599,
+    color: "#000000"
   },
   {
     id: 2,
@@ -17,6 +18,7 @@ export const productsPreviewData: IProductPreview[] = [
     route: "/obleceni/tricka/panske-tricko-s-kulatym-vystrihem",
     sizes: ["S", "M"],
     price: 599,
+    color: "#000000"
   },
   {
     id: 3,
@@ -25,6 +27,7 @@ export const productsPreviewData: IProductPreview[] = [
     route: "/obleceni/tricka/panske-tricko-s-kulatym-vystrihem",
     sizes: ["S", "M"],
     price: 599,
+    color: "#000000"
   },
   {
     id: 4,
@@ -33,6 +36,7 @@ export const productsPreviewData: IProductPreview[] = [
     route: "/obleceni/tricka/panske-tricko-s-kulatym-vystrihem",
     sizes: ["S", "M"],
     price: 599,
+    color: "#000000"
   },
   {
     id: 5,
@@ -41,6 +45,7 @@ export const productsPreviewData: IProductPreview[] = [
     route: "/obleceni/tricka/panske-tricko-s-kulatym-vystrihem",
     sizes: ["S", "M"],
     price: 599,
+    color: "#000000"
   },
   {
     id: 6,
@@ -49,6 +54,7 @@ export const productsPreviewData: IProductPreview[] = [
     route: "/obleceni/tricka/panske-tricko-s-kulatym-vystrihem",
     sizes: ["S", "M"],
     price: 599,
+    color: "#000000"
   },
   {
     id: 7,
@@ -57,6 +63,7 @@ export const productsPreviewData: IProductPreview[] = [
     route: "/obleceni/tricka/panske-tricko-s-kulatym-vystrihem",
     sizes: ["S", "M"],
     price: 599,
+    color: "#000000"
   },
   {
     id: 8,
@@ -65,5 +72,6 @@ export const productsPreviewData: IProductPreview[] = [
     route: "/obleceni/tricka/panske-tricko-s-kulatym-vystrihem",
     sizes: ["S", "M"],
     price: 599,
+    color: "#000000"
   },
 ]

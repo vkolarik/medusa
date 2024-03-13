@@ -1,8 +1,8 @@
 import { FC } from "react";
 
-export const SubmitButton: FC<{ isDisabled: boolean, loading: boolean, text: string }> = ({
+export const SubmitButton: FC<{ isDisabled: boolean, loading?: boolean, text: string }> = ({
   isDisabled,
-  loading,
+  loading = false,
   text
 }) => {
   return <button className={`button ${loading ? "" : "button--light"} button--small md:w-[13rem] w-[12rem]`}

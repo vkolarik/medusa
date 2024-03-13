@@ -4,13 +4,10 @@ import { IState } from "modules/Register"
 import { FC } from "react"
 import { UseFormRegister } from "react-hook-form"
 
-
-interface CartFormProps {
+export const CartForm: FC<{
   register: UseFormRegister<ICartForm>;
   errors: any;
-}
-
-export const CartForm: FC<CartFormProps> = ({ register, errors }) => {
+}> = ({ register, errors }) => {
 
   // TODO: zobrazovat form, kdyz je uziv. prihlaseny? napr. nasetovat mu ty hodnoty do formu a dat tam readonly?
 
