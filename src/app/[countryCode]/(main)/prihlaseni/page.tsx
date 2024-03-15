@@ -6,10 +6,9 @@ import { useForm } from "react-hook-form"
 import * as ROUTES from "@constants/routes"
 import { NextPage } from "next"
 import { ISigninData } from "modules/Login"
-import { BasicInput } from "@components/forms/BasicInput"
 import { SubmitButton } from "@components/SubmitButton"
 import { loginInputs } from "@data/forms"
-import { IBasicInput } from "modules/BasicInput"
+import { Form } from "@components/forms/Forms"
 
 const SignIn: NextPage = () => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
@@ -49,22 +48,9 @@ const SignIn: NextPage = () => {
           </p>
         </div>
 
-        {loginInputs.map((input: Omit<IBasicInput<ISigninData>, "register" | "errors">, key: number) => {
-          const { placeholder, id, required, pattern, type, min, max, minLengthErr, maxLengthErr } = input
-          return <BasicInput
-            key={key}
-            placeholder={placeholder}
-            id={id}
-            errors={errors}
-            register={register}
-            required={required}
-            type={type}
-            pattern={pattern}
-            min={min}
-            max={max}
-            minLengthErr={minLengthErr}
-            maxLengthErr={maxLengthErr}/>
-        })}
+        <Form data={loginInputs}
+          register={register}
+          errors={errors}/>
 
         <p className="small text-right">
           Nemáte účet?{" "}

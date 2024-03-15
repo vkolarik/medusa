@@ -1,5 +1,5 @@
-import { IBasicInput, InputType } from "modules/BasicInput";
-import { FieldValues, Path, UseFormRegister } from "react-hook-form";
+import { IBasicInput, InputType } from "modules/Inputs";
+import { FieldValues, Path } from "react-hook-form";
 
 export const BasicInput: <T extends FieldValues>(
   props: IBasicInput<T>
@@ -14,12 +14,13 @@ export const BasicInput: <T extends FieldValues>(
   min,
   max,
   minLengthErr,
-  maxLengthErr
+  maxLengthErr,
+  noPaddingOnMobile
 }: IBasicInput<T>) => {
     const error = errors[id];
 
     return (
-      <div className="mb-4 form__input">
+      <div className={`${noPaddingOnMobile ? "md:" :""}mb-4 form__input`}>
         <label htmlFor={id}>{placeholder}</label>
 
         <input

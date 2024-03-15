@@ -70,7 +70,6 @@ const CartPage: NextPage = () => {
           <CartForm errors={errors} register={register} />
         </div>
 
-        {/* chci, aby toto bylo vysoky jako ten div vlevo */}
         <div className="xl:pl-10 pl-5 py-5 lg:w-1/2 flex flex-col w-full">
           <div className="h-full">
             <div className="pb-5 border-b border-lightGrey">

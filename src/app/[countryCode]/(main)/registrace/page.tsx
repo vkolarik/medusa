@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
-import * as ROUTES from "@constants/routes"
 import { NextPage } from "next"
-import { IRegisterData, IState } from "modules/Register"
-import { statesData } from "@data/register"
+import { IRegisterData } from "modules/Register"
+import { registerInputs1, registerInputs2 } from "@data/forms"
+import { Form } from "@components/forms/Forms"
+import { SubmitButton } from "@components/SubmitButton"
 
 const Register: NextPage = () => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
@@ -15,7 +16,6 @@ const Register: NextPage = () => {
     register,
     handleSubmit,
     setValue,
-    getValues,
     formState: { errors },
   } = useForm<IRegisterData>()
 
@@ -33,6 +33,7 @@ const Register: NextPage = () => {
     // setBtnText('Přihlásit se')
     // setIsDisabled(false)
   }
+
 
   // if (session.status === 'authenticated') {
   //   router.push(ROUTES.ACCOUNT)
@@ -52,247 +53,24 @@ const Register: NextPage = () => {
 
         <div className="flex lg:gap-5 lg:flex-row flex-col w-full">
           <div className="w-full">
-            <div className="mb-4 form__input">
-              <label htmlFor="name">Jméno</label>
-              <input
-                className={`${errors.name ? "mb-3" : "mb-0"}`}
-                id="name"
-                type="text"
-                placeholder="Jméno"
-                {...register("name", {
-                  required: "Jméno je povinné",
-                })}
-              />
-              {/* error message */}
-              {errors.name && errors.name.type === "required" && (
-                <p className="h-6 text-left error">
-                  {errors.name.message as string}
-                </p>
-              )}
-            </div>
+            <Form data={registerInputs1}
+              errors={errors}
+              register={register}/>
 
-            <div className="mb-4 form__input">
-              <label htmlFor="surname">Příjmení</label>
-              <input
-                className={`${errors.surname ? "mb-3" : "mb-0"}`}
-                id="surname"
-                type="text"
-                placeholder="Příjmení"
-                {...register("surname", {
-                  required: "Příjmení je povinné",
-                })}
-              />
-              {/* error message */}
-              {errors.surname && errors.surname.type === "required" && (
-                <p className="h-6 text-left error">
-                  {errors.surname.message as string}
-                </p>
-              )}
-            </div>
-
-            {/* Email input */}
-            <div className="mb-4 form__input">
-              <label htmlFor="email">Email</label>
-              <input
-                className={`${errors.email ? "mb-3" : "mb-0"}`}
-                id="email"
-                type="text"
-                placeholder="Email"
-                {...register("email", {
-                  required: "Email je povinný",
-                  pattern: /^\S+@\S+$/i,
-                })}
-              />
-              {/* error message */}
-              {errors.email && errors.email.type === "required" && (
-                <p className="h-6 text-left error">
-                  {errors.email.message as string}
-                </p>
-              )}
-
-              {errors.email && errors.email.type === "pattern" && (
-                <p className="h-6 text-left error">Email nemá správný tvar</p>
-              )}
-            </div>
-
-            <div className="mb-4 form__input">
-              <label htmlFor="password">Heslo</label>
-              <input
-                className={`${errors.password ? "mb-3" : "mb-0"}`}
-                id="password"
-                type="password"
-                autoComplete="on"
-                placeholder="Heslo"
-                {...register("password", {
-                  required: "Heslo je povinné",
-                  maxLength: 40,
-                  minLength: 5,
-                })}
-              />
-              {/* error message */}
-              {errors.password && errors.password.type === "required" && (
-                <p className="h-6 text-left error">
-                  {errors.password.message as string}
-                </p>
-              )}
-
-              {errors.password && errors.password.type === "minLength" && (
-                <p className="h-6 text-left error">
-                  Heslo musí mít alespoň 5 znaků
-                </p>
-              )}
-            </div>
-
-            <div className="mb-4 form__input">
-              <label htmlFor="state">Stát</label>
-              <select
-                id="state"
-                {...register("state", {
-                  required: "Stát je povinný",
-                })}
-              >
-                {statesData.map((state: IState, key: number) => {
-                  const { text, code } = state
-                  return (
-                    <option key={key} value={code}>
-                      {text}
-                    </option>
-                  )
-                })}
-              </select>
-              {/* error message */}
-              {errors.state && errors.state.type === "required" && (
-                <p className="h-6 text-left error">
-                  {errors.state.message as string}
-                </p>
-              )}
-            </div>
           </div>
 
           <div className="w-full">
-            <div className="mb-4 form__input">
-              <label htmlFor="city">Město</label>
-              <input
-                className={`${errors.city ? "mb-3" : "mb-0"}`}
-                id="city"
-                type="text"
-                placeholder="Město"
-                {...register("city", {
-                  required: "Město je povinné",
-                })}
-              />
-              {/* error message */}
-              {errors.city && errors.city.type === "required" && (
-                <p className="h-6 text-left error">
-                  {errors.city.message as string}
-                </p>
-              )}
-            </div>
-            <div className="mb-4 form__input">
-              <label htmlFor="street">Ulice</label>
-              <input
-                className={`${errors.street ? "mb-3" : "mb-0"}`}
-                id="street"
-                type="text"
-                placeholder="Ulice"
-                {...register("street", {
-                  required: "Ulice je povinná",
-                })}
-              />
-              {/* error message */}
-              {errors.street && errors.street.type === "required" && (
-                <p className="h-6 text-left error">
-                  {errors.street.message as string}
-                </p>
-              )}
-            </div>
-            <div className="mb-4 form__input">
-              <label htmlFor="cp">Číslo popisné</label>
-              <input
-                className={`${errors.cadastral_number ? "mb-3" : "mb-0"}`}
-                id="cp"
-                type="text"
-                placeholder="Číslo popisné"
-                {...register("cadastral_number", {
-                  required: "Číslo popisné je povinné",
-                })}
-              />
-              {/* error message */}
-              {errors.cadastral_number && errors.cadastral_number.type === "required" && (
-                <p className="h-6 text-left error">
-                  {errors.cadastral_number.message as string}
-                </p>
-              )}
-            </div>
-            <div className="mb-4 form__input">
-              <label htmlFor="zip_code">PSČ</label>
-              <input
-                className={`${errors.zip_code ? "mb-3" : "mb-0"}`}
-                id="zip_code"
-                type="text"
-                placeholder="PSČ"
-                {...register("zip_code", {
-                  required: "PSČ je povinné",
-                })}
-              />
-              {/* error message */}
-              {errors.zip_code && errors.zip_code.type === "required" && (
-                <p className="h-6 text-left error">
-                  {errors.zip_code.message as string}
-                </p>
-              )}
-            </div>
-            <div className="mb-4 form__input">
-              <label htmlFor="gender">Pohlaví</label>
-              <div>
-                <input
-                  type="radio"
-                  id="male"
-                  value="male"
-                  className="hidden"
-                  defaultChecked={true}
-                  {...register("gender", {
-                    required: "Pohlaví je povinné",
-                  })}
-                  name="gender"
-                />
-                <label
-                  htmlFor="male"
-                  className="button button--small button--light cursor-pointer"
-                >
-                  MUŽ
-                </label>
-
-                <input
-                  type="radio"
-                  id="female"
-                  value="female"
-                  className="hidden"
-                  {...register("gender", {
-                    required: "Pohlaví je povinné",
-                  })}
-                  name="gender"
-                />
-                <label
-                  htmlFor="female"
-                  className="button button--small button--light ml-2 cursor-pointer"
-                >
-                  ŽENA
-                </label>
-              </div>
-            </div>
+            <Form data={registerInputs2}
+              errors={errors}
+              register={register} />
           </div>
         </div>
 
         <div className="ease-in duration-200 mt-5 md:mt-8 flex justify-center">
           {/* Submit button */}
-          <button
-            type="submit"
-            className="button button--light"
-            disabled={isDisabled}
-          >
-            {btnText}
-          </button>
+          <SubmitButton
+            isDisabled={isDisabled}
+            text={btnText} />
         </div>
       </form>
     </div>
