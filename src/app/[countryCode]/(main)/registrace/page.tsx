@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 import { NextPage } from "next"
 import { IRegisterData } from "modules/Register"
 import { registerInputs1, registerInputs2 } from "@data/forms"
-import { Form } from "@components/forms/Forms"
+import { Form } from "@components/forms/Form"
 import { SubmitButton } from "@components/SubmitButton"
 
 const Register: NextPage = () => {

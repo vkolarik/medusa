@@ -3,6 +3,11 @@ import { statesData } from "./register";
 import { IRegisterData } from "modules/Register";
 import { ISigninData } from "modules/Login";
 import { ICartForm } from "modules/CartForms";
+import { IFilterForm } from "modules/FilterForm";
+import { allSizes } from "./sizes";
+import { allColors } from "./colors";
+import { allSorting } from "./sorting";
+import { priceCategories } from "./prices";
 
 export const loginInputs: IGeneralInput<ISigninData>[] = [
   {
@@ -125,7 +130,6 @@ export const cartPersonalInfo: IGeneralInput<ICartForm>[] = [
   },
 ];
 
-
 export const cartAddress: IGeneralInput<ICartForm>[] = [
   {
     placeholder: "Stát",
@@ -171,19 +175,46 @@ export const cartAddress: IGeneralInput<ICartForm>[] = [
 ];
 
 export const cartDelivery: IGeneralInput<ICartForm>[] = [
-{
-  id: "payment",
-  placeholder: "Doprava",
-  type: InputType.RADIO,
-  options: [
-    {
-      value: "card",
-      label: "platební karta",
-    },
-    {
-      value: "delivery",
-      label: "dobírka",
-    },
-  ],
-}
+  {
+    id: "payment",
+    placeholder: "Doprava",
+    type: InputType.RADIO,
+    options: [
+      {
+        value: "card",
+        label: "platební karta",
+      },
+      {
+        value: "delivery",
+        label: "dobírka",
+      },
+    ],
+  }
+]
+
+export const filterForm: IGeneralInput<IFilterForm>[] = [
+  {
+    placeholder: "Řazení",
+    id: "sorting",
+    type: InputType.SELECT,
+    options: allSorting,
+  },
+  {
+    placeholder: "Velikosti",
+    id: "sizes",
+    type: InputType.CHECKBOX,
+    options: allSizes
+  },
+  {
+    placeholder: "Barvy",
+    id: "colors",
+    type: InputType.CHECKBOX,
+    options: allColors
+  },
+  {
+    placeholder: "Cena",
+    id: "price",
+    type: InputType.RADIO,
+    options: priceCategories
+  },
 ]

@@ -1,12 +1,12 @@
-import { IState } from "modules/Register"
+import { IOption } from "modules/Inputs"
 
-export const statesData: IState[] = [
+export const statesData: IOption[] = [
   {
-    text: "Česká republika",
-    code: "cz",
+    label: "Česká republika",
+    value: "cz",
   },
   {
-    text: "Slovenská republika",
-    code: "sk",
+    label: "Slovenská republika",
+    value: "sk",
   },
 ]

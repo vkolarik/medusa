@@ -1,9 +1,10 @@
-import { IBasicInput, IRadioInput, ISelect, InputType } from "modules/Inputs";
+import { IBasicInput, ICheckbox, IRadioInput, ISelect, InputType } from "modules/Inputs";
 import { BasicInput } from "./BasicInput";
 import { FieldValues } from "react-hook-form";
 import { Select } from "./Select";
 import { IForm } from "modules/Form";
 import { RadioInput } from "./RadioInput";
+import { Checkbox } from "./Checkbox";
 
 export const Form: <T extends FieldValues>(
   props: IForm<T>
@@ -42,9 +43,21 @@ export const Form: <T extends FieldValues>(
             type={type}
             noPaddingOnMobile={noPaddingOnMobile}
           />
-        } else {
+        } else if (input.type === InputType.RADIO) {
           const { placeholder, id, required, options, type, noPaddingOnMobile } = input as IRadioInput<T>;
           return <RadioInput
+            key={key}
+            register={register}
+            placeholder={placeholder}
+            id={id}
+            required={required}
+            options={options}
+            type={type}
+            noPaddingOnMobile={noPaddingOnMobile}
+          />
+        } else {
+          const { placeholder, id, required, options, type, noPaddingOnMobile } = input as ICheckbox<T>;
+          return <Checkbox
             key={key}
             register={register}
             placeholder={placeholder}

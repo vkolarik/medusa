@@ -10,6 +10,18 @@
     }
   }
 
+  &.basic-form--filter {
+    padding-top: 4rem !important;
+    padding-bottom: 2rem !important;
+
+    box-shadow: none !important;
+
+    @media (max-width: 1023px) {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+  }
+
   &.basic-form--register {
     margin: auto;
   }
@@ -35,6 +47,7 @@
 
   input[type="text"],
   input[type="password"],
+  input[type="checkbox"],
   select {
     width: 100%;
     padding: 0.25rem 0;
@@ -53,6 +66,13 @@
     &:focus {
       outline: none;
     }
+  }
+
+  input[type="checkbox"] {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
 
   input[type="radio"]:checked + label {

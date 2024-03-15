@@ -1,4 +1,4 @@
-import { Form } from "@components/forms/Forms"
+import { Form } from "@components/forms/Form"
 import { cartAddress, cartDelivery, cartPersonalInfo } from "@data/forms"
 import { ICartForm } from "modules/CartForms"
 import { FC } from "react"

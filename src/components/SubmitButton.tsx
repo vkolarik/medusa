@@ -1,11 +1,12 @@
 import { FC } from "react";
 
-export const SubmitButton: FC<{ isDisabled: boolean, loading?: boolean, text: string }> = ({
-  isDisabled,
+export const SubmitButton: FC<{ isDisabled?: boolean, loading?: boolean, text: string, color?: "dark" | "light" }> = ({
+  isDisabled = false,
   loading = false,
-  text
+  text,
+  color = "light"
 }) => {
-  return <button className={`button ${loading ? "" : "button--light"} button--small md:w-[13rem] w-[12rem]`}
+  return <button className={`button ${loading ? "" :  color === "light" ? "button--light" : ""} button--small md:w-[13rem] w-[12rem]`}
     disabled={isDisabled}
     type="submit">
     {loading ? <svg aria-hidden="true" className="w-4 h-4 mx-auto text-white animate-spin dark:text-white fill-white" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

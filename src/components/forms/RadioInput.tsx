@@ -1,4 +1,4 @@
-import { IRadioInput, IRadioInputOption } from "modules/Inputs";
+import { IRadioInput, IOption } from "modules/Inputs";
 import { FieldValues, Path } from "react-hook-form";
 import React from "react";
 
@@ -17,14 +17,15 @@ export const RadioInput: <T extends FieldValues>(
       <div className={`${noPaddingOnMobile ? "md:" : ""}mb-4 form__input`}>
         <label htmlFor={id}>{placeholder}</label>
         <div>
-          {options.map((option: IRadioInputOption, key: number) => {
-            return <React.Fragment key={key}>
+          {options.map((option: IOption, key: number) => {
+            return <div key={key}
+              className={options.length > 2 ? "w-full my-2" : "inline"}>
               <input
                 type="radio"
                 id={option.value}
                 value={option.value}
                 className="hidden"
-                defaultChecked={true}
+                defaultChecked={key === 0}
                 {...register(id as Path<T>, {
                   required,
                 })}
@@ -32,11 +33,13 @@ export const RadioInput: <T extends FieldValues>(
               />
               <label
                 htmlFor={option.value}
-                className={`${key === 1 ? "ml-2" : ""} button button--small button--light cursor-pointer`}
+                className={`${key === 1 && options.length === 2 ? "ml-2" : ""}
+                  ${options.length > 2 ? "w-full block" : ""}
+                  button button--small button--light cursor-pointer`}
               >
                 {option.label}
               </label>
-            </React.Fragment>
+            </div>
           })}
         </div>
       </div>

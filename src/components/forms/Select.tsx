@@ -1,5 +1,4 @@
-import { ISelect } from "modules/Inputs";
-import { IState } from "modules/Register";
+import { ISelect, IOption } from "modules/Inputs";
 import { FieldValues, Path } from "react-hook-form";
 
 export const Select: <T extends FieldValues>(
@@ -11,7 +10,7 @@ export const Select: <T extends FieldValues>(
   register,
   errors,
   options,
-  noPaddingOnMobile
+  noPaddingOnMobile,
 }: ISelect<T>) => {
     const error = errors[id];
 
@@ -24,11 +23,11 @@ export const Select: <T extends FieldValues>(
             required,
           })}
         >
-          {options && options.map((state: IState, key: number) => {
-            const { text, code } = state
+          {options && options.map((item: IOption, key: number) => {
+            const { value, label } = item
             return (
-              <option key={key} value={code}>
-                {text}
+              <option key={key} value={value}>
+                {label}
               </option>
             )
           })}

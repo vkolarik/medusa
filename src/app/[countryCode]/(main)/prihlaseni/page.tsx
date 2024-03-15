@@ -8,7 +8,7 @@ import { NextPage } from "next"
 import { ISigninData } from "modules/Login"
 import { SubmitButton } from "@components/SubmitButton"
 import { loginInputs } from "@data/forms"
-import { Form } from "@components/forms/Forms"
+import { Form } from "@components/forms/Form"
 
 const SignIn: NextPage = () => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false)

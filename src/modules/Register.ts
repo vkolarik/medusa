@@ -10,8 +10,3 @@ export interface IRegisterData {
   cadastral_number: number
   gender: "male" | "female"
 }
-
-export interface IState {
-  text: string
-  code: string
-}
