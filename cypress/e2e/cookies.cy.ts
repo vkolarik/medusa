@@ -1,8 +1,10 @@
 describe('template spec', () => {
   it('passes', () => {
-    cy.visit('http://localhost:8000/cz/cookies')
+    cy.visit('/cz/cookies')
+
 
     cy.contains("Webové stránky lze používat i v režimu, který neumožňuje sbírání údajů o chování návštěvníků webu.").should("exist");
+
 
     cy.contains("statistické").click();
     cy.contains("_ga").should("exist");
@@ -11,6 +13,15 @@ describe('template spec', () => {
     cy.contains("marketingové").click();
     cy.contains("_fbp").should("exist");
     cy.contains("trendtrove.cz").should("exist");
+
+
+
+    //Odkaz na hlavní stránku OK ???
+    it('verifies "Domů" link leads to home page', () => {
+      cy.contains('Domů').should('exist');
+      cy.contains('Domů').click();
+      cy.url().should('include', Cypress.config().baseUrl);
+    });
 
 
   })

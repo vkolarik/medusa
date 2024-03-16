@@ -1,15 +1,35 @@
-
-
 describe('VOP Page', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:8000/cz/obchodni-podminky');
-  });
+    cy.visit('/cz/obchodni-podminky')
+  })
 
-  it('Spravny title', () => {
+  it('renders correct title', () => {
     cy.get('h1').should('contain.text', 'Obchodní podmínky');
   });
 
+  it('displays correct delivery information', () => {
+    cy.contains('Doručování')
+        .parent()
+        .within(() => {
+          cy.contains('Kupujícímu může být doručováno na elektronickou adresu kupujícího.')
+        })
+  })
 
+  // Test pro závěrečná ustanovení
+  it('displays correct final provisions', () => {
+    cy.contains('Závěrečná ustanovení')
+        .parent()
+        .within(() => {
+          cy.contains('Je-li některé ustanovení obchodních podmínek neplatné nebo neúčinné')
+          cy.contains('Kontaktní údaje prodávajícího: adresa elektronické pošty info@trandtrove.cz')
+        })
+  })
 
+    //Odkaz na hlavní stránku OK ???
+    it('verifies "Domů" link leads to home page', () => {
+        cy.contains('Domů').should('exist');
+        cy.contains('Domů').click();
+        cy.url().should('include', Cypress.config().baseUrl);
+    });
 
-});
+})
