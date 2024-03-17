@@ -9,6 +9,11 @@ describe('Footer', () => {
     cy.get('.footer__logo').should('exist');
   });
 
+  it('clicking on logo redirects to home page', () => {
+    cy.get('.logo-container').click();
+    cy.url().should('include', Cypress.config().baseUrl);
+  });
+
   it('verifies links lead to correct pages', function () {
     cy.contains('Domů').click();
     cy.url().should('include', Cypress.config().baseUrl);
