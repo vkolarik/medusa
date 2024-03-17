@@ -16,7 +16,7 @@ describe('template spec', () => {
 
 
 
-    //Odkaz na hlavní stránku OK ???
+
     it('verifies "Domů" link leads to home page', () => {
       cy.contains('Domů').should('exist');
       cy.contains('Domů').click();

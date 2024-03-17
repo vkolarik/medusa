@@ -15,7 +15,7 @@ describe('VOP Page', () => {
         })
   })
 
-  // Test pro závěrečná ustanovení
+
   it('displays correct final provisions', () => {
     cy.contains('Závěrečná ustanovení')
         .parent()
@@ -25,7 +25,7 @@ describe('VOP Page', () => {
         })
   })
 
-    //Odkaz na hlavní stránku OK ???
+
     it('verifies "Domů" link leads to home page', () => {
         cy.contains('Domů').should('exist');
         cy.contains('Domů').click();
