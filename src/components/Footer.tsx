@@ -14,6 +14,7 @@ export const Footer: FC = () => {
           <Image
             src={logo.src}
             alt="Trend Trove - logo"
+            loading="lazy"
             layout="fill"
             objectFit="fill"
           />
@@ -24,6 +25,7 @@ export const Footer: FC = () => {
             <Image
               src={logo.src}
               alt="Trend Trove - logo"
+              loading="lazy"
               layout="fill"
               objectFit="fill"
             />
@@ -72,6 +74,7 @@ export const Footer: FC = () => {
                     <Image
                       alt={`Trend Trove - ${alt}`}
                       src={icon}
+                      loading="lazy"
                       className="duration-350 hover:brightness-75"
                       width={22}
                       height={22}

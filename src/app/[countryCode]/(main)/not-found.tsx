@@ -5,7 +5,7 @@ import { FaArrowLeft } from "react-icons/fa"
 
 const NotFoundPage: NextPage = () => {
   return (
-    <div className="max-width">
+    <main className="max-width">
       <div className="sm:p-8 px-2 py-4 mx-auto flex justify-center items-center shadow-2xl lg:w-max">
         <h1 className="md:p-5 px-3 py-5 border-r-2 border-blue lg:text-[56px] md:text-[48px] text-[35px]">
           404
@@ -23,7 +23,7 @@ const NotFoundPage: NextPage = () => {
           </Link>
         </div>
       </div>
-    </div>
+    </main>
   )
 }
 

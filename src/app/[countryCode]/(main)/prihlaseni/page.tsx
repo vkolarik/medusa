@@ -37,7 +37,7 @@ const SignIn: NextPage = () => {
   // }
 
   return (
-    <div className="max-width login md:py-36 py-12">
+    <main className="max-width login md:py-36 py-12">
       <form className="basic-form" onSubmit={handleSubmit(onSubmit)}>
         <div className="w-full mb-4 md:mb-8 text-center">
           <h1 className="md:mb-1 text-[22px] md:text-[25px] uppercase">
@@ -69,7 +69,7 @@ const SignIn: NextPage = () => {
             text={btnText} />
         </div>
       </form>
-    </div>
+    </main>
   )
 }
 

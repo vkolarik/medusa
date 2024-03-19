@@ -18,6 +18,7 @@ export const ProductItemPreview: FC<{ product: IProductPreview }> = ({
           alt={title}
           layout="fill"
           className="object-cover object-top duration-500"
+          loading="lazy"
         />
         <div className="sizes duration-500 absolute bottom-0 left-0 w-full h-0 bg-white overflow-hidden">
           <span className="small semibold uppercase mt-3">velikosti</span>
@@ -46,7 +47,10 @@ export const ProductItemPreview: FC<{ product: IProductPreview }> = ({
         </h2>
         <h3 className="font-medium lg:text-[18px] text-[14px]">{price} Kč</h3>
         <button className="button button--light"
-          onClick={() => storeInStorage("session", "products", [product])}>Detail</button>
+          onClick={() => storeInStorage("session", "products", [{
+            ...product,
+            amount: 1,
+          }])}>Detail</button>
       </div>
     </Link>
   )

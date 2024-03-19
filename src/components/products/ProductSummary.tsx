@@ -1,11 +1,11 @@
-import { ICartItem } from "modules/CartItem"
 import { FC } from "react"
 import Image from "next/image"
 import { truncate } from "@utils/truncate"
 import { RemoveIcon } from "../cart/RemoveIcon"
 import { ColorCircle } from "../cart/ColorCircle"
+import { IProductSummary } from "modules/Product"
 
-export const ProductSummary: FC<{ item: ICartItem, canBeDeleted?: boolean }> = ({ item, canBeDeleted = false }) => {
+export const ProductSummary: FC<IProductSummary> = ({ item, canBeDeleted = false, setLoading }) => {
   const { title, amount, price, image, size, color } = item
   return (
     <li className="flex w-full gap-2 justify-between">
@@ -16,6 +16,7 @@ export const ProductSummary: FC<{ item: ICartItem, canBeDeleted?: boolean }> = (
           className="cart-image object-contain"
           width={60}
           height={60}
+          loading="lazy"
         />
 
         <div className="space-y-1 w-full flex flex-col justify-center">
@@ -33,7 +34,8 @@ export const ProductSummary: FC<{ item: ICartItem, canBeDeleted?: boolean }> = (
         <p className="md:block hidden font-semibold text-right xl:text-[18px] text-[14px] whitespace-nowrap">
           {price} Kč
         </p>
-        {canBeDeleted && <RemoveIcon itemId={item.id} />}
+        {canBeDeleted && <RemoveIcon itemId={item.id}
+          setLoading={setLoading} />}
       </div>
     </li>
   )

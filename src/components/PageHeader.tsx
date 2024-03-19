@@ -22,6 +22,7 @@ export const PageHeader: FC<{ title: string; breadcrumbs: ILink[] }> = ({
     <div>
       <div className="flex items-center gap-2">
         <Image
+          loading="lazy"
           src={breadcumbrsIcon.src}
           alt="Trand Trove - navigace"
           width={20}

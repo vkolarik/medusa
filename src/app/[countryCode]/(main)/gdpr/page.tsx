@@ -12,7 +12,7 @@ const GDPR: NextPage = () => {
   ]
 
   return (
-    <div className="max-width page">
+    <main>
       <PageHeader title={"GDPR"} breadcrumbs={breadcrumbs} />
       <div className="gdpr">
         <div>
@@ -250,7 +250,7 @@ const GDPR: NextPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   )
 }
 

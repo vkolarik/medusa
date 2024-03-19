@@ -12,7 +12,7 @@ const Cookies = () => {
   ]
 
   return (
-    <div className="max-width page">
+    <main className="max-width page">
       <PageHeader title={"Cookies"} breadcrumbs={breadcrumbs} />
 
       <div className="cookies">
@@ -769,7 +769,7 @@ const Cookies = () => {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   )
 }
 

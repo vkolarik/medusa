@@ -21,6 +21,7 @@ export const FilterButton: FC<{
         alt="Trend Trove - filtr"
         width={20}
         height={20}
+        loading="lazy"
       />
       Filtrovat
     </button>

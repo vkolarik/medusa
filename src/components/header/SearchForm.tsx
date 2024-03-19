@@ -30,6 +30,7 @@ export const SearchForm: FC = () => {
           className="w-max object-contain cursor-pointer"
           width={15}
           height={15}
+          loading="lazy"
         />
       </button>
     </form>

@@ -27,6 +27,7 @@ export const Header: FC = () => {
               alt="Trend Trove - logo"
               layout="fill"
               objectFit="fill"
+              loading="lazy"
             />
           </Link>
 
@@ -73,6 +74,7 @@ export const Header: FC = () => {
                 alt="Trend Trove - uživatel"
                 width={25}
                 height={25}
+                loading="lazy"
               />
               <div className="dropdown__content hidden absolute right-0 z-10 min-w-[160px] lg:pt-5 duration-300">
                 <ul className="shadow-2xl bg-white px-4 space-y-2 py-2">

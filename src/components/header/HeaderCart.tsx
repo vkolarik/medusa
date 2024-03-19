@@ -25,6 +25,7 @@ export const HeaderCart: FC = () => {
           alt="Trend Trove - Košík"
           width={25}
           height={25}
+          loading="lazy"
         />
       </Link>
       <div className="dropdown__content hidden absolute right-0 z-50 min-w-[300px] lg:pt-5 duration-300">

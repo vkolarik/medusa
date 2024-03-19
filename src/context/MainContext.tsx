@@ -22,6 +22,10 @@ export function AppWrapper({ children } : {
     setCartProducts(getFromStorage<ICartItem[]>("session", "products") as ICartItem[] ?? [])
     setLoading(false)
   }, [])
+  
+  useEffect(() => {
+    console.log(cartProducts)
+  }, [cartProducts])
 
   return (
     <AppContext.Provider value={{

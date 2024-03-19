@@ -11,7 +11,7 @@ const VOP = () => {
   ]
 
   return (
-    <div className="max-width page">
+    <main className="max-width page">
       <PageHeader title={"Obchodní podmínky"} breadcrumbs={breadcrumbs} />
       <div className="vop md:mt-8 mt-5">
         <div className="text-15px md:text-16px">
@@ -85,43 +85,6 @@ const VOP = () => {
                 </li>
               </ol>
             </li>
-
-            {/*<li>*/}
-            {/*  <h2 className="mb-4 text-18px text-black md:text-24px font-normal">Platební podmínky a dodání*/}
-            {/*                služeb</h2>*/}
-            {/*  <ol>*/}
-            {/*    <li className=" leading-6">Cena za jednotlivé služby je uhrazena okamžikem přijetí*/}
-            {/*                    platby:*/}
-            {/*    <ul className="list--bullets">*/}
-            {/*      <li className=" leading-6">bezhotovostním převodem na účet prodávajícího*/}
-            {/*                            č.<strong className='text-red-600'>!!! DOPLNIT !!!</strong>,*/}
-            {/*                            vedený u společnosti <strong className='text-red-600'>!!! DOPLNIT !!!</strong> (dále jen „účet prodávajícího“)</li>*/}
-            {/*      <li className="mb-4  leading-6">bezhotovostně platební kartou*/}
-            {/*                            prostřednictvím platebního*/}
-            {/*                            systému GoPay s.r.o.</li>*/}
-            {/*    </ul>*/}
-            {/*    </li>*/}
-            {/*    <p className="mb-4  leading-6">Prodávající nepožaduje od kupujícího zálohu či*/}
-            {/*                    jinou obdobnou*/}
-            {/*                    platbu. Tímto není dotčeno ustanovení 3.3. obchodních podmínek ohledně povinnosti*/}
-            {/*                    uhradit kupní cenu*/}
-            {/*                    služeb předem.</p>*/}
-            {/*    <li className="mb-4  leading-6">Je-li to v obchodním styku obvyklé nebo je-li tak*/}
-            {/*                    stanoveno obecně závaznými právními předpisy a bude-li to kupující požadovat, vystaví*/}
-            {/*                    prodávající*/}
-            {/*                    ohledně plateb prováděných na základě kupní smlouvy kupujícímu daňový doklad – fakturu.*/}
-            {/*                    Prodávající*/}
-            {/*                    není plátcem daně z přidané hodnoty. Daňový doklad – fakturu vystaví prodávající*/}
-            {/*                    kupujícímu po*/}
-            {/*                    uhrazení ceny služeb a zašle jej v elektronické podobě na elektronickou adresu*/}
-            {/*                    kupujícího.</li>*/}
-            {/*    <li className="mb-8  leading-6">Po uhrazení objednané služby bude služba*/}
-            {/*                    kupujícímu*/}
-            {/*                    doručena na jeho elektronickou adresu prodávajícím nejpozději do 10 pracovních dnů od*/}
-            {/*                    okamžiku*/}
-            {/*                    přijetí platby dle bodu 3.1. obchodních podmínek.</li>*/}
-            {/*  </ol>*/}
-            {/*</li>*/}
 
             <li>
               <h2 className="mb-4 text-18px text-black md:text-24px font-normal">
@@ -207,7 +170,7 @@ const VOP = () => {
           <p className=" leading-6">V Brně dne 1.4.2024</p>
         </div>
       </div>
-    </div>
+    </main>
   )
 }
 

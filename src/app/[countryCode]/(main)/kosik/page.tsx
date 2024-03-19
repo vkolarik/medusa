@@ -19,7 +19,7 @@ import { Loading } from "@components/Loading";
 
 const CartPage: NextPage = () => {
   const deliveryPrice = 125
-  const { cartProducts, loading } = useAppContext()
+  const { cartProducts, loading, setLoading } = useAppContext()
   const [btnLoading, setBtnLoading] = useState<boolean>(false)
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
   // TODO: jestli je uzivatel prihlasen, nastavit na active misto guest
@@ -76,7 +76,8 @@ const CartPage: NextPage = () => {
               {cartProducts.map((item: ICartItem, key: number) => {
                 return <ProductSummary key={key}
                   item={item}
-                  canBeDeleted={true} />
+                  canBeDeleted={true}
+                  setLoading={setLoading} />
               })}
             </div>
             <div className="space-y-2 pt-5">

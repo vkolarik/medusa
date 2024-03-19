@@ -1,8 +1,7 @@
 "use client"
 import React, { FC } from "react"
-import { IProductPreview } from "modules/Product"
 import { toast } from "sonner"
-import { getFromStorage, storeInStorage } from "@utils/storage"
+import { storeInStorage } from "@utils/storage"
 import { useAppContext } from "@context/MainContext"
 import { ICartItem } from "modules/CartItem"
 

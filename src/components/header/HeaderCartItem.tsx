@@ -14,6 +14,7 @@ export const HeaderCartItem: FC<{ item: ICartItem }> = ({ item }) => {
         className="cart-image"
         width={80}
         height={80}
+        loading="lazy"
       />
 
       <div className="space-y-1">

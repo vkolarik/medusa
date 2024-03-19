@@ -40,7 +40,7 @@ const Register: NextPage = () => {
   // }
 
   return (
-    <div className="max-width md:py-36 py-12 w-full">
+    <main className="max-width md:py-36 py-12 w-full">
       <form className="basic-form basic-form--register" onSubmit={handleSubmit(onSubmit)}>
         <div className="w-full mb-4 md:mb-8 text-center">
           <h1 className="md:mb-1 text-[22px] md:text-[25px] uppercase">
@@ -73,7 +73,7 @@ const Register: NextPage = () => {
             text={btnText} />
         </div>
       </form>
-    </div>
+    </main>
   )
 }
 
