@@ -10,3 +10,7 @@ export const VOP = "/obchodni-podminky"
 
 export const PERSONAL_INFO = "/ucet/osobni-udaje"
 export const ORDERS = "/ucet/objednavky"
+
+export const CLOTHES = "/kategorie/obleceni"
+export const SHOES = "/kategorie/boty"
+export const ACCESSORIES = "/kategorie/doplnky"

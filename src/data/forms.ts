@@ -201,6 +201,15 @@ export const filterForm: IGeneralInput<IFilterForm>[] = [
     options: allSorting,
   },
   {
+    placeholder: "Pohlaví",
+    id: "gender",
+    options: [
+      { value: "male", label: "MUŽ" },
+      { value: "female", label: "ŽENA" },
+    ],
+    type: InputType.RADIO,
+  },
+  {
     placeholder: "Velikosti",
     id: "sizes",
     type: InputType.CHECKBOX,

@@ -17,3 +17,8 @@ export interface IProductSummary {
   canBeDeleted?: boolean
   setLoading?: Dispatch<SetStateAction<boolean>>
 }
+
+export interface IProductDetail extends IProductPreview {
+  images: string[]
+  desciption: string
+}

@@ -6,7 +6,7 @@ import Image from "next/image"
 import breadcumbrsIcon from "../../public/images/icons/breadcrumbs.svg"
 import * as ROUTES from "../constants/routes"
 
-export const PageHeader: FC<{ title: string; breadcrumbs: ILink[] }> = ({
+export const PageHeader: FC<{ title?: string; breadcrumbs: ILink[] }> = ({
   title,
   breadcrumbs,
 }) => {
@@ -40,9 +40,9 @@ export const PageHeader: FC<{ title: string; breadcrumbs: ILink[] }> = ({
         ))}
       </div>
 
-      <h1 className="font-semibold lg:text-[45px] md:text-[37px] text-[34px]">
+      {title && <h1 className="font-semibold lg:text-[45px] md:text-[37px] text-[34px]">
         {title}
-      </h1>
+      </h1>}
     </div>
   )
 }
