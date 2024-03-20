@@ -7,3 +7,6 @@ export const CART = "/kosik"
 export const GDPR = "/gdpr"
 export const COOKIES = "/cookies"
 export const VOP = "/obchodni-podminky"
+
+export const PERSONAL_INFO = "/ucet/osobni-udaje"
+export const ORDERS = "/ucet/objednavky"

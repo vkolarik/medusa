@@ -15,7 +15,8 @@ export const BasicInput: <T extends FieldValues>(
   max,
   minLengthErr,
   maxLengthErr,
-  noPaddingOnMobile
+  noPaddingOnMobile,
+  readOnly
 }: IBasicInput<T>) => {
     const error = errors[id];
 
@@ -28,6 +29,7 @@ export const BasicInput: <T extends FieldValues>(
           id={id}
           type={type}
           placeholder={placeholder}
+          readOnly={readOnly}
           {...register(id as Path<T>, {
             required,
             pattern,

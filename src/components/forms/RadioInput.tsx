@@ -10,7 +10,8 @@ export const RadioInput: <T extends FieldValues>(
   required,
   register,
   options,
-  noPaddingOnMobile
+  noPaddingOnMobile,
+  readOnly
 }: IRadioInput<T>) => {
 
     return (
@@ -22,6 +23,7 @@ export const RadioInput: <T extends FieldValues>(
               className={options.length > 2 ? "w-full my-2" : "inline"}>
               <input
                 type="radio"
+                readOnly={readOnly}
                 id={option.value}
                 value={option.value}
                 className="hidden"

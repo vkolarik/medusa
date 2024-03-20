@@ -11,6 +11,7 @@ export const Select: <T extends FieldValues>(
   errors,
   options,
   noPaddingOnMobile,
+  readOnly
 }: ISelect<T>) => {
     const error = errors[id];
 
@@ -18,6 +19,7 @@ export const Select: <T extends FieldValues>(
       <div className={`${noPaddingOnMobile ? "md:" : ""}mb-4 form__input`}>
         <label htmlFor={id}>{placeholder}</label>
         <select
+          disabled={readOnly}
           id={id}
           {...register(id as Path<T>, {
             required,

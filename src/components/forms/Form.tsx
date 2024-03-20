@@ -8,7 +8,7 @@ import { Checkbox } from "./Checkbox";
 
 export const Form: <T extends FieldValues>(
   props: IForm<T>
-) => JSX.Element = <T extends FieldValues>({ data, register, errors }: IForm<T>) => {
+) => JSX.Element = <T extends FieldValues>({ data, register, errors, readOnly = false }: IForm<T>) => {
   return (
     <>
       {data.map((input, key) => {
@@ -29,6 +29,7 @@ export const Form: <T extends FieldValues>(
             minLengthErr={minLengthErr}
             maxLengthErr={maxLengthErr}
             noPaddingOnMobile={noPaddingOnMobile}
+            readOnly={readOnly}
           />
         } else if (input.type === InputType.SELECT) {
           const { placeholder, id, required, options, type, noPaddingOnMobile } = input as ISelect<T>;
@@ -42,6 +43,7 @@ export const Form: <T extends FieldValues>(
             options={options}
             type={type}
             noPaddingOnMobile={noPaddingOnMobile}
+            readOnly={readOnly}
           />
         } else if (input.type === InputType.RADIO) {
           const { placeholder, id, required, options, type, noPaddingOnMobile } = input as IRadioInput<T>;
@@ -54,6 +56,7 @@ export const Form: <T extends FieldValues>(
             options={options}
             type={type}
             noPaddingOnMobile={noPaddingOnMobile}
+            readOnly={readOnly}
           />
         } else {
           const { placeholder, id, required, options, type, noPaddingOnMobile } = input as ICheckbox<T>;
@@ -66,6 +69,7 @@ export const Form: <T extends FieldValues>(
             options={options}
             type={type}
             noPaddingOnMobile={noPaddingOnMobile}
+            readOnly={readOnly}
           />
         }
       })}

@@ -5,4 +5,5 @@ export interface IForm<T extends FieldValues> {
   data: IGeneralInput<T>[];
   register: any;
   errors: any;
+  readOnly?: boolean
 }

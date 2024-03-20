@@ -26,6 +26,7 @@ export interface IBasicInput<T extends FieldValues> {
   minLengthErr?: string;
   maxLengthErr?: string;
   noPaddingOnMobile?: boolean
+  readOnly?: boolean
 }
 
 export interface ISelect<T extends FieldValues> {
@@ -37,6 +38,7 @@ export interface ISelect<T extends FieldValues> {
   options: IOption[]
   type: InputType
   noPaddingOnMobile?: boolean
+  readOnly?: boolean
 }
 
 export interface IOption {
@@ -52,6 +54,7 @@ export interface IRadioInput<T extends FieldValues> {
   options: IOption[]
   type: InputType
   noPaddingOnMobile?: boolean
+  readOnly?: boolean
 }
 
 export interface ICheckbox<T extends FieldValues> {
@@ -62,4 +65,5 @@ export interface ICheckbox<T extends FieldValues> {
   options: string[]
   type: InputType
   noPaddingOnMobile?: boolean
+  readOnly?: boolean
 }

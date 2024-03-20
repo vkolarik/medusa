@@ -10,7 +10,8 @@ export const Checkbox: <T extends FieldValues>(
   required,
   register,
   options,
-  noPaddingOnMobile
+  noPaddingOnMobile,
+  readOnly
 }: ICheckbox<T>) => {
 
     return (
@@ -23,6 +24,7 @@ export const Checkbox: <T extends FieldValues>(
               className="checkbox-container">{option}
               <input
                 type="checkbox"
+                readOnly={readOnly}
                 id={option}
                 value={option}
                 {...register(id as Path<T>, {

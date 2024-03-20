@@ -1,5 +1,5 @@
 import { IGeneralInput, InputType } from "modules/Inputs";
-import { statesData } from "./register";
+import { statesData } from "./countries";
 import { IRegisterData } from "modules/Register";
 import { ISigninData } from "modules/Login";
 import { ICartForm } from "modules/CartForms";
@@ -8,6 +8,7 @@ import { allSizes } from "./sizes";
 import { allColors } from "./colors";
 import { allSorting } from "./sorting";
 import { priceCategories } from "./prices";
+import { IUserInfo } from "modules/UserInfo";
 
 export const loginInputs: IGeneralInput<ISigninData>[] = [
   {
@@ -216,5 +217,17 @@ export const filterForm: IGeneralInput<IFilterForm>[] = [
     id: "price",
     type: InputType.RADIO,
     options: priceCategories
+  },
+]
+
+export const personalInfoForm: IGeneralInput<IUserInfo>[] = [
+  ...registerInputs1,
+  ...registerInputs2,
+  {
+    placeholder: "Mobil",
+    id: "phone",
+    required: "Mobil je povinný",
+    pattern: /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i,
+    type: InputType.TEXT,
   },
 ]
