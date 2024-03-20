@@ -24,13 +24,10 @@ const PersonalInfo: NextPage = () => {
   };
 
   return <main className="page max-width w-full">
-    <div className="md:mt-8 mt-5">
-        
-        <AccountHeader />
-        <AccountTitle title="Osobní údaje"
-          subtitle="Na této stránce si můžete zobrazit a upravit Vaše osobní údaje." />
-        <UserInfoFormsContainer data={data} />
-      </div>
+      <AccountHeader />
+      <AccountTitle title="Osobní údaje"
+        subtitle="Na této stránce si můžete zobrazit a upravit Vaše osobní údaje." />
+      <UserInfoFormsContainer data={data} />
   </main>
 }
 

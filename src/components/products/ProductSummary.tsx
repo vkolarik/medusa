@@ -34,7 +34,7 @@ export const ProductSummary: FC<IProductSummary> = ({ item, canBeDeleted = false
         <p className="md:block hidden font-semibold text-right xl:text-[18px] text-[14px] whitespace-nowrap">
           {price} Kč
         </p>
-        {canBeDeleted && <RemoveIcon itemId={item.id}
+        {canBeDeleted && setLoading && <RemoveIcon itemId={item.id}
           setLoading={setLoading} />}
       </div>
     </li>

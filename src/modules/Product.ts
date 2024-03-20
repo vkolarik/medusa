@@ -15,5 +15,5 @@ export interface IProductPreview {
 export interface IProductSummary {
   item: ICartItem
   canBeDeleted?: boolean
-  setLoading: Dispatch<SetStateAction<boolean>>
+  setLoading?: Dispatch<SetStateAction<boolean>>
 }

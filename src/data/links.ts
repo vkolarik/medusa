@@ -8,7 +8,7 @@ export const userLinks: IHeaderDropdown = {
   links: [
     {
       text: "Můj účet",
-      route: ROUTES.ACCOUNT,
+      route: ROUTES.PERSONAL_INFO,
     },
     {
       text: "Přihlášení",
