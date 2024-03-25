@@ -29,8 +29,8 @@ export const PageHeader: FC<{ title?: string; breadcrumbs: ILink[] }> = ({
           height={20}
         />
         {extendedBreadcrumbs.map((item: ILink, key: number) => (
-          <div key={key} className="flex items-center gap-2">
-            <Link href={item.route} className="md:text-[18px] text-[16px]">
+          <div key={key} className={`flex items-center gap-2 ${key === extendedBreadcrumbs.length - 1 ? "text-grey" : "font-medium"}`}>
+            <Link href={item.route} className="md:text-[17px] text-[16px]">
               {item.text}
             </Link>
             {key !== extendedBreadcrumbs.length - 1 && (

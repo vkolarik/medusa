@@ -9,7 +9,7 @@ export interface IProductPreview {
   sizes: string[]
   price: number
   amount?: number
-  color: string
+  colors: string[]
 }
 
 export interface IProductSummary {
@@ -21,4 +21,17 @@ export interface IProductSummary {
 export interface IProductDetail extends IProductPreview {
   images: string[]
   desciption: string
+}
+
+export interface IProductSizes {
+  sizes: string[]
+  hidden?: boolean
+  setSelectedSize?: Dispatch<SetStateAction<string | null>>
+  selectedSize?: string | null
+}
+
+export interface IProductColors {
+  colors: string[]
+  setSelectedColor: Dispatch<SetStateAction<string | null>>
+  selectedColor: string | null
 }

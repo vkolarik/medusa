@@ -10,3 +10,16 @@ export const allColors: string[] = [
   "žlutá",
   "zelená"
 ];
+
+export const allColorsHex: string[] = [
+  "#000000", // Černá
+  "#8B4513", // Hnědá
+  "#FFFFFF", // Bílá
+  "#0000FF", // Modrá
+  "#800080", // Fialová
+  "#FF0000", // Červená
+  "#FFC0CB", // Růžová
+  "#FFA500", // Oranžová
+  "#FFFF00", // Žlutá
+  "#008000"  // Zelená
+];

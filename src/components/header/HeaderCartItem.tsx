@@ -20,7 +20,7 @@ export const HeaderCartItem: FC<{ item: ICartItem }> = ({ item }) => {
       <div className="space-y-1">
         <p>{truncate(title, 25)}</p>
         <p className="small">Počet: {amount} ks</p>
-        <p className="small">Velikost: {size}</p>
+        <p className="small">Velikost: {size?.toUpperCase()}</p>
         <p className="small font-semibold text-right">
           Cena: {price} Kč
         </p>

@@ -3,6 +3,7 @@ import { IProductPreview } from "modules/Product"
 import Link from "next/link"
 import { FC } from "react"
 import Image from "next/image"
+import { ProductSizes } from "./ProductSizes"
 
 export const ProductItemPreview: FC<{ product: IProductPreview }> = ({
   product,
@@ -19,26 +20,8 @@ export const ProductItemPreview: FC<{ product: IProductPreview }> = ({
           className="object-cover object-top duration-500"
           loading="lazy"
         />
-        <div className="sizes duration-500 absolute bottom-0 left-0 w-full h-0 bg-white overflow-hidden">
-          <span className="small semibold uppercase mt-3">velikosti</span>
-          <div className="flex flex-wrap gap-1">
-            {allSizes.map((size: string, key: number) => {
-              return (
-                <p
-                  key={key}
-                  className={`text-center p-0.5 border border-lightGrey leading-none ${
-                    sizes.includes(size.toUpperCase())
-                      ? "text-black"
-                      : "opacity-75 grey"
-                  }
-            uppercase lg:text-[14px] text-[12px]`}
-                >
-                  {size}
-                </p>
-              )
-            })}
-          </div>
-        </div>
+        <ProductSizes sizes={sizes}
+          hidden={true} />
       </div>
       <div className="py-3 space-y-2">
         <h2 className="font-semibold md:text-[20px] text-[16px] leading-6">

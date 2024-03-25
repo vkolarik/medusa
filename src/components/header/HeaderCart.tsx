@@ -13,12 +13,21 @@ export const HeaderCart: FC = () => {
 
   const totalPrice = calculateTotalPrice(cartProducts)
 
+  // Calculate the total number of items in the cart, summing the amounts of each product.
+  // If the 'amount' property is not defined, default to 1.
+  const totalItems = cartProducts.reduce((sum, product) => {
+    return sum + (product.amount || 1);
+  }, 0);
+
+
+  // TODO: updatni ukazany pocet polozek v kosiku po kazdem pridani do kosiku
+
   return (
     <li className="dropdown cursor-pointer relative z-[999]">
       <Link
         className="cart-icon"
         href={ROUTES.CART}
-        data-items={cartProducts.length}
+        data-items={totalItems}
       >
         <Image
           src={cartIcon.src}

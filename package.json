@@ -48,7 +48,8 @@
     "sass": "^1.71.1",
     "sonner": "^1.4.3",
     "tailwindcss-radix": "^2.8.0",
-    "webpack": "^5"
+    "webpack": "^5",
+    "yet-another-react-lightbox": "^3.17.1"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",

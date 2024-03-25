@@ -11,31 +11,36 @@ export const AddToCartButton: FC<{ product: ICartItem }> = ({ product }) => {
   const addToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
 
-    if (cartProducts.length === 0) {
-      storeInStorage(
-        "session",
-        "products",
-        [{ ...product, amount: 1 }]
-      )
-      setCartProducts([{ ...product, amount: 1 }])
-    } else {
-      const existingProduct = cartProducts.find((p) => p.id === product.id)
-      if (existingProduct && existingProduct.amount) {
-        existingProduct.amount += 1
+    if (!product.size) toast.error("Musíte vybrat velikost!")
+    else if (!product.color) toast.error("Musíte vybrat barvu!")
+
+    else {
+      if (cartProducts.length === 0) {
+        storeInStorage(
+          "session",
+          "products",
+          [{ ...product, amount: 1 }]
+        )
+        setCartProducts([{ ...product, amount: 1 }])
       } else {
-        cartProducts.push({ ...product, amount: 1 })
+        const existingProduct = cartProducts.find((p) => p.id === product.id && p.color === product.color && p.size === product.size)
+        if (existingProduct && existingProduct.amount) {
+          existingProduct.amount += 1
+        } else {
+          cartProducts.push({ ...product, amount: 1 })
+        }
+        storeInStorage("session", "products", cartProducts)
+        setCartProducts(cartProducts)
       }
-      storeInStorage("session", "products", cartProducts)
-      setCartProducts(cartProducts)
+      toast.success("Produkt byl úspěšně přidán do košíku")
     }
-    toast.success("Produkt byl úspěšně přidán do košíku")
   }
   return (
     <button
-      className="button button--light md:w-24 w-20 text-center font-medium z-5"
+      className="button text-center font-medium z-5 w-max"
       onClick={(e) => addToCart(e)}
     >
-      Koupit
+      Přidat do košíku
     </button>
   )
 }
