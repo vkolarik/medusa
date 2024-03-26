@@ -36,6 +36,7 @@ module.exports = {
           80: "#1F2937",
           90: "#111827",
         },
+        // NEMAZAT - TYTO BARVY POUZIVAME !!!!!!
         black: "#161a24",
         grey: "#7e7e7e",
         white: "#ffffff",
