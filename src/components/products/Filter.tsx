@@ -4,6 +4,8 @@ import { filterForm } from "@data/forms"
 import { IFilterForm } from "modules/FilterForm"
 import { Dispatch, FC, SetStateAction } from "react"
 import { useForm } from "react-hook-form"
+import { IconContext } from "react-icons"
+import { GrClose } from "react-icons/gr"
 
 export const Filter: FC<{
   isActive: boolean
@@ -27,23 +29,15 @@ export const Filter: FC<{
         isActive ? "" : "-translate-x-full"
       }`}
     >
-      <div className="w-full fixed top-0 right-0 bg-white h-[3rem] border-b border-lightGrey z-50">
-        <svg
-          className="absolute top-1/2 -translate-y-1/2 right-5 cursor-pointer"
-          onClick={() => setIsActive(false)}
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="black"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
-        </svg>
+      <div className="flex justify-end mb-2 border-b border-lightGrey py-2 pr-5"
+        onClick={() => setIsActive(false)}>
+        <IconContext.Provider
+                value={{ size: '20px', className: 'cursor-pointer' }}
+              >
+                <div>
+                  <GrClose />
+                </div>
+              </IconContext.Provider>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)}

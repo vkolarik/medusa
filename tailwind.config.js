@@ -42,7 +42,8 @@ module.exports = {
         lightGrey: "#e5e7eb",
         blue: "#3b82f6",
         blueHover: "#0757ea",
-        error: "rgb(180, 9, 9)"
+        error: "rgb(180, 9, 9)",
+        lightBlue: "#F3F6FB"
       },
       borderRadius: {
         none: "0px",

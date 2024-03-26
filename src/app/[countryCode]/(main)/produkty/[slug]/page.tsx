@@ -7,16 +7,18 @@ import { IProductDetail } from "modules/Product"
 import { useEffect, useState } from "react"
 import { productDetailData, productsPreviewData } from "@data/products"
 import { Loading } from "@components/Loading"
-import { ProductGallery } from "@components/products/ProductGallery"
+import { ProductGallery } from "@components/products/detail/ProductGallery"
 import { ProductSizes } from "@components/products/ProductSizes"
-import { ProductColors } from "@components/products/ProductColors"
-import { AddToCartButton } from "@components/products/AddToCartButton"
+import { ProductColors } from "@components/products/detail/ProductColors"
+import { AddToCartButton } from "@components/products/detail/AddToCartButton"
 import { ProductContainer } from "@components/products/ProductContainer"
+import { ProductDetailModal } from "@components/products/detail/ProductDetailModal"
 
 const ProductDetail = ({ params }: { params: { slug: string } }) => {
   const [activeProduct, setActiveProduct] = useState<IProductDetail>()
   const [selectedSize, setSelectedSize] = useState<string | null>(null)
   const [selectedColor, setSelectedColor] = useState<string | null>(null)
+  const [showModal, setShowModal] = useState<boolean>(false)
 
   // TODO: use dynamic data
   const breadcrumbs: ILink[] = [
@@ -61,7 +63,8 @@ const ProductDetail = ({ params }: { params: { slug: string } }) => {
                     setSelectedSize={setSelectedSize}
                     selectedSize={selectedSize} />
 
-                  <button className="h-max text-grey border-b border-lightGrey cursor-pointer lg:text-[14px] text-[14px] w-max whitespace-nowrap duration-300 hover:border-black hover:text-black">
+                  <button className="h-max text-grey border-b border-lightGrey cursor-pointer lg:text-[14px] text-[12px] w-max whitespace-nowrap duration-300 hover:border-black hover:text-black"
+                    onClick={() => setShowModal(true)}>
                     Průvodce velikostmi</button>
                 </div>
 
@@ -85,6 +88,9 @@ const ProductDetail = ({ params }: { params: { slug: string } }) => {
               {/* TODO: use dynamic data */}
               <ProductContainer data={productsPreviewData.slice(0, 4)} />
             </div>
+
+            {showModal && <ProductDetailModal image={activeProduct.image}
+              setActiveModal={setShowModal}/>}
           </>
       )}
 

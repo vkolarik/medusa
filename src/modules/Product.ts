@@ -35,3 +35,24 @@ export interface IProductColors {
   setSelectedColor: Dispatch<SetStateAction<string | null>>
   selectedColor: string | null
 }
+
+export interface IProductCalculator {
+  waistCircumference: number
+  hipsCircumference: number
+  breastsCircumference: number
+  gender: "male" | "female"
+}
+
+export enum ProductDetailModalState {
+  CALCULATOR, TABLE
+}
+
+export interface IProductDetailModalHeader {
+  setState: Dispatch<SetStateAction<ProductDetailModalState>>
+  state: ProductDetailModalState
+}
+
+export interface IProductDetailSizesTable {
+  theads: string[]
+  tbody: (string | number)[][]
+}

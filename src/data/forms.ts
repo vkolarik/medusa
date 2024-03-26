@@ -9,6 +9,7 @@ import { allColors } from "./colors";
 import { allSorting } from "./sorting";
 import { priceCategories } from "./prices";
 import { IUserInfo } from "modules/UserInfo";
+import { IProductCalculator } from "modules/Product";
 
 export const loginInputs: IGeneralInput<ISigninData>[] = [
   {
@@ -178,7 +179,7 @@ export const cartAddress: IGeneralInput<ICartForm>[] = [
 export const cartDelivery: IGeneralInput<ICartForm>[] = [
   {
     id: "payment",
-    placeholder: "Doprava",
+    placeholder: "Platba",
     type: InputType.RADIO,
     options: [
       {
@@ -238,5 +239,35 @@ export const personalInfoForm: IGeneralInput<IUserInfo>[] = [
     required: "Mobil je povinný",
     pattern: /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i,
     type: InputType.TEXT,
+  },
+]
+
+export const productDetailCalculator: IGeneralInput<IProductCalculator>[] = [
+  {
+    placeholder: "Obvod pasu",
+    id: "waistCircumference",
+    required: "Obvod pasu je povinný",
+    type: InputType.NUMBER,
+  },
+  {
+    placeholder: "Obvod boků",
+    id: "hipsCircumference",
+    required: "Obvod boků je povinný",
+    type: InputType.NUMBER,
+  },
+  {
+    placeholder: "Obvod přes prsa",
+    id: "breastsCircumference",
+    required: "Obvod přes prsa je povinný",
+    type: InputType.NUMBER,
+  },
+  {
+    placeholder: "Pohlaví",
+    id: "gender",
+    options: [
+      { value: "male", label: "MUŽ" },
+      { value: "female", label: "ŽENA" },
+    ],
+    type: InputType.RADIO,
   },
 ]

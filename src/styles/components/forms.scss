@@ -10,6 +10,18 @@
     }
   }
 
+  &.basic-form--no-shadow {
+    box-shadow: none !important;
+  }
+
+  &.basic-form--full-width {
+    width: 100%;
+
+    @media (max-width: 1023px) {
+      padding: 0 !important;
+    }
+  }
+
   &.form--account {
     width: 100%;
     padding: 0 !important;
@@ -53,6 +65,7 @@
   }
 
   input[type="text"],
+  input[type="number"],
   input[type="password"],
   input[type="checkbox"],
   select {
