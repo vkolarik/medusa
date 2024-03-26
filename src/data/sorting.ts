@@ -1,24 +1,24 @@
-import { ISorting } from "modules/FilterForm";
+import { ISorting } from "modules/FilterForm"
 
 export const allSorting: ISorting[] = [
   {
     value: "default",
-    label: "Výchozí"
+    label: "Výchozí",
   },
   {
     value: "oldest",
-    label: "Od nejstarších"
+    label: "Od nejstarších",
   },
   {
     value: "newest",
-    label: "Od nejnovějších"
+    label: "Od nejnovějších",
   },
   {
     value: "cheapest",
-    label: "Od nejlevnějších"
+    label: "Od nejlevnějších",
   },
   {
     value: "mostExpensive",
-    label: "Od nejstarších"
-  }
+    label: "Od nejstarších",
+  },
 ]

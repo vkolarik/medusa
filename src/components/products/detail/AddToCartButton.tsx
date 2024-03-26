@@ -13,17 +13,17 @@ export const AddToCartButton: FC<{ product: ICartItem }> = ({ product }) => {
 
     if (!product.size) toast.error("Musíte vybrat velikost!")
     else if (!product.color) toast.error("Musíte vybrat barvu!")
-
     else {
       if (cartProducts.length === 0) {
-        storeInStorage(
-          "session",
-          "products",
-          [{ ...product, amount: 1 }]
-        )
+        storeInStorage("session", "products", [{ ...product, amount: 1 }])
         setCartProducts([{ ...product, amount: 1 }])
       } else {
-        const existingProduct = cartProducts.find((p) => p.id === product.id && p.color === product.color && p.size === product.size)
+        const existingProduct = cartProducts.find(
+          (p) =>
+            p.id === product.id &&
+            p.color === product.color &&
+            p.size === product.size
+        )
         if (existingProduct && existingProduct.amount) {
           existingProduct.amount += 1
         } else {

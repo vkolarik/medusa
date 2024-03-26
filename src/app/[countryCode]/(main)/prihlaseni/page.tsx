@@ -48,9 +48,7 @@ const SignIn: NextPage = () => {
           </p>
         </div>
 
-        <Form data={loginInputs}
-          register={register}
-          errors={errors}/>
+        <Form data={loginInputs} register={register} errors={errors} />
 
         <p className="small text-right">
           Nemáte účet?{" "}
@@ -64,9 +62,7 @@ const SignIn: NextPage = () => {
 
         <div className="ease-in duration-200 mt-5 md:mt-8 flex justify-center">
           {/* Submit button */}
-          <SubmitButton
-            isDisabled={isDisabled}
-            text={btnText} />
+          <SubmitButton isDisabled={isDisabled} text={btnText} />
         </div>
       </form>
     </main>

@@ -30,7 +30,14 @@ export const PageHeader: FC<{ title?: string; breadcrumbs: ILink[] }> = ({
           className="md:mr-0 mr-1"
         />
         {extendedBreadcrumbs.map((item: ILink, key: number) => (
-          <div key={key} className={`flex items-center md:gap-2 gap-0.5 ${key === extendedBreadcrumbs.length - 1 ? "text-grey" : "font-medium"}`}>
+          <div
+            key={key}
+            className={`flex items-center md:gap-2 gap-0.5 ${
+              key === extendedBreadcrumbs.length - 1
+                ? "text-grey"
+                : "font-medium"
+            }`}
+          >
             <Link href={item.route} className="md:text-[17px] text-[14px]">
               {item.text}
             </Link>
@@ -41,9 +48,11 @@ export const PageHeader: FC<{ title?: string; breadcrumbs: ILink[] }> = ({
         ))}
       </div>
 
-      {title && <h1 className="font-semibold lg:text-[45px] md:text-[37px] text-[34px]">
-        {title}
-      </h1>}
+      {title && (
+        <h1 className="font-semibold lg:text-[45px] md:text-[37px] text-[34px]">
+          {title}
+        </h1>
+      )}
     </div>
   )
 }

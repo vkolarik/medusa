@@ -1,5 +1,5 @@
-import { Dispatch, SetStateAction } from 'react'
-import { ICartItem } from './CartItem'
+import { Dispatch, SetStateAction } from "react"
+import { ICartItem } from "./CartItem"
 
 export interface AppProviderInterface {
   loading: boolean

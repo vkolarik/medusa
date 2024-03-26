@@ -1,3 +1,4 @@
 export enum AccountStatus {
-  ACTIVE, GUEST
+  ACTIVE,
+  GUEST,
 }

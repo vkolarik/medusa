@@ -12,7 +12,9 @@ import { useState } from "react"
 import { Filter } from "@components/products/Filter"
 
 const ProductCategory = ({ params }: { params: { slug: string } }) => {
-  const activeCategory: ICategory = categoriesData.find((c) => c.route === `/kategorie/${params.slug[0]}`) as ICategory
+  const activeCategory: ICategory = categoriesData.find(
+    (c) => c.route === `/kategorie/${params.slug[0]}`
+  ) as ICategory
   let activeSubCategory: ICategory | null = null
   const [filterIsActive, setFilterIsActive] = useState<boolean>(false)
 

@@ -44,7 +44,8 @@ export interface IProductCalculator {
 }
 
 export enum ProductDetailModalState {
-  CALCULATOR, TABLE
+  CALCULATOR,
+  TABLE,
 }
 
 export interface IProductDetailModalHeader {

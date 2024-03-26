@@ -1,15 +1,15 @@
-import { IGeneralInput, InputType } from "modules/Inputs";
-import { statesData } from "./countries";
-import { IRegisterData } from "modules/Register";
-import { ISigninData } from "modules/Login";
-import { ICartForm } from "modules/CartForms";
-import { IFilterForm } from "modules/FilterForm";
-import { allSizes } from "./sizes";
-import { allColors } from "./colors";
-import { allSorting } from "./sorting";
-import { priceCategories } from "./prices";
-import { IUserInfo } from "modules/UserInfo";
-import { IProductCalculator } from "modules/Product";
+import { IGeneralInput, InputType } from "modules/Inputs"
+import { statesData } from "./countries"
+import { IRegisterData } from "modules/Register"
+import { ISigninData } from "modules/Login"
+import { ICartForm } from "modules/CartForms"
+import { IFilterForm } from "modules/FilterForm"
+import { allSizes } from "./sizes"
+import { allColors } from "./colors"
+import { allSorting } from "./sorting"
+import { priceCategories } from "./prices"
+import { IUserInfo } from "modules/UserInfo"
+import { IProductCalculator } from "modules/Product"
 
 export const loginInputs: IGeneralInput<ISigninData>[] = [
   {
@@ -29,7 +29,7 @@ export const loginInputs: IGeneralInput<ISigninData>[] = [
     minLengthErr: "Heslo musí mít alespoň 5 znaků",
     maxLengthErr: "Heslo musí mít maximálně 40 znaků",
   },
-];
+]
 
 export const registerInputs1: IGeneralInput<IRegisterData>[] = [
   {
@@ -38,7 +38,7 @@ export const registerInputs1: IGeneralInput<IRegisterData>[] = [
     required: "Jméno je povinné",
     type: InputType.TEXT,
   },
- {
+  {
     placeholder: "Příjmení",
     id: "surname",
     required: "Příjmení je povinné",
@@ -68,7 +68,7 @@ export const registerInputs1: IGeneralInput<IRegisterData>[] = [
     type: InputType.SELECT,
     options: statesData,
   },
-];
+]
 
 export const registerInputs2: IGeneralInput<IRegisterData>[] = [
   {
@@ -104,7 +104,7 @@ export const registerInputs2: IGeneralInput<IRegisterData>[] = [
     ],
     type: InputType.RADIO,
   },
-];
+]
 
 export const cartPersonalInfo: IGeneralInput<ICartForm>[] = [
   {
@@ -130,7 +130,7 @@ export const cartPersonalInfo: IGeneralInput<ICartForm>[] = [
     pattern: /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i,
     type: InputType.TEXT,
   },
-];
+]
 
 export const cartAddress: IGeneralInput<ICartForm>[] = [
   {
@@ -174,7 +174,7 @@ export const cartAddress: IGeneralInput<ICartForm>[] = [
     id: "note",
     type: InputType.TEXT,
   },
-];
+]
 
 export const cartDelivery: IGeneralInput<ICartForm>[] = [
   {
@@ -191,7 +191,7 @@ export const cartDelivery: IGeneralInput<ICartForm>[] = [
         label: "dobírka",
       },
     ],
-  }
+  },
 ]
 
 export const filterForm: IGeneralInput<IFilterForm>[] = [
@@ -214,19 +214,19 @@ export const filterForm: IGeneralInput<IFilterForm>[] = [
     placeholder: "Velikosti",
     id: "sizes",
     type: InputType.CHECKBOX,
-    options: allSizes
+    options: allSizes,
   },
   {
     placeholder: "Barvy",
     id: "colors",
     type: InputType.CHECKBOX,
-    options: allColors
+    options: allColors,
   },
   {
     placeholder: "Cena",
     id: "price",
     type: InputType.RADIO,
-    options: priceCategories
+    options: priceCategories,
   },
 ]
 

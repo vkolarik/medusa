@@ -9,13 +9,13 @@ export const SearchForm: FC = () => {
   const { register, handleSubmit } = useForm()
 
   const onSubmit: any = async (data: { text: string | null }, e: Event) => {
-    console.log(data)
+    alert(data.text)
   }
 
   return (
     <form
       className="rounded-xl border border-grey xl:w-[20rem] lg:w-[15rem] md:w-[13rem] w-full relative flex py-1 lg:px-4 px-2 lg:mb-0 mb-2"
-      onSubmit={(e) => e.preventDefault()}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <input
         type="text"

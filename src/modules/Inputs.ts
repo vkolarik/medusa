@@ -1,4 +1,4 @@
-import { FieldValues, Path, UseFormRegister } from "react-hook-form";
+import { FieldValues, Path, UseFormRegister } from "react-hook-form"
 
 export enum InputType {
   TEXT = "text",
@@ -9,32 +9,34 @@ export enum InputType {
   CHECKBOX = "checkbox",
 }
 
-export type IGeneralInput<T extends FieldValues> = Omit<ISelect<T>, "register" | "errors">
-  | Omit<IBasicInput<T>, "register" | "errors"> | Omit<IRadioInput<T>, "register" | "errors">
-  | Omit<ICheckbox<T>, "register" | "errors">;
+export type IGeneralInput<T extends FieldValues> =
+  | Omit<ISelect<T>, "register" | "errors">
+  | Omit<IBasicInput<T>, "register" | "errors">
+  | Omit<IRadioInput<T>, "register" | "errors">
+  | Omit<ICheckbox<T>, "register" | "errors">
 
 export interface IBasicInput<T extends FieldValues> {
-  placeholder: string;
-  id: Path<T> | string;
-  required?: string;
-  pattern?: RegExp;
-  register: UseFormRegister<T>;
-  errors: any;
+  placeholder: string
+  id: Path<T> | string
+  required?: string
+  pattern?: RegExp
+  register: UseFormRegister<T>
+  errors: any
   type: InputType
-  min?: number;
-  max?: number;
-  minLengthErr?: string;
-  maxLengthErr?: string;
+  min?: number
+  max?: number
+  minLengthErr?: string
+  maxLengthErr?: string
   noPaddingOnMobile?: boolean
   readOnly?: boolean
 }
 
 export interface ISelect<T extends FieldValues> {
-  placeholder: string;
-  id: Path<T> | string;
-  required?: string;
-  register: UseFormRegister<T>;
-  errors: any;
+  placeholder: string
+  id: Path<T> | string
+  required?: string
+  register: UseFormRegister<T>
+  errors: any
   options: IOption[]
   type: InputType
   noPaddingOnMobile?: boolean
@@ -47,10 +49,10 @@ export interface IOption {
 }
 
 export interface IRadioInput<T extends FieldValues> {
-  placeholder: string;
-  id: Path<T> | string;
-  required?: string;
-  register: UseFormRegister<T>;
+  placeholder: string
+  id: Path<T> | string
+  required?: string
+  register: UseFormRegister<T>
   options: IOption[]
   type: InputType
   noPaddingOnMobile?: boolean
@@ -58,10 +60,10 @@ export interface IRadioInput<T extends FieldValues> {
 }
 
 export interface ICheckbox<T extends FieldValues> {
-  placeholder: string;
-  id: Path<T> | string;
-  required?: string;
-  register: UseFormRegister<T>;
+  placeholder: string
+  id: Path<T> | string
+  required?: string
+  register: UseFormRegister<T>
   options: string[]
   type: InputType
   noPaddingOnMobile?: boolean

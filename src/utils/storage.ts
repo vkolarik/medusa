@@ -11,11 +11,13 @@ export const getFromStorage = <T>(
   storage: "session" | "local",
   key: string
 ): T | null => {
-  const item = storage === "session" ? sessionStorage.getItem(key) : localStorage.getItem(key);
-  if (item === null) return null;
-  return JSON.parse(item) as T;
-};
-
+  const item =
+    storage === "session"
+      ? sessionStorage.getItem(key)
+      : localStorage.getItem(key)
+  if (item === null) return null
+  return JSON.parse(item) as T
+}
 
 export const removeFromStorage = (
   storage: "session" | "local",

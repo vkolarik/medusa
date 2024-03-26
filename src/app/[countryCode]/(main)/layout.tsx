@@ -7,17 +7,28 @@ import { AppWrapper } from "@context/MainContext"
 
 export const metadata: Metadata = {
   title: "Trend Trove - Stylové oblečení, boty a doplňky",
-  description: "Objevte široký výběr stylového oblečení, bot a doplňků v Trend Trove. Nejnovější módní trendy pro muže, ženy a děti za skvělé ceny.",
-  keywords: ["Trend Trove", "oblečení", "boty", "doplňky", "móda", "stylové oblečení", "muži", "ženy", "děti", "módní trendy", "eshop"],
-};
-
+  description:
+    "Objevte široký výběr stylového oblečení, bot a doplňků v Trend Trove. Nejnovější módní trendy pro muže, ženy a děti za skvělé ceny.",
+  keywords: [
+    "Trend Trove",
+    "oblečení",
+    "boty",
+    "doplňky",
+    "móda",
+    "stylové oblečení",
+    "muži",
+    "ženy",
+    "děti",
+    "módní trendy",
+    "eshop",
+  ],
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-
   return (
     <html lang="cs">
       <AppWrapper>

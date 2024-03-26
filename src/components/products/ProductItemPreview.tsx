@@ -20,8 +20,7 @@ export const ProductItemPreview: FC<{ product: IProductPreview }> = ({
           className="object-cover object-top duration-500"
           loading="lazy"
         />
-        <ProductSizes sizes={sizes}
-          hidden={true} />
+        <ProductSizes sizes={sizes} hidden={true} />
       </div>
       <div className="py-3 space-y-2">
         <h2 className="font-semibold md:text-[20px] text-[16px] leading-6">

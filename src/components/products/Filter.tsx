@@ -29,27 +29,27 @@ export const Filter: FC<{
         isActive ? "" : "-translate-x-full"
       }`}
     >
-      <div className="flex justify-end mb-2 border-b border-lightGrey py-2 pr-5"
-        onClick={() => setIsActive(false)}>
+      <div
+        className="flex justify-end mb-2 border-b border-lightGrey py-2 pr-5"
+        onClick={() => setIsActive(false)}
+      >
         <IconContext.Provider
-                value={{ size: '20px', className: 'cursor-pointer' }}
-              >
-                <div>
-                  <GrClose />
-                </div>
-              </IconContext.Provider>
+          value={{ size: "20px", className: "cursor-pointer" }}
+        >
+          <div>
+            <GrClose />
+          </div>
+        </IconContext.Provider>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)}
-        className="basic-form basic-form--filter overflow-y-auto overflow-x-hidden max-h-full">
-
-        <Form data={filterForm}
-          register={register}
-          errors={errors} />
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="basic-form basic-form--filter overflow-y-auto overflow-x-hidden max-h-full"
+      >
+        <Form data={filterForm} register={register} errors={errors} />
 
         <div className="flex justify-end">
-          <SubmitButton text="Filtrovat"
-            color="dark" />
+          <SubmitButton text="Filtrovat" color="dark" />
         </div>
       </form>
     </div>

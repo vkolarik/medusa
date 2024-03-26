@@ -9,7 +9,7 @@ export const productsPreviewData: IProductPreview[] = [
     route: "/produkty/panske-tricko-s-kulatym-vystrihem",
     sizes: ["S", "M"],
     price: 599,
-    colors: ["#000000", "#FFFFFF", "#FF0000"]
+    colors: ["#000000", "#FFFFFF", "#FF0000"],
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ export const productsPreviewData: IProductPreview[] = [
     route: "/produkty/panske-tricko-s-kulatym-vystrihem",
     sizes: ["S", "M"],
     price: 599,
-    colors: ["#000000", "#FFFFFF", "#FF0000"]
+    colors: ["#000000", "#FFFFFF", "#FF0000"],
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ export const productsPreviewData: IProductPreview[] = [
     route: "/produkty/panske-tricko-s-kulatym-vystrihem",
     sizes: ["S", "M"],
     price: 599,
-    colors: ["#000000", "#FFFFFF", "#FF0000"]
+    colors: ["#000000", "#FFFFFF", "#FF0000"],
   },
   {
     id: 4,
@@ -36,7 +36,7 @@ export const productsPreviewData: IProductPreview[] = [
     route: "/produkty/panske-tricko-s-kulatym-vystrihem",
     sizes: ["S", "M"],
     price: 599,
-    colors: ["#000000", "#FFFFFF", "#FF0000"]
+    colors: ["#000000", "#FFFFFF", "#FF0000"],
   },
   {
     id: 5,
@@ -45,7 +45,7 @@ export const productsPreviewData: IProductPreview[] = [
     route: "/produkty/panske-tricko-s-kulatym-vystrihem",
     sizes: ["S", "M"],
     price: 599,
-    colors: ["#000000", "#FFFFFF", "#FF0000"]
+    colors: ["#000000", "#FFFFFF", "#FF0000"],
   },
   {
     id: 6,
@@ -54,7 +54,7 @@ export const productsPreviewData: IProductPreview[] = [
     route: "/produkty/panske-tricko-s-kulatym-vystrihem",
     sizes: ["S", "M"],
     price: 599,
-    colors: ["#000000", "#FFFFFF", "#FF0000"]
+    colors: ["#000000", "#FFFFFF", "#FF0000"],
   },
   {
     id: 7,
@@ -63,7 +63,7 @@ export const productsPreviewData: IProductPreview[] = [
     route: "/produkty/panske-tricko-s-kulatym-vystrihem",
     sizes: ["S", "M"],
     price: 599,
-    colors: ["#000000", "#FFFFFF", "#FF0000"]
+    colors: ["#000000", "#FFFFFF", "#FF0000"],
   },
   {
     id: 8,
@@ -72,14 +72,26 @@ export const productsPreviewData: IProductPreview[] = [
     route: "/produkty/panske-tricko-s-kulatym-vystrihem",
     sizes: ["S", "M"],
     price: 599,
-    colors: ["#000000", "#FFFFFF", "#FF0000"]
+    colors: ["#000000", "#FFFFFF", "#FF0000"],
   },
 ]
 
-export const productDetailData: IProductDetail[] = productsPreviewData.map((product: IProductPreview) => {
-  return {
-    ...product,
-    images: [product.image, product.image, product.image, product.image, product.image, product.image, product.image, product.image],
-    desciption: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.", // Přidejte popis produktu
-  };
-});
+export const productDetailData: IProductDetail[] = productsPreviewData.map(
+  (product: IProductPreview) => {
+    return {
+      ...product,
+      images: [
+        product.image,
+        product.image,
+        product.image,
+        product.image,
+        product.image,
+        product.image,
+        product.image,
+        product.image,
+      ],
+      desciption:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.", // Přidejte popis produktu
+    }
+  }
+)

@@ -34,14 +34,16 @@ const Register: NextPage = () => {
     // setIsDisabled(false)
   }
 
-
   // if (session.status === 'authenticated') {
   //   router.push(ROUTES.ACCOUNT)
   // }
 
   return (
     <main className="max-width md:py-36 py-12 w-full">
-      <form className="basic-form basic-form--register" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className="basic-form basic-form--register"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <div className="w-full mb-4 md:mb-8 text-center">
           <h1 className="md:mb-1 text-[22px] md:text-[25px] uppercase">
             Registrace
@@ -53,24 +55,17 @@ const Register: NextPage = () => {
 
         <div className="flex lg:gap-5 lg:flex-row flex-col w-full">
           <div className="w-full">
-            <Form data={registerInputs1}
-              errors={errors}
-              register={register}/>
-
+            <Form data={registerInputs1} errors={errors} register={register} />
           </div>
 
           <div className="w-full">
-            <Form data={registerInputs2}
-              errors={errors}
-              register={register} />
+            <Form data={registerInputs2} errors={errors} register={register} />
           </div>
         </div>
 
         <div className="ease-in duration-200 mt-5 md:mt-8 flex justify-center">
           {/* Submit button */}
-          <SubmitButton
-            isDisabled={isDisabled}
-            text={btnText} />
+          <SubmitButton isDisabled={isDisabled} text={btnText} />
         </div>
       </form>
     </main>

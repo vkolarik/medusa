@@ -1,4 +1,4 @@
-import { IProductDetailSizesTable } from "modules/Product";
+import { IProductDetailSizesTable } from "modules/Product"
 
 export const productDetailSizesTable: IProductDetailSizesTable = {
   theads: ["eu", "int", "prsa", "boky", "pas"],
@@ -12,5 +12,5 @@ export const productDetailSizesTable: IProductDetailSizesTable = {
     [44, "xxl", 100, 85, 106],
     [46, "3xl", 104, 90, 109],
     [48, "4xl", 108, 96.5, 114],
-  ]
+  ],
 }

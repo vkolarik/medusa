@@ -1,13 +1,12 @@
 "use client"
 
-import { AccountHeader } from "@components/account/AccountHeader";
-import { AccountTitle } from "@components/account/AccountTitle";
-import { UserInfoFormsContainer } from "@components/account/UserInfoFormsContainer";
-import { IUserInfo } from "modules/UserInfo";
-import { NextPage } from "next";
+import { AccountHeader } from "@components/account/AccountHeader"
+import { AccountTitle } from "@components/account/AccountTitle"
+import { UserInfoFormsContainer } from "@components/account/UserInfoFormsContainer"
+import { IUserInfo } from "modules/UserInfo"
+import { NextPage } from "next"
 
 const PersonalInfo: NextPage = () => {
-
   // TODO: remove and use data from db
   const data: IUserInfo = {
     id: 1,
@@ -20,15 +19,19 @@ const PersonalInfo: NextPage = () => {
     street: "Main Street 123",
     zip_code: 90001,
     cadastral_number: 1234,
-    phone: "123456789"
-  };
+    phone: "123456789",
+  }
 
-  return <main className="page max-width w-full">
+  return (
+    <main className="page max-width w-full">
       <AccountHeader />
-      <AccountTitle title="Osobní údaje"
-        subtitle="Na této stránce si můžete zobrazit a upravit Vaše osobní údaje." />
+      <AccountTitle
+        title="Osobní údaje"
+        subtitle="Na této stránce si můžete zobrazit a upravit Vaše osobní údaje."
+      />
       <UserInfoFormsContainer data={data} />
-  </main>
+    </main>
+  )
 }
 
 export default PersonalInfo

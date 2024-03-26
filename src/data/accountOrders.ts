@@ -1,4 +1,4 @@
-import { IAccountOrders } from "modules/AccountOrders";
+import { IAccountOrders } from "modules/AccountOrders"
 import image from "../../public/images/model.png"
 
 export const accountOrders: IAccountOrders[] = [
@@ -7,16 +7,16 @@ export const accountOrders: IAccountOrders[] = [
     date: "20.03.2024",
     products: [
       {
-       canBeDeleted: false,
-       item: {
-        id: 1,
-        title: "Šaty s květinovým vzorem",
-        amount: 1,
-        price: 1299,
-        size: "S",
-        color: "Modrá",
-        image: image.src,
-       }
+        canBeDeleted: false,
+        item: {
+          id: 1,
+          title: "Šaty s květinovým vzorem",
+          amount: 1,
+          price: 1299,
+          size: "S",
+          color: "Modrá",
+          image: image.src,
+        },
       },
       {
         canBeDeleted: false,
@@ -65,24 +65,24 @@ export const accountOrders: IAccountOrders[] = [
           color: "Hnědá",
           image: image.src,
         },
-      }
-    ]
+      },
+    ],
   },
   {
     id: 2,
     date: "20.03.2024",
     products: [
       {
-       canBeDeleted: false,
-       item: {
-        id: 1,
-        title: "Šaty s květinovým vzorem",
-        amount: 1,
-        price: 1299,
-        size: "S",
-        color: "Modrá",
-        image: image.src,
-       }
+        canBeDeleted: false,
+        item: {
+          id: 1,
+          title: "Šaty s květinovým vzorem",
+          amount: 1,
+          price: 1299,
+          size: "S",
+          color: "Modrá",
+          image: image.src,
+        },
       },
       {
         canBeDeleted: false,
@@ -131,24 +131,24 @@ export const accountOrders: IAccountOrders[] = [
           color: "Hnědá",
           image: image.src,
         },
-      }
-    ]
+      },
+    ],
   },
   {
     id: 3,
     date: "20.03.2024",
     products: [
       {
-       canBeDeleted: false,
-       item: {
-        id: 1,
-        title: "Šaty s květinovým vzorem",
-        amount: 1,
-        price: 1299,
-        size: "S",
-        color: "Modrá",
-        image: image.src,
-       }
+        canBeDeleted: false,
+        item: {
+          id: 1,
+          title: "Šaty s květinovým vzorem",
+          amount: 1,
+          price: 1299,
+          size: "S",
+          color: "Modrá",
+          image: image.src,
+        },
       },
       {
         canBeDeleted: false,
@@ -197,7 +197,7 @@ export const accountOrders: IAccountOrders[] = [
           color: "Hnědá",
           image: image.src,
         },
-      }
-    ]
-  }
+      },
+    ],
+  },
 ]
