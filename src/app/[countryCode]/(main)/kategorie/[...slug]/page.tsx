@@ -1,28 +1,31 @@
-"use client"
+"use server"
 
 import { PageHeader } from "@components/PageHeader"
 import { ILink } from "modules/Link"
 import { categoriesData } from "@data/categories"
 import { ICategory } from "modules/Category"
 import Link from "next/link"
-import { productsPreviewData } from "@data/products"
 import { ProductContainer } from "@components/products/ProductContainer"
-import { FilterButton } from "@components/products/FilterButton"
-import { useState } from "react"
-import { Filter } from "@components/products/Filter"
+import { IProductPreview } from "../../../../../modules/Product"
+import { MedusaApi } from "@constants/api"
+import { FilterWrapper } from "@components/products/FilterWrapper"
 
-const ProductCategory = ({ params }: { params: { slug: string } }) => {
+
+const ProductCategory = async ({ params }: { params: { slug: string } }) => {
+
+  let product: IProductPreview[] = await MedusaApi.fetchAndMapProducts()
+
   const activeCategory: ICategory = categoriesData.find(
-    (c) => c.route === `/kategorie/${params.slug[0]}`
+    (c) => c.route === `/kategorie/${params.slug[0]}`,
   ) as ICategory
   let activeSubCategory: ICategory | null = null
-  const [filterIsActive, setFilterIsActive] = useState<boolean>(false)
+  // const [filterIsActive, setFilterIsActive] = useState<boolean>(false)
 
   if (params.slug.length > 1 && activeCategory.data) {
     activeSubCategory = activeCategory.data.find(
       (c) =>
         c.route ===
-        `${activeCategory.route}/${params.slug[params.slug.length - 1]}`
+        `${activeCategory.route}/${params.slug[params.slug.length - 1]}`,
     ) as ICategory
   }
 
@@ -42,7 +45,8 @@ const ProductCategory = ({ params }: { params: { slug: string } }) => {
 
   return (
     <main className="max-width page w-full">
-      <Filter isActive={filterIsActive} setIsActive={setFilterIsActive} />
+
+
       <PageHeader
         title={activeSubCategory?.title ?? activeCategory?.title}
         breadcrumbs={breadcrumbs}
@@ -61,12 +65,12 @@ const ProductCategory = ({ params }: { params: { slug: string } }) => {
             })}
           </div>
         )}
-        <FilterButton
-          isActive={filterIsActive}
-          setIsActive={setFilterIsActive}
-        />
-        <ProductContainer data={productsPreviewData} />
       </div>
+
+
+      <FilterWrapper/>
+      <ProductContainer data={product} />
+
     </main>
   )
 }

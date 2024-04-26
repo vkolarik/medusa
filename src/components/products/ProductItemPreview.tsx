@@ -1,3 +1,5 @@
+"use client"
+
 import { allSizes } from "@data/sizes"
 import { IProductPreview } from "modules/Product"
 import Link from "next/link"
