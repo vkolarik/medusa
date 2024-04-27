@@ -1,6 +1,6 @@
 import { Text } from "@medusajs/ui"
 
-import { ProductPreviewType } from "types/global"
+import { ProductPreviewType } from "aaa-temp/types/global"
 
 import { retrievePricedProductById } from "@lib/data"
 import { getProductPrice } from "@lib/util/get-product-price"

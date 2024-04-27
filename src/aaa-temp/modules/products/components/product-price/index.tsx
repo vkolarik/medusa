@@ -5,7 +5,7 @@ import {
 import { clx } from "@medusajs/ui"
 
 import { getProductPrice } from "@lib/util/get-product-price"
-import { RegionInfo } from "types/global"
+import { RegionInfo } from "aaa-temp/types/global"
 
 export default function ProductPrice({
   product,

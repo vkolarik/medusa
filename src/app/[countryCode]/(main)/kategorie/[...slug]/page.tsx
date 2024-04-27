@@ -10,10 +10,9 @@ import { IProductPreview } from "../../../../../modules/Product"
 import { MedusaApi } from "@constants/api"
 import { FilterWrapper } from "@components/products/FilterWrapper"
 
-
 const ProductCategory = async ({ params }: { params: { slug: string } }) => {
 
-  let product: IProductPreview[] = await MedusaApi.fetchAndMapProducts()
+  let product: IProductPreview[] = await MedusaApi.getPricedProductsCustom()
 
   const activeCategory: ICategory = categoriesData.find(
     (c) => c.route === `/kategorie/${params.slug[0]}`,

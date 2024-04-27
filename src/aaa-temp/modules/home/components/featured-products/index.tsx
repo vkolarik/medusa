@@ -1,7 +1,7 @@
 import { Region } from "@medusajs/medusa"
 
 import ProductRail from "@modules/home/components/featured-products/product-rail"
-import { ProductCollectionWithPreviews } from "types/global"
+import { ProductCollectionWithPreviews } from "aaa-temp/types/global"
 
 export default async function FeaturedProducts({
   collections,

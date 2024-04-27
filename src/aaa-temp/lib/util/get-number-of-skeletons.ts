@@ -4,7 +4,7 @@
  * if the remaing products are less than 12.
  */
 
-import { InfiniteProductPage } from "types/global"
+import { InfiniteProductPage } from "aaa-temp/types/global"
 
 const getNumberOfSkeletons = (pages?: InfiniteProductPage[]) => {
   if (!pages) {

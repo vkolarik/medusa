@@ -6,7 +6,7 @@ import CartTemplate from "@modules/cart/templates"
 
 import { enrichLineItems } from "@modules/cart/actions"
 import { getCheckoutStep } from "@lib/util/get-checkout-step"
-import { CartWithCheckoutStep } from "types/global"
+import { CartWithCheckoutStep } from "aaa-temp/types/global"
 import { getCart, getCustomer } from "@lib/data"
 
 export const metadata: Metadata = {

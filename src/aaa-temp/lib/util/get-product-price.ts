@@ -1,8 +1,8 @@
 import { PricedProduct } from "@medusajs/medusa/dist/types/pricing"
 
 import { formatAmount } from "@lib/util/prices"
-import { RegionInfo } from "types/global"
-import { CalculatedVariant } from "types/medusa"
+import { RegionInfo } from "aaa-temp/types/global"
+import { CalculatedVariant } from "aaa-temp/types/medusa"
 
 export function getProductPrice({
   product,
