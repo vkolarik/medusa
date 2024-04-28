@@ -12,7 +12,7 @@ import { FilterWrapper } from "@components/products/FilterWrapper"
 
 const ProductCategory = async ({ params }: { params: { slug: string } }) => {
 
-  let product: IProductPreview[] = await MedusaApi.getPricedProductsCustom()
+  let product: IProductPreview[] = await MedusaApi.getProductPreviews()
 
   const activeCategory: ICategory = categoriesData.find(
     (c) => c.route === `/kategorie/${params.slug[0]}`,
