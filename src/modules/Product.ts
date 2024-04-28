@@ -7,7 +7,7 @@ export interface IProductPreview {
   title: string
   route: string
   sizes: string[]
-  price: string
+  price: number
   amount?: number
   colors: string[]
 }
@@ -20,7 +20,7 @@ export interface IProductSummary {
 
 export interface IProductDetail extends IProductPreview {
   images: string[]
-  desciption: string
+  description: string
 }
 
 export interface IProductSizes {

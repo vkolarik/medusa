@@ -38,7 +38,7 @@ export const PageHeader: FC<{ title?: string; breadcrumbs: ILink[] }> = ({
                 : "font-medium"
             }`}
           >
-            <Link href={item.route} className="md:text-[17px] text-[14px]">
+            <Link href={item.route || "pageheader line 41"} className="md:text-[17px] text-[14px]">
               {item.text}
             </Link>
             {key !== extendedBreadcrumbs.length - 1 && (

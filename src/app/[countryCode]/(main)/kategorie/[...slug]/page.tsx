@@ -9,10 +9,13 @@ import { ProductContainer } from "@components/products/ProductContainer"
 import { IProductPreview } from "../../../../../modules/Product"
 import { MedusaApi } from "@constants/api"
 import { FilterWrapper } from "@components/products/FilterWrapper"
+import { notFound } from "next/navigation"
 
 const ProductCategory = async ({ params }: { params: { slug: string } }) => {
 
-  let product: IProductPreview[] = await MedusaApi.getProductPreviews()
+  let product: IProductPreview[] | null = await MedusaApi.getProductPreviews()
+
+  if (!product) notFound()
 
   const activeCategory: ICategory = categoriesData.find(
     (c) => c.route === `/kategorie/${params.slug[0]}`,

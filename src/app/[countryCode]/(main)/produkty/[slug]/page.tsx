@@ -57,7 +57,7 @@ const ProductDetail = ({ params }: { params: { slug: string } }) => {
                 <h1 className="font-semibold lg:text-[35px] md:text-[27px] text-[22px] w-4/5 lg:leading-10 leading-7">
                   {activeProduct.title}
                 </h1>
-                <p className="my-3 grey--larger">{activeProduct.desciption}</p>
+                <p className="my-3 grey--larger">{activeProduct.description}</p>
                 <h2 className="font-semibold text-blue lg:text-[28px] md:text-[24px] text-[19px]">
                   {activeProduct.price} Kč
                 </h2>
