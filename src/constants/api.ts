@@ -66,7 +66,7 @@ export const MedusaApi = {
     return res.filter((product) => product !== null) as IProductPreview[]
   },
 
-  async getProductDetail(handle: string): Promise<IProductPreview | null> {
+  async getProductDetail(handle: string): Promise<IProductDetail | null> {
     const region: Region | undefined | null = await getRegion(ACTIVE_COUNTRY_CODE);
 
     if (!region) {

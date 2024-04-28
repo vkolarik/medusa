@@ -1,10 +1,9 @@
-"use client"
+"use server"
 
 import { PageHeader } from "@components/PageHeader"
 import { ILink } from "modules/Link"
 import * as ROUTES from "@constants/routes"
-import { IProductDetail } from "modules/Product"
-import { useEffect, useState } from "react"
+import { IProductDetail, IProductPreview } from "modules/Product"
 import { productDetailData, productsPreviewData } from "@data/products"
 import { Loading } from "@components/Loading"
 import { ProductGallery } from "@components/products/detail/ProductGallery"
@@ -13,12 +12,13 @@ import { ProductColors } from "@components/products/detail/ProductColors"
 import { AddToCartButton } from "@components/products/detail/AddToCartButton"
 import { ProductContainer } from "@components/products/ProductContainer"
 import { ProductDetailModal } from "@components/products/detail/ProductDetailModal"
+import { MedusaApi } from "@constants/api"
 
-const ProductDetail = ({ params }: { params: { slug: string } }) => {
-  const [activeProduct, setActiveProduct] = useState<IProductDetail>()
-  const [selectedSize, setSelectedSize] = useState<string | null>(null)
-  const [selectedColor, setSelectedColor] = useState<string | null>(null)
-  const [showModal, setShowModal] = useState<boolean>(false)
+const ProductDetail = async ({ params }: { params: { slug: string } }) => {
+  // const [activeProduct, setActiveProduct] = useState<IProductDetail>()
+  // const [selectedSize, setSelectedSize] = useState<string | null>(null)
+  // const [selectedColor, setSelectedColor] = useState<string | null>(null)
+  // const [showModal, setShowModal] = useState<boolean>(false)
 
   // TODO: use dynamic data
   const breadcrumbs: ILink[] = [
@@ -32,11 +32,14 @@ const ProductDetail = ({ params }: { params: { slug: string } }) => {
     },
   ]
 
-  useEffect(() => {
-    setActiveProduct(
-      productDetailData.find((p) => p.route.includes(params.slug))
-    )
-  }, [params.slug])
+  // useEffect(() => {
+  //   setActiveProduct(
+  //     productDetailData.find((p) => p.route.includes(params.slug))
+  //   )
+  // }, [params.slug])
+
+  const activeProduct : IProductDetail | null = await MedusaApi.getProductDetail("shorts")
+
 
   return (
     <main className="max-width page w-full">
@@ -47,10 +50,10 @@ const ProductDetail = ({ params }: { params: { slug: string } }) => {
           <PageHeader breadcrumbs={breadcrumbs} />
 
           <div className="flex md:flex-row flex-col lg:gap-8 gap-4 md:mt-8 mt-5">
-            <ProductGallery
-              images={activeProduct.images}
-              title={activeProduct.title}
-            />
+            {/*<ProductGallery*/}
+            {/*  images={activeProduct.images}*/}
+            {/*  title={activeProduct.title}*/}
+            {/*/>*/}
 
             <div className="md:space-y-5 space-y-3 flex flex-col justify-center lg:w-2/3 md:w-1/2 w-full">
               <div className="pb-3 border-b border-lightGrey h-max">
@@ -63,35 +66,35 @@ const ProductDetail = ({ params }: { params: { slug: string } }) => {
                 </h2>
               </div>
 
-              <div className="flex justify-between">
-                <ProductSizes
-                  sizes={activeProduct.sizes}
-                  setSelectedSize={setSelectedSize}
-                  selectedSize={selectedSize}
-                />
+              {/*<div className="flex justify-between">*/}
+              {/*  <ProductSizes*/}
+              {/*    sizes={activeProduct.sizes}*/}
+              {/*    setSelectedSize={setSelectedSize}*/}
+              {/*    selectedSize={selectedSize}*/}
+              {/*  />*/}
 
-                <button
-                  className="h-max text-grey border-b border-lightGrey cursor-pointer lg:text-[14px] text-[12px] w-max whitespace-nowrap duration-300 hover:border-black hover:text-black"
-                  onClick={() => setShowModal(true)}
-                >
-                  Průvodce velikostmi
-                </button>
-              </div>
+              {/*  <button*/}
+              {/*    className="h-max text-grey border-b border-lightGrey cursor-pointer lg:text-[14px] text-[12px] w-max whitespace-nowrap duration-300 hover:border-black hover:text-black"*/}
+              {/*    onClick={() => setShowModal(true)}*/}
+              {/*  >*/}
+              {/*    Průvodce velikostmi*/}
+              {/*  </button>*/}
+              {/*</div>*/}
 
-              <ProductColors
-                colors={activeProduct.colors}
-                setSelectedColor={setSelectedColor}
-                selectedColor={selectedColor}
-              />
+              {/*<ProductColors*/}
+              {/*  colors={activeProduct.colors}*/}
+              {/*  setSelectedColor={setSelectedColor}*/}
+              {/*  selectedColor={selectedColor}*/}
+              {/*/>*/}
 
-              <AddToCartButton
-                product={{
-                  ...activeProduct,
-                  size: selectedSize,
-                  color: selectedColor,
-                  amount: 1,
-                }}
-              />
+              {/*<AddToCartButton*/}
+              {/*  product={{*/}
+              {/*    ...activeProduct,*/}
+              {/*    size: selectedSize,*/}
+              {/*    color: selectedColor,*/}
+              {/*    amount: 1,*/}
+              {/*  }}*/}
+              {/*/>*/}
             </div>
           </div>
 
@@ -103,12 +106,12 @@ const ProductDetail = ({ params }: { params: { slug: string } }) => {
             <ProductContainer data={productsPreviewData.slice(0, 4)} />
           </div>
 
-          {showModal && (
-            <ProductDetailModal
-              image={activeProduct.image}
-              setActiveModal={setShowModal}
-            />
-          )}
+          {/*{showModal && (*/}
+          {/*  <ProductDetailModal*/}
+          {/*    image={activeProduct.image}*/}
+          {/*    setActiveModal={setShowModal}*/}
+          {/*  />*/}
+          {/*)}*/}
         </>
       )}
     </main>
