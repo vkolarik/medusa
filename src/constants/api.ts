@@ -17,7 +17,7 @@ export const MedusaApi = {
       return null;
     }
 
-    const { response, nextPage } = await getProductsListWithSort({
+    const { response } = await getProductsListWithSort({
       page: 1,
       queryParams: {
         region_id: region.id
