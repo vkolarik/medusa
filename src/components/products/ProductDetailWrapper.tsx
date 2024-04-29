@@ -69,6 +69,7 @@ export const ProductDetailWrapper: FC<Props> = ({ productFromServerAction }) => 
                   setSelectedSize={setSelectedSize}
                   selectedSize={selectedSize}
                 />
+                <a href="/cz/produkty/hoodie" >hoodie</a>
 
                 <button
                   className="h-max text-grey border-b border-lightGrey cursor-pointer lg:text-[14px] text-[12px] w-max whitespace-nowrap duration-300 hover:border-black hover:text-black"
