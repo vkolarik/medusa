@@ -3,18 +3,31 @@
 import { allSizes } from "@data/sizes"
 import { IProductPreview } from "modules/Product"
 import Link from "next/link"
-import { FC } from "react"
+import { FC, useState, useTransition } from "react"
 import Image from "next/image"
 import { ProductSizes } from "./ProductSizes"
+import Router from "next/router"
+import { twMerge } from "tailwind-merge"
 
 export const ProductItemPreview: FC<{ product: IProductPreview }> = ({
   product,
 }) => {
+  const [isWaiting, setIsWaiting] = useState(false)
   const { title, image, route, sizes, price } = product
 
   return (
-    <Link href={route} className="product-item-preview">
-      <div className="w-full 2xl:h-[25rem] xl:h-[23rem] md:h-[20rem] h-[14rem] relative overflow-hidden">
+    <Link
+      href={route}
+      className="product-item-preview"
+      prefetch
+      onClick={() => setIsWaiting(true)}
+    >
+      <div
+        className={twMerge(
+          "w-full 2xl:h-[25rem] xl:h-[23rem] md:h-[20rem] h-[14rem] relative overflow-hidden",
+          isWaiting && "animate-pulse bg-lightGrey"
+        )}
+      >
         <Image
           src={image}
           alt={title}

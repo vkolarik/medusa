@@ -24,7 +24,6 @@ const SignIn: NextPage = () => {
     e.preventDefault()
     setBtnText("Přihlašování...")
     setIsDisabled(true)
-    console.log(data)
 
     // toast.success('Přilhášení bylo úspěšné')
     // toast.error('ddddddd')

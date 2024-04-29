@@ -1,16 +1,17 @@
+"use client"
 import { ColorCircle } from "@components/cart/ColorCircle"
 import { allColorsHex } from "@data/colors"
+import { useQuery } from "@utils/useQuery"
 import { IProductColors } from "modules/Product"
-import { FC } from "react"
+import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { FC, useCallback } from "react"
 
-export const ProductColors: FC<IProductColors> = ({
-  colors,
-  setSelectedColor,
-  selectedColor,
-}) => {
+export const ProductColors: FC<IProductColors> = ({ colors }) => {
+  const { getQueryString, createQueryString } = useQuery()
+
   const handleSelection = (color: string) => {
     if (!isAvailable(color)) return
-    setSelectedColor(color)
+    createQueryString("color", color)
   }
 
   const isAvailable = (color: string) => {
@@ -29,7 +30,9 @@ export const ProductColors: FC<IProductColors> = ({
               className={`${
                 isAvailable(color) ? "cursor-pointer" : "opacity-25"
               } ${
-                selectedColor === color ? "border-black" : "border-transparent"
+                getQueryString("color") === color
+                  ? "border-black"
+                  : "border-transparent"
               } rounded-full duration-500 border p-0.5`}
             >
               <ColorCircle color={color} />

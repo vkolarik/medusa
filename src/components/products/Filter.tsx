@@ -1,7 +1,9 @@
 import { SubmitButton } from "@components/SubmitButton"
 import { Form } from "@components/forms/Form"
 import { filterForm } from "@data/forms"
+import { useQuery } from "@utils/useQuery"
 import { IFilterForm } from "modules/FilterForm"
+import { usePathname } from "next/navigation"
 import { Dispatch, FC, SetStateAction } from "react"
 import { useForm } from "react-hook-form"
 import { IconContext } from "react-icons"
@@ -11,16 +13,34 @@ export const Filter: FC<{
   isActive: boolean
   setIsActive: Dispatch<SetStateAction<boolean>>
 }> = ({ isActive, setIsActive }) => {
+  const { getQueryString, createQueryStringArray } = useQuery()
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IFilterForm>()
+  } = useForm<IFilterForm>({
+    defaultValues: {
+      categories:
+        (getQueryString("categories") as unknown as (string | undefined)[]) ??
+        ([] as (string | undefined)[]),
+      colors:
+        (getQueryString("colors") as unknown as (string | undefined)[]) ??
+        ([] as (string | undefined)[]),
+      sizes:
+        (getQueryString("sizes") as unknown as (string | undefined)[]) ??
+        ([] as (string | undefined)[]),
+      sorting: getQueryString("sorting") ?? "",
+    },
+  })
 
   const onSubmit: any = async (data: IFilterForm, e: Event) => {
-    e.preventDefault()
-    console.log(data)
-    // TODO: vyuzit take loading z contextu (viz kosik)
+    const query = Object.entries(data).map(([key, value]) => ({
+      name: key,
+      value,
+    }))
+
+    createQueryStringArray(query)
   }
 
   return (

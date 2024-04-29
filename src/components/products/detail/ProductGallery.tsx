@@ -1,3 +1,4 @@
+"use client"
 import { FC, useEffect, useState } from "react"
 import Lightbox from "yet-another-react-lightbox"
 import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen"

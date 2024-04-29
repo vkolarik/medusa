@@ -11,14 +11,26 @@ import { MedusaApi } from "@constants/api"
 import { FilterWrapper } from "@components/products/FilterWrapper"
 import { notFound } from "next/navigation"
 
-const ProductCategory = async ({ params }: { params: { slug: string } }) => {
-
+const ProductCategory = async ({
+  params,
+  searchParams,
+}: {
+  params: { slug: string }
+  searchParams: {
+    price: string
+    sorting: string
+    gender: string
+    sizes: string
+    colors: string
+    categories: string
+  }
+}) => {
   let product: IProductPreview[] | null = await MedusaApi.getProductPreviews()
 
   if (!product) notFound()
 
   const activeCategory: ICategory = categoriesData.find(
-    (c) => c.route === `/kategorie/${params.slug[0]}`,
+    (c) => c.route === `/kategorie/${params.slug[0]}`
   ) as ICategory
   let activeSubCategory: ICategory | null = null
   // const [filterIsActive, setFilterIsActive] = useState<boolean>(false)
@@ -27,7 +39,7 @@ const ProductCategory = async ({ params }: { params: { slug: string } }) => {
     activeSubCategory = activeCategory.data.find(
       (c) =>
         c.route ===
-        `${activeCategory.route}/${params.slug[params.slug.length - 1]}`,
+        `${activeCategory.route}/${params.slug[params.slug.length - 1]}`
     ) as ICategory
   }
 
@@ -47,8 +59,6 @@ const ProductCategory = async ({ params }: { params: { slug: string } }) => {
 
   return (
     <main className="max-width page w-full">
-
-
       <PageHeader
         title={activeSubCategory?.title ?? activeCategory?.title}
         breadcrumbs={breadcrumbs}
@@ -69,10 +79,8 @@ const ProductCategory = async ({ params }: { params: { slug: string } }) => {
         )}
       </div>
 
-
-      <FilterWrapper/>
+      <FilterWrapper />
       <ProductContainer data={product} />
-
     </main>
   )
 }

@@ -25,7 +25,6 @@ export const UserInfoFormsContainer: FC<{ data: IUserInfo }> = ({ data }) => {
     e.preventDefault()
     setLoading(true)
     setIsDisabled(true)
-    console.log(data)
 
     // toast.success('Úprava informací byla úspěšná')
     // toast.error('ddddddd')

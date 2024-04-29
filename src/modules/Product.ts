@@ -32,8 +32,6 @@ export interface IProductSizes {
 
 export interface IProductColors {
   colors: string[]
-  setSelectedColor: Dispatch<SetStateAction<string | null>>
-  selectedColor: string | null
 }
 
 export interface IProductCalculator {
