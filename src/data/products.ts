@@ -6,7 +6,7 @@ export const productsPreviewData: IProductPreview[] = [
     id: 1,
     image: image.src,
     title: "Pánské tričko s kulatým výstřihem, 100% bavlna",
-    route: "/produkty/panske-tricko-s-kulatym-vystrihem",
+    route: "/produkty/hoodie",
     sizes: ["S", "M"],
     price: 599,
     colors: ["#000000", "#FFFFFF", "#FF0000"],

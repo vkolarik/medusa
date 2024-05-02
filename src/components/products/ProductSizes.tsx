@@ -1,16 +1,17 @@
 import { allSizes } from "@data/sizes"
 import { IProductSizes } from "modules/Product"
 import { FC } from "react"
+import { useQuery } from "@utils/useQuery"
 
 export const ProductSizes: FC<IProductSizes> = ({
-  sizes,
-  hidden = false,
-  setSelectedSize,
-  selectedSize,
-}) => {
+                                                  sizes,
+                                                  hidden = false,
+                                                }) => {
+  const { getQueryString, createQueryString } = useQuery()
+
   const handleSelection = (size: string) => {
-    if (!setSelectedSize || !isAvailable(size)) return
-    setSelectedSize(size)
+    if (!isAvailable(size)) return
+    createQueryString("size", size)
   }
 
   const isAvailable = (size: string) => {
@@ -34,12 +35,11 @@ export const ProductSizes: FC<IProductSizes> = ({
                 isAvailable(size) ? "text-black" : "opacity-75 grey"
               }
     uppercase lg:text-[14px] text-[12px] duration-300
-      ${
-        setSelectedSize && isAvailable(size)
-          ? "cursor-pointer hover:bg-blueHover hover:text-white"
-          : ""
-      }
-      ${selectedSize === size ? "bg-blue text-white" : ""}`}
+      ${isAvailable(size)
+                ? "cursor-pointer hover:bg-blueHover hover:text-white"
+                : ""
+              }
+      ${getQueryString("size") === size ? "bg-blue text-white" : ""}`}
             >
               {size}
             </p>

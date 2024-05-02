@@ -1,6 +1,6 @@
 "use server"
 
-import { FC, Suspense, useState } from "react"
+import { FC, Suspense } from "react"
 import { Loading } from "@components/Loading"
 import { PageHeader } from "@components/PageHeader"
 import { ProductGallery } from "@components/products/detail/ProductGallery"
@@ -13,6 +13,8 @@ import { ProductDetailModal } from "@components/products/detail/ProductDetailMod
 import * as ROUTES from "@constants/routes"
 import type { ILink } from "modules/Link"
 import { getProductDetailByHandle } from "app/actions"
+import Link from "next/link"
+import { CartWrapper } from "@components/products/detail/CartWrapper"
 
 const ProductDetail = async ({ params }: { params: { slug: string } }) => {
   const activeProduct = await getProductDetailByHandle(params.slug)
@@ -29,9 +31,7 @@ const ProductDetail = async ({ params }: { params: { slug: string } }) => {
     },
   ]
 
-  // const [selectedSize, setSelectedSize] = useState<string | null>(null)
-  // const [selectedColor, setSelectedColor] = useState<string | null>(null)
-  // const [showModal, setShowModal] = useState<boolean>(false)
+
 
   return (
     <main className="max-width page w-full">
@@ -60,32 +60,8 @@ const ProductDetail = async ({ params }: { params: { slug: string } }) => {
                 </h2>
               </div>
 
-              <div className="flex justify-between">
-                {/* <ProductSizes
-                  sizes={activeProduct.sizes}
-                  setSelectedSize={setSelectedSize}
-                  selectedSize={selectedSize}
-                /> */}
-                <a href="/cz/produkty/hoodie">hoodie</a>
-                {/* 
-                <button
-                  className="h-max text-grey border-b border-lightGrey cursor-pointer lg:text-[14px] text-[12px] w-max whitespace-nowrap duration-300 hover:border-black hover:text-black"
-                  onClick={() => setShowModal(true)}
-                > */}
-                Průvodce velikostmi
-                {/* </button> */}
-              </div>
+              <CartWrapper activeProduct={activeProduct}/>
 
-              <ProductColors colors={activeProduct.colors} />
-
-              {/* <AddToCartButton
-                product={{
-                  ...activeProduct,
-                  size: selectedSize,
-                  color: selectedColor,
-                  amount: 1,
-                }}
-              /> */}
             </div>
           </div>
 
@@ -96,13 +72,6 @@ const ProductDetail = async ({ params }: { params: { slug: string } }) => {
             {/* TODO: use dynamic data */}
             <ProductContainer data={productsPreviewData.slice(0, 4)} />
           </div>
-
-          {/*  {showModal && (
-             <ProductDetailModal
-               image={activeProduct.image}
-               setActiveModal={setShowModal}
-             />
-           )} */}
         </>
       )}
     </main>
