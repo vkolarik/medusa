@@ -26,7 +26,7 @@ export async function getBreadcrumbs(activeProduct: IProductDetail, productCateg
       while (parentId) {
         const parentCategory = findCategoryById(parentId);
         if (parentCategory && !addedCategories.has(parentCategory.id)) {
-          breadcrumbs.unshift({ text: parentCategory.name, route: parentCategory.handle });
+          breadcrumbs.unshift({ text: parentCategory.name, route: "/kategorie/"+parentCategory.handle });
           addedCategories.add(parentCategory.id);
           parentId = parentCategory.parent_category_id;
         } else {
@@ -37,7 +37,7 @@ export async function getBreadcrumbs(activeProduct: IProductDetail, productCateg
 
     // Add the current category to breadcrumbs if it's not already added
     if (!breadcrumbs.some(crumb => crumb.text === category.name)) {
-      breadcrumbs.push({ text: category.name, route: category.handle });
+      breadcrumbs.push({ text: category.name, route: "/kategorie/"+category.handle });
     }
   }
 

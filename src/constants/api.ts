@@ -1,7 +1,7 @@
 import Medusa from "@medusajs/medusa-js"
 import { IProductDetail, IProductPreview } from "../modules/Product"
 import {
-  getProductByHandle,
+  getProductByHandle, getProductsByCategoryHandle,
   getProductsListWithSort,
   getRegion,
   retrievePricedProductById,
@@ -80,6 +80,22 @@ export const MedusaApi = {
   },
 
 
+
+  //return null if category does not exist, if there are no products, return empty array
+async getCategoryProductDetailsByHandle(handle: string): Promise<IProductDetail[] | null> {
+  const { response } = await getProductsByCategoryHandle({ handle: handle, countryCode: ACTIVE_COUNTRY_CODE })
+  const res: (IProductDetail | null)[] = await Promise.all(
+    response.products.map(async (product) => {
+      if (product.handle) {
+        return await this.getProductDetail(product.handle)
+      }
+      return null
+    }),
+  )
+  return res.filter((product): product is IProductDetail => product !== null)
+},
+
+
   async getProductDetail(handle: string): Promise<IProductDetail | null> {
     const region: Region | undefined | null = await getRegion(
       ACTIVE_COUNTRY_CODE,
@@ -101,7 +117,7 @@ export const MedusaApi = {
       },
     )
 
-    const product : PricedProduct = body.products[0]
+    const product: PricedProduct = body.products[0]
 
     if (!product) {
       return null

@@ -1,4 +1,4 @@
-import { IProductPreview } from "modules/Product"
+import { IProductDetail, IProductPreview } from "modules/Product"
 import { FC } from "react"
 import { ProductItemPreview } from "./ProductItemPreview"
 

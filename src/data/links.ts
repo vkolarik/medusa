@@ -28,41 +28,31 @@ export const mainLinks: IHeaderDropdown[] = [
     links: [
       {
         text: "Trička",
-        route: "/kategorie/obleceni/tricka",
+        route: "/kategorie/tricka",
+      },
+      {
+        text: "Mikiny",
+        route: "/kategorie/mikiny",
       },
       {
         text: "Kalhoty",
-        route: "/kategorie/obleceni/kalhoty",
+        route: "/kategorie/kalhoty",
+      },
+      {
+        text: "Čepice",
+        route: "/kategorie/čepice",
       },
     ],
   },
   {
     text: "Boty",
     route: "/kategorie/boty",
-    links: [
-      {
-        text: "Tenisky",
-        route: "/kategorie/boty/tenisky",
-      },
-      {
-        text: "Botasky",
-        route: "/kategorie/boty/botasky",
-      },
-    ],
+    links: [],
   },
   {
     text: "Doplňky",
     route: "/kategorie/doplnky",
-    links: [
-      {
-        text: "Pásky",
-        route: "/kategorie/doplnky/pasky",
-      },
-      {
-        text: "Náramky",
-        route: "/kategorie/doplnky/naramky",
-      },
-    ],
+    links: [],
   },
 ]
 

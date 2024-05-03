@@ -7,7 +7,7 @@ import { ProductGallery } from "@components/products/detail/ProductGallery"
 import { ProductContainer } from "@components/products/ProductContainer"
 import { productsPreviewData } from "@data/products"
 import type { ILink } from "modules/Link"
-import { getProductDetailByHandle } from "app/actions"
+import { getCategoryProductDetailsByHandle, getProductDetailByHandle } from "app/actions"
 import { CartWrapper } from "@components/products/detail/CartWrapper"
 import { notFound } from "next/navigation"
 import medusaRequest from "@constants/medusaFetch"
@@ -20,9 +20,16 @@ const ProductDetail = async ({ params }: { params: { slug: string } }) => {
   if (!activeProduct) notFound()
 
 
+  //if activeProduct is assigned to a category, then the category handle is the handle, else use "obleceni"
+  const handle: string = activeProduct.categories && activeProduct.categories.length > 0 ? activeProduct.categories[0].handle : "obleceni"
+
+  const categoryProductDetails = await getCategoryProductDetailsByHandle(handle)
+
+  //cast categoryProductDetails to IProductPreview[] | null
+
   const { product_categories } = await getCategoriesList()
 
-  const breadcrumbs = await getBreadcrumbs(activeProduct, product_categories);
+  const breadcrumbs = await getBreadcrumbs(activeProduct, product_categories)
 
   return (
     <main className="max-width page w-full">
@@ -51,7 +58,7 @@ const ProductDetail = async ({ params }: { params: { slug: string } }) => {
                 </h2>
               </div>
 
-              <CartWrapper activeProduct={activeProduct}/>
+              <CartWrapper activeProduct={activeProduct} />
 
             </div>
           </div>
@@ -60,8 +67,16 @@ const ProductDetail = async ({ params }: { params: { slug: string } }) => {
             <h2 className="font-medium lg:text-[28px] md:text-[24px] text-[20px]">
               Podobné produkty
             </h2>
-            {/* TODO: use dynamic data */}
-            <ProductContainer data={productsPreviewData.slice(0, 4)} />
+            <ProductContainer
+              data={categoryProductDetails?.filter(productDetail => productDetail.route !== activeProduct.route).map(productDetail => ({
+                id: productDetail.id,
+                image: productDetail.image,
+                title: productDetail.title,
+                route: productDetail.route,
+                sizes: productDetail.sizes,
+                price: productDetail.price,
+                colors: productDetail.colors,
+              }))!} />
           </div>
         </>
       )}
