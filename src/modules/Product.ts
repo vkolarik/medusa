@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react"
 import { ICartItem } from "./CartItem"
+import { ProductCategory } from "@medusajs/medusa"
 
 export interface IProductPreview {
   id: number
@@ -21,6 +22,7 @@ export interface IProductSummary {
 export interface IProductDetail extends IProductPreview {
   images: string[]
   description: string
+  categories: ProductCategory[] | undefined
 }
 
 export interface IProductSizes {

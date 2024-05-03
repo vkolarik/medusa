@@ -1,37 +1,28 @@
 "use server"
 
-import { FC, Suspense } from "react"
+import { Suspense } from "react"
 import { Loading } from "@components/Loading"
 import { PageHeader } from "@components/PageHeader"
 import { ProductGallery } from "@components/products/detail/ProductGallery"
 import { ProductContainer } from "@components/products/ProductContainer"
 import { productsPreviewData } from "@data/products"
-import { ProductSizes } from "@components/products/ProductSizes"
-import { ProductColors } from "@components/products/detail/ProductColors"
-import { AddToCartButton } from "@components/products/detail/AddToCartButton"
-import { ProductDetailModal } from "@components/products/detail/ProductDetailModal"
-import * as ROUTES from "@constants/routes"
 import type { ILink } from "modules/Link"
 import { getProductDetailByHandle } from "app/actions"
-import Link from "next/link"
 import { CartWrapper } from "@components/products/detail/CartWrapper"
+import { notFound } from "next/navigation"
+import medusaRequest from "@constants/medusaFetch"
+import { getCategoriesList } from "@lib/data"
+import { getBreadcrumbs } from "@utils/breadcrumbs"
 
 const ProductDetail = async ({ params }: { params: { slug: string } }) => {
   const activeProduct = await getProductDetailByHandle(params.slug)
 
-  // TODO: use dynamic data
-  const breadcrumbs: ILink[] = [
-    {
-      text: "Oblečení",
-      route: ROUTES.CLOTHES,
-    },
-    {
-      text: "Trička",
-      route: `/${ROUTES.CLOTHES}/tricka`,
-    },
-  ]
+  if (!activeProduct) notFound()
 
 
+  const { product_categories } = await getCategoriesList()
+
+  const breadcrumbs = await getBreadcrumbs(activeProduct, product_categories);
 
   return (
     <main className="max-width page w-full">

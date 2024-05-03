@@ -9,6 +9,7 @@ import {
 import { getProductPrice } from "@lib/util/get-product-price"
 import { Region } from "@medusajs/medusa"
 import { PricedProduct } from "@medusajs/medusa/dist/types/pricing"
+import medusaRequest from "@constants/medusaFetch"
 
 export const MedusaApiLibrary = new Medusa({
   baseUrl: process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL!!,
@@ -17,9 +18,10 @@ export const MedusaApiLibrary = new Medusa({
 export const ACTIVE_COUNTRY_CODE: string = "cz"
 
 export const MedusaApi = {
-  getProductPreviews: async function (): Promise<IProductPreview[] | null> {
+
+  getProductPreviews: async function(): Promise<IProductPreview[] | null> {
     const region: Region | undefined | null = await getRegion(
-      ACTIVE_COUNTRY_CODE
+      ACTIVE_COUNTRY_CODE,
     )
 
     if (!region) {
@@ -71,58 +73,84 @@ export const MedusaApi = {
         }
 
         return r
-      })
+      }),
     )
 
     return res.filter((product) => product !== null) as IProductPreview[]
   },
 
+
   async getProductDetail(handle: string): Promise<IProductDetail | null> {
     const region: Region | undefined | null = await getRegion(
-      ACTIVE_COUNTRY_CODE
+      ACTIVE_COUNTRY_CODE,
     )
 
     if (!region) {
       return null
     }
 
-    const { product } = await getProductByHandle(handle)
+    const { body } = await medusaRequest(
+      "GET",
+      "/products",
+      {
+        query: {
+          handle: handle,
+          region_id: region.id,
+          expand: "categories,variants,variants.options,images",
+        },
+      },
+    )
+
+    const product : PricedProduct = body.products[0]
 
     if (!product) {
       return null
     }
 
+    // console.log(product)
+    // console.log("-------------------")
+
+    //TODO fetch everything in one request
+
     const pricedProduct: PricedProduct | null = await retrievePricedProductById(
       {
         id: product.id!!,
         regionId: region.id,
-      }
+      },
     )
 
     if (!pricedProduct || !pricedProduct.variants) {
       return null
     }
 
+    // console.log(pricedProduct)
+
     const { cheapestPrice } = getProductPrice({
       product: pricedProduct,
       region: region,
     })
+
+    // console.log(cheapestPrice)
 
     const r: IProductDetail = {
       id: parseInt(product.id!!),
       image: product.thumbnail || "",
       title: product.title ? product.title : "Not found",
       route: product.handle ? `/produkty/${product.handle}` : "",
-      sizes: pricedProduct.variants.map((variant) => variant.title || ""),
+      sizes: product.variants.map((variant) => variant.title || ""),
       price: cheapestPrice?.calculated_price
         ? parseInt(cheapestPrice.calculated_price.slice(4, -3))
         : -404,
       colors: ["#000000", "#FFFFFF"],
       description: product.description || "Description not available",
-      images: pricedProduct.images
-        ? pricedProduct.images.map((image) => image.url || "")
+      images: product.images
+        ? product.images.map((image) => image.url || "")
         : [],
+      categories: product.categories,
     }
+    //console.log(product.variants)
     return r
   },
 }
+
+

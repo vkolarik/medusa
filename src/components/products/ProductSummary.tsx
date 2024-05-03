@@ -4,13 +4,14 @@ import { truncate } from "@utils/truncate"
 import { RemoveIcon } from "../cart/RemoveIcon"
 import { ColorCircle } from "../cart/ColorCircle"
 import { IProductSummary } from "modules/Product"
+import Link from "next/link"
 
 export const ProductSummary: FC<IProductSummary> = ({
   item,
   canBeDeleted = false,
   setLoading,
 }) => {
-  const { title, amount, price, image, size, color } = item
+  const { title, amount, price, image, size, color, route } = item
   return (
     <li className="flex w-full gap-2 justify-between">
       <div className="flex flex-start gap-5">
@@ -24,9 +25,9 @@ export const ProductSummary: FC<IProductSummary> = ({
         />
 
         <div className="space-y-1 w-full flex flex-col justify-center">
-          <p className="font-medium xl:text-[19px] text-[15px] md:mb-0 mb-2">
+          <Link href={route} className="font-medium xl:text-[19px] text-[15px] md:mb-0 mb-2">
             {truncate(title, 50)}
-          </p>
+          </Link>
           <div className="flex 2xl:gap-12 md:gap-6 gap-1 md:flex-row flex-col">
             <p className="small">Velikost: {size?.toUpperCase()}</p>
             <p className="small flex gap-2">
