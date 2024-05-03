@@ -10,6 +10,7 @@ import { getProductPrice } from "@lib/util/get-product-price"
 import { Region } from "@medusajs/medusa"
 import { PricedProduct } from "@medusajs/medusa/dist/types/pricing"
 import medusaRequest from "@constants/medusaFetch"
+import { convertToPreview } from "@utils/truncate"
 
 export const MedusaApiLibrary = new Medusa({
   baseUrl: process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL!!,
@@ -80,20 +81,27 @@ export const MedusaApi = {
   },
 
 
-
   //return null if category does not exist, if there are no products, return empty array
-async getCategoryProductDetailsByHandle(handle: string): Promise<IProductDetail[] | null> {
-  const { response } = await getProductsByCategoryHandle({ handle: handle, countryCode: ACTIVE_COUNTRY_CODE })
-  const res: (IProductDetail | null)[] = await Promise.all(
-    response.products.map(async (product) => {
-      if (product.handle) {
-        return await this.getProductDetail(product.handle)
-      }
+  async getCategoryProductDetailsByHandle(handle: string): Promise<IProductDetail[] | null> {
+    const { response } = await getProductsByCategoryHandle({ handle: handle, countryCode: ACTIVE_COUNTRY_CODE })
+    const res: (IProductDetail | null)[] = await Promise.all(
+      response.products.map(async (product) => {
+        if (product.handle) {
+          return await this.getProductDetail(product.handle)
+        }
+        return null
+      }),
+    )
+    return res.filter((product): product is IProductDetail => product !== null)
+  },
+
+  async getCategoryProductPreviewsByHandle(handle: string): Promise<IProductPreview[] | null> {
+    const productDetails = await this.getCategoryProductDetailsByHandle(handle)
+    if (!productDetails) {
       return null
-    }),
-  )
-  return res.filter((product): product is IProductDetail => product !== null)
-},
+    }
+    return productDetails.map(detail => convertToPreview(detail))
+  },
 
 
   async getProductDetail(handle: string): Promise<IProductDetail | null> {

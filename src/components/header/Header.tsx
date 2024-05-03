@@ -33,13 +33,13 @@ export const Header: FC = () => {
 
           <ul className="2xl:gap-12 gap-6 items-center lg:flex hidden">
             {mainLinks.map((item: IHeaderDropdown, itemKey: number) => {
-              const { text, links } = item
+              const { text, route, links } = item
               return (
                 <li
                   key={itemKey}
                   className="dropdown cursor-pointer inline-block uppercase xl:text-[18px] text-[16px] font-bold"
                 >
-                  <span className="dropdown__text relative">{text}</span>
+                  <Link href={route!} className="dropdown__text relative">{text}</Link>
                   {links.length > 0 && <FaAngleDown className="inline text-black 2xl:ml-2 ml-1" />}
                   <div className="dropdown__content hidden absolute z-10 min-w-[160px] pt-5 duration-300">
                     <ul className="shadow-2xl bg-white px-4 space-y-2 py-2">

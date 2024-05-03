@@ -40,7 +40,7 @@ export const mainLinks: IHeaderDropdown[] = [
       },
       {
         text: "Čepice",
-        route: "/kategorie/čepice",
+        route: "/kategorie/cepice",
       },
     ],
   },

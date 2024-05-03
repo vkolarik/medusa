@@ -12,7 +12,8 @@ import { CartWrapper } from "@components/products/detail/CartWrapper"
 import { notFound } from "next/navigation"
 import medusaRequest from "@constants/medusaFetch"
 import { getCategoriesList } from "@lib/data"
-import { getBreadcrumbs } from "@utils/breadcrumbs"
+import { getBreadcrumbsForProduct } from "@utils/breadcrumbs"
+import { convertToPreview } from "@utils/truncate"
 
 const ProductDetail = async ({ params }: { params: { slug: string } }) => {
   const activeProduct = await getProductDetailByHandle(params.slug)
@@ -29,7 +30,7 @@ const ProductDetail = async ({ params }: { params: { slug: string } }) => {
 
   const { product_categories } = await getCategoriesList()
 
-  const breadcrumbs = await getBreadcrumbs(activeProduct, product_categories)
+  const breadcrumbs = await getBreadcrumbsForProduct(activeProduct, product_categories)
 
   return (
     <main className="max-width page w-full">
@@ -68,15 +69,8 @@ const ProductDetail = async ({ params }: { params: { slug: string } }) => {
               Podobné produkty
             </h2>
             <ProductContainer
-              data={categoryProductDetails?.filter(productDetail => productDetail.route !== activeProduct.route).map(productDetail => ({
-                id: productDetail.id,
-                image: productDetail.image,
-                title: productDetail.title,
-                route: productDetail.route,
-                sizes: productDetail.sizes,
-                price: productDetail.price,
-                colors: productDetail.colors,
-              }))!} />
+              data={categoryProductDetails?.filter(productDetail => productDetail.route !== activeProduct.route).map(productDetail => convertToPreview(productDetail))!}
+            />
           </div>
         </>
       )}
