@@ -2,20 +2,17 @@
 
 import { PageHeader } from "@components/PageHeader"
 import { ILink } from "modules/Link"
-import { categoriesData } from "@data/categories"
-import { ICategory } from "modules/Category"
 import Link from "next/link"
 import { ProductContainer } from "@components/products/ProductContainer"
 import { IProductPreview } from "../../../../../modules/Product"
-import { MedusaApi } from "@constants/api"
 import { FilterWrapper } from "@components/products/FilterWrapper"
 import { notFound } from "next/navigation"
 import { getCategoryProductPreviewsByHandle } from "../../../../actions"
 import { getCategoriesList, getCategoryByHandle } from "@lib/data"
 import { ProductCategoryWithChildren } from "../../../../../aaa-temp/types/global"
-import { handle } from "@oclif/errors"
 import { ProductCategory } from "@medusajs/medusa"
-import { getBreadcrumbsForCategory, getBreadcrumbsForProduct } from "@utils/breadcrumbs"
+import { getBreadcrumbsForCategory} from "@utils/breadcrumbs"
+import { useQuery } from "@utils/useQuery"
 
 const ProductCategoryComponent = async ({
                                           params,
@@ -46,7 +43,6 @@ const ProductCategoryComponent = async ({
 
   const helper = await getCategoriesList()
   const breadcrumbs: ILink[] = await getBreadcrumbsForCategory(category, helper.product_categories)
-  console.log(breadcrumbs)
 
   return (
     <main className="max-width page w-full">
@@ -56,7 +52,6 @@ const ProductCategoryComponent = async ({
       />
 
 
-      {/*generate subcategories from children : ProductCategory[]*/}
       <div className="md:mt-8 mt-5">
         {children && (
           <div className="flex flex-wrap gap-2 w-full border-b border-lightGray pb-4">

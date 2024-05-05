@@ -4,6 +4,8 @@ import { Header } from "@components/header/Header"
 import { Footer } from "@components/Footer"
 import { Toaster } from "sonner"
 import { AppWrapper } from "@context/MainContext"
+import { Suspense } from "react"
+import { Loading } from "@components/Loading"
 
 export const metadata: Metadata = {
   title: "Trend Trove - Stylové oblečení, boty a doplňky",
@@ -25,22 +27,22 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({
-  children,
-}: Readonly<{
+                                     children,
+                                   }: Readonly<{
   children: React.ReactNode
 }>) {
   return (
     <html lang="cs">
-      <AppWrapper>
-        <body className="flex justify-between min-h-screen flex-col">
-          <Header />
-          <Toaster richColors closeButton />
-          <div className="flex-grow flex items-center lg:mt-10 mt-20">
-            {children}
-          </div>
-          <Footer />
-        </body>
-      </AppWrapper>
+    <AppWrapper>
+      <body className="flex justify-between min-h-screen flex-col">
+      <Header />
+      <Toaster richColors closeButton />
+      <div className="flex-grow flex items-center lg:mt-10 mt-20">
+        {children}
+      </div>
+      <Footer />
+      </body>
+    </AppWrapper>
     </html>
   )
 }

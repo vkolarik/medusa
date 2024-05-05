@@ -11,6 +11,7 @@ import { Region } from "@medusajs/medusa"
 import { PricedProduct } from "@medusajs/medusa/dist/types/pricing"
 import medusaRequest from "@constants/medusaFetch"
 import { convertToPreview } from "@utils/truncate"
+import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 
 export const MedusaApiLibrary = new Medusa({
   baseUrl: process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL!!,

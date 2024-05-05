@@ -23,3 +23,8 @@ export const allColorsHex: string[] = [
   "#FFFF00", // Žlutá
   "#008000", // Zelená
 ]
+
+//generate an array of colors with their hex values
+export const colorHexArray = allColors.map((color, index) => {
+  return { color, hex: allColorsHex[index] };
+});

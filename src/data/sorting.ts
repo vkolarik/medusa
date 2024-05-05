@@ -6,19 +6,11 @@ export const allSorting: ISorting[] = [
     label: "Výchozí",
   },
   {
-    value: "oldest",
-    label: "Od nejstarších",
-  },
-  {
-    value: "newest",
-    label: "Od nejnovějších",
-  },
-  {
     value: "cheapest",
     label: "Od nejlevnějších",
   },
   {
     value: "mostExpensive",
-    label: "Od nejstarších",
+    label: "Od nejdražších",
   },
 ]

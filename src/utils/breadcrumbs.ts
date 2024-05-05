@@ -17,7 +17,7 @@ export async function getBreadcrumbsForProduct(activeProduct: IProductDetail, pr
   // Iterate through each category in the product's categories
   for (const category of activeProduct.categories) {
     // If rank is greater than 1, it's a nested category
-    if (category.rank > 1) {
+    if (category.parent_category_id) {
       let parentId: string | null = category.parent_category_id
       // Keep track of already added categories to avoid duplicates
       const addedCategories: Set<string> = new Set()
@@ -54,7 +54,6 @@ export async function getBreadcrumbsForCategory(category: ProductCategoryWithChi
 
   // Iterate through each category in the product's categories
   // If rank is greater than 1, it's a nested category
-  console.log(category)
   if (category.parent_category_id) {
     let parentId: string | null = category.parent_category_id
     // Keep track of already added categories to avoid duplicates
