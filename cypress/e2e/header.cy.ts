@@ -3,9 +3,7 @@ describe("Header component tests", () => {
     cy.visit("/")
   })
 
-  /*
-  Tady tyhle testry uz funguji pro header ale nejsem si jisty jejich logikou moc. Prosim pripadne cheknout
-   */
+
 
   it("renders the logo correctly", () => {
     cy.get(".logo-container").should("exist")
