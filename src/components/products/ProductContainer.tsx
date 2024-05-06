@@ -1,10 +1,9 @@
 "use client"
 
-import { IProductDetail, IProductPreview } from "modules/Product"
+import { IProductPreview } from "modules/Product"
 import { FC } from "react"
 import { ProductItemPreview } from "./ProductItemPreview"
 import { useQuery } from "@utils/useQuery"
-import { colorHexArray } from "@data/colors"
 import { applyFilter } from "@utils/filter"
 
 export const ProductContainer: FC<{ data: IProductPreview[] }> = ({ data }) => {
