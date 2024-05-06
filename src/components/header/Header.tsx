@@ -5,7 +5,7 @@ import Link from "next/link"
 import logo from "../../../public/images/logo.svg"
 import Image from "next/image"
 import user from "../../../public/images/icons/user.svg"
-import { userLinks, mainLinks } from "@data/links"
+import { mainLinks } from "@data/links"
 import { IHeaderDropdown, ILink } from "modules/Link"
 import { FaAngleDown } from "react-icons/fa"
 import { HeaderCart } from "./HeaderCart"
@@ -13,9 +13,20 @@ import * as ROUTES from "../../constants/routes"
 import { BurgerIcon } from "./HamburgerIcon"
 import { SearchForm } from "./SearchForm"
 import { MobileMenu } from "./MobileMenu"
+import { signOut } from "@modules/account/actions"
+import { Customer } from "@medusajs/medusa"
 
-export const Header: FC = () => {
+type Props = {
+  customer: Omit<Customer, "password_hash"> | null
+}
+
+export const Header: FC<Props> = ({ customer }) => {
   const [mobileMenuActive, setMobileMenuActive] = useState<boolean>(false)
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true)
+
+  const handleLogout = () => {
+    signOut()
+  }
 
   return (
     <div className="header-wrapper md:border-b border-lightGrey z-50 bg-white fixed top-0 left-0 w-full">
@@ -78,19 +89,28 @@ export const Header: FC = () => {
               />
               <div className="dropdown__content hidden absolute right-0 z-10 min-w-[160px] lg:pt-5 duration-300">
                 <ul className="shadow-2xl bg-white px-4 space-y-2 py-2">
-                  {userLinks.links.map((link: ILink, key: number) => {
-                    const { text, route } = link
-                    return (
-                      <li
-                        className={`text-[15px] duration-300 ${
-                          key === 0 ? "font-semibold" : ""
-                        }`}
-                        key={key}
-                      >
-                        <Link href={route}>{text}</Link>
+                  {customer ? (
+                    <>
+                      <li className={`text-[15px] duration-300 font-semibold`}>
+                        <Link href={"/ucet/objednavky"}>Můj účet</Link>
                       </li>
-                    )
-                  })}
+                      <li className={`text-[15px] duration-300`}>
+                        <a onClick={handleLogout}>Odhlásit</a>
+                      </li>
+                    </>
+
+
+                  ) : (
+                    <>
+                      <li className={`text-[15px] duration-300`}>
+                        <Link href={"/prihlaseni"}>Přihlášení</Link>
+                      </li>
+                      <li className={`text-[15px] duration-300`}>
+                        <Link href={"/registrace"}>Registrace</Link>
+                      </li>
+                    </>
+
+                  )}
                 </ul>
               </div>
             </li>

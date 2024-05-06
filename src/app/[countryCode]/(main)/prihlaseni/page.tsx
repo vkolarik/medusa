@@ -1,70 +1,20 @@
-"use client"
+"use server"
 
-import Link from "next/link"
-import { useState } from "react"
-import { useForm } from "react-hook-form"
-import * as ROUTES from "@constants/routes"
+
 import { NextPage } from "next"
-import { ISigninData } from "modules/Login"
-import { SubmitButton } from "@components/SubmitButton"
-import { loginInputs } from "@data/forms"
-import { Form } from "@components/forms/Form"
+import { getCustomer } from "@lib/data"
+import { redirect } from "next/navigation"
+import CustomLoginForm from "@components/account/CustomLoginForm"
+import { Customer } from "@medusajs/medusa"
 
-const SignIn: NextPage = () => {
-  const [isDisabled, setIsDisabled] = useState<boolean>(false)
-  const [btnText, setBtnText] = useState<string>("Přihlásit se")
+const SignIn: NextPage = async () => {
+  const customer  = await getCustomer().catch(() => null)
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ISigninData>()
-
-  const onSubmit: any = async (data: ISigninData, e: Event) => {
-    e.preventDefault()
-    setBtnText("Přihlašování...")
-    setIsDisabled(true)
-
-    // toast.success('Přilhášení bylo úspěšné')
-    // toast.error('ddddddd')
-    // setBtnText('Přihlásit se')
-    // setIsDisabled(false)
-  }
-
-  // if (session.status === 'authenticated') {
-  //   router.push(ROUTES.ACCOUNT)
-  // }
+  //if customer does not exist, redirect to prihlaseni
+  if (customer) redirect("/ucet/objednavky")
 
   return (
-    <main className="max-width login md:py-36 py-12">
-      <form className="basic-form" onSubmit={handleSubmit(onSubmit)}>
-        <div className="w-full mb-4 md:mb-8 text-center">
-          <h1 className="md:mb-1 text-[22px] md:text-[25px] uppercase">
-            Přihlásit se
-          </h1>
-          <p className="md:text-[17px] text-[15px] text-grey">
-            Přihlaste se k Vašemu účtu
-          </p>
-        </div>
-
-        <Form data={loginInputs} register={register} errors={errors} />
-
-        <p className="small text-right">
-          Nemáte účet?{" "}
-          <Link
-            href={ROUTES.REGISTER}
-            className="border-b border-lightGrey duration-300 hover:text-black hover:border-black"
-          >
-            Zaregistrujte se
-          </Link>
-        </p>
-
-        <div className="ease-in duration-200 mt-5 md:mt-8 flex justify-center">
-          {/* Submit button */}
-          <SubmitButton isDisabled={isDisabled} text={btnText} />
-        </div>
-      </form>
-    </main>
+    <CustomLoginForm />
   )
 }
 
