@@ -1,6 +1,6 @@
 "use client"
 
-import { FC, useState } from "react"
+import { FC, Suspense, useState } from "react"
 import Link from "next/link"
 import logo from "../../../public/images/logo.svg"
 import Image from "next/image"
@@ -14,13 +14,18 @@ import { BurgerIcon } from "./HamburgerIcon"
 import { SearchForm } from "./SearchForm"
 import { MobileMenu } from "./MobileMenu"
 import { signOut } from "@modules/account/actions"
-import { Customer } from "@medusajs/medusa"
+import { Cart, Customer } from "@medusajs/medusa"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import CartButton from "@modules/layout/components/cart-button"
+import CartDropdown from "@modules/layout/components/cart-dropdown"
+import CustomCartDropdown from "@components/header/CustomCartDrowpdown"
 
 type Props = {
   customer: Omit<Customer, "password_hash"> | null
+  cart: null | Omit<Cart, "refundable_amount" | "refunded_total">
 }
 
-export const Header: FC<Props> = ({ customer }) => {
+export const Header: FC<Props> = ({ customer, cart }) => {
   const [mobileMenuActive, setMobileMenuActive] = useState<boolean>(false)
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true)
 
@@ -92,7 +97,7 @@ export const Header: FC<Props> = ({ customer }) => {
                   {customer ? (
                     <>
                       <li className={`text-[15px] duration-300 font-semibold`}>
-                        <Link href={"/ucet/objednavky"}>Můj účet</Link>
+                        <Link href={"/ucet/objednavky"}>{customer.first_name + " " + customer.last_name}</Link>
                       </li>
                       <li className={`text-[15px] duration-300`}>
                         <a onClick={handleLogout}>Odhlásit</a>
@@ -115,7 +120,9 @@ export const Header: FC<Props> = ({ customer }) => {
               </div>
             </li>
 
-            <HeaderCart />
+            <CustomCartDropdown cart={cart} />
+
+            {/*<HeaderCart />*/}
 
             <div className="lg:hidden block">
               <BurgerIcon

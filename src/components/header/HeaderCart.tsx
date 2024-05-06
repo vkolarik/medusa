@@ -40,9 +40,9 @@ export const HeaderCart: FC = () => {
             </span>
             <ul className="space-y-2 py-2 max-h-[350px] overflow-y-auto pr-1">
               {/* TODO: get items from session */}
-              {cartProducts.map((item: ICartItem, key: number) => {
-                return <HeaderCartItem key={key} item={item} />
-              })}
+              {/*{cartProducts.map((item: ICartItem, key: number) => {*/}
+              {/*  return <HeaderCartItem key={key} item={item} />*/}
+              {/*})}*/}
             </ul>
 
             <p className="border-t border-lightGrey pt-2 text-right font-semibold">

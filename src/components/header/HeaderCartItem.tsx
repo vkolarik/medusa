@@ -3,14 +3,15 @@ import { FC } from "react"
 import Image from "next/image"
 import { truncate } from "@utils/truncate"
 import Link from "next/link"
+import { LineItem } from "@medusajs/medusa"
+import DeleteButton from "@modules/common/components/delete-button"
 
-export const HeaderCartItem: FC<{ item: ICartItem }> = ({ item }) => {
-  const { title, amount, price, image, size } = item
+export const HeaderCartItem: FC<{ item: LineItem, price: string}> = ({ item, price }) => {
 
   return (
     <li className="flex gap-2">
       <Image
-        src={image}
+        src={item.thumbnail || ""}
         alt="title"
         className="cart-image"
         width={80}
@@ -19,11 +20,16 @@ export const HeaderCartItem: FC<{ item: ICartItem }> = ({ item }) => {
       />
 
       <div className="space-y-1">
-        <Link href={item.route}>{truncate(title, 25)}</Link>
-        <p className="small">Počet: {amount} ks</p>
-        <p className="small">Velikost: {size?.toUpperCase()}</p>
-        <p className="small font-semibold text-right">Cena: {price} Kč</p>
+        <Link href={"/produkty/"+item.variant.product.handle}>{truncate(item.title, 25)}</Link>
+        <p className="small">Počet: {item.quantity} ks</p>
+        <p className="small">Velikost: {item.variant.title.toUpperCase()}</p>
+        <p className="small font-semibold text-right">Cena: {price.slice(4, -3)} Kč</p>
+        <DeleteButton id={item.id} className="mt-1">
+          Odebrat
+        </DeleteButton>
       </div>
+
+
     </li>
   )
 }
