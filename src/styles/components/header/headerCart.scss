@@ -1,4 +1,4 @@
-.dropdown:hover {
+.dropdown:not(.search-dropdown):hover {
   .dropdown__content {
     display: block;
   }
