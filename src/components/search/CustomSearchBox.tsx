@@ -1,6 +1,7 @@
 import { FormEvent } from "react"
 import { useRouter } from "next/navigation"
 import CustomSearchBoxWrapper, { CustomControlledSearchBoxProps } from "@components/search/CustomSearchBoxWrapper"
+import { FaTimes } from "react-icons/fa"
 
 
 const CustomControlledSearchBox = ({
@@ -39,7 +40,7 @@ const CustomControlledSearchBox = ({
   return (
 
     <form action=""
-          className="rounded-xl border border-grey xl:w-[20rem] lg:w-[15rem] md:w-[13rem] w-full relative flex py-1 lg:px-4 px-2 lg:mb-0 mb-2"
+          className="border border-lightGrey xl:w-[20rem] lg:w-[15rem] md:w-[13rem] w-full relative flex py-1 lg:px-4 px-2 lg:mb-0 mb-2"
           noValidate onSubmit={handleSubmit} onReset={handleReset}>
 
       <input
@@ -50,11 +51,11 @@ const CustomControlledSearchBox = ({
         spellCheck={false}
         value={value}
         onChange={onChange}
-        className="w-full relative outline-none pr-4 xl:text-[16px] lg:text-[14px] text-[13px]"
+        className="w-full relative outline-none pr-4 xl:text-[16px] lg:text-[14px] text-[13px] font-normal"
       />
       {value && (
         <button type="submit" onClick={handleReset}>
-          X
+          <FaTimes className="w-4" />
         </button>
       )
       }

@@ -22,17 +22,17 @@ type CustomHitProps = {
 
 const CustomCustomHit = ({ hit }: CustomHitProps) => {
   return (
-    <div className="flex align-items-center">
+    <div className="flex align-items-center gap-4 items-center">
       <Image
         alt={hit.title}
         src={hit.thumbnail || ""}
-        width={15}
-        height={15}
+        width={30}
+        height={30}
         loading="lazy"
         className={`object-cover`}
-        style={{ width: "18px" }}
+        style={{ width: "28px" }}
       />
-      <div>{hit.title}</div>
+      <p className="md:text-[16px] text-[15px] normal-case font-normal text-black">{hit.title}</p>
     </div>
   )
 }
