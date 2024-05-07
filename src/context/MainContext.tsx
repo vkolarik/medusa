@@ -10,11 +10,14 @@ const AppContext = createContext<AppProviderInterface>({
   setCartProducts: () => {},
   loading: false,
   setLoading: () => {},
+  updated: false,
+  setUpdated: () => {},
 })
 
 export function AppWrapper({ children }: { children: React.ReactNode }) {
   const [cartProducts, setCartProducts] = useState<ICartItem[]>([])
   const [loading, setLoading] = useState<boolean>(true)
+  const [updated, setUpdated] = useState<boolean>(false)
 
   useEffect(() => {
     setCartProducts(
@@ -30,6 +33,8 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
         setCartProducts,
         loading,
         setLoading,
+        updated,
+        setUpdated
       }}
     >
       {children}

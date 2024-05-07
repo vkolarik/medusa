@@ -6,12 +6,16 @@ import { useAppContext } from "@context/MainContext"
 import { ICartItem } from "modules/CartItem"
 import { IProductDetail } from "../../../modules/Product"
 import { useQuery } from "@utils/useQuery"
+import { addToCart } from "@modules/cart/actions"
 
 export const AddToCartButton: FC<{ product: IProductDetail }> = ({ product }) => {
   const { cartProducts, setCartProducts } = useAppContext()
   const { getQueryString, createQueryString } = useQuery()
 
-  const addToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
+
+  const addToCartCustom = async (e: React.MouseEvent<HTMLButtonElement>) => {
+
+
 
     const cartProduct : ICartItem ={
     ...product,
@@ -49,7 +53,7 @@ export const AddToCartButton: FC<{ product: IProductDetail }> = ({ product }) =>
   return (
     <button
       className="button text-center font-medium z-5 w-max"
-      onClick={(e) => addToCart(e)}
+      onClick={(e) => addToCartCustom(e)}
     >
       Přidat do košíku
     </button>

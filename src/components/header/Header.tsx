@@ -1,6 +1,6 @@
 "use client"
 
-import { FC, Suspense, useState } from "react"
+import { FC, Suspense, useEffect, useState } from "react"
 import Link from "next/link"
 import logo from "../../../public/images/logo.svg"
 import Image from "next/image"
@@ -19,18 +19,34 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import CartButton from "@modules/layout/components/cart-button"
 import CartDropdown from "@modules/layout/components/cart-dropdown"
 import CustomCartDropdown from "@components/header/CustomCartDrowpdown"
+import { useFormState } from "react-dom"
+import { getCartAction, getCustomerAction } from "../../app/actions"
+import { useAppContext } from "@context/MainContext"
 
 type Props = {
   customer: Omit<Customer, "password_hash"> | null
-  cart: null | Omit<Cart, "refundable_amount" | "refunded_total">
+  startCart: null | Omit<Cart, "refundable_amount" | "refunded_total">
 }
 
-export const Header: FC<Props> = ({ customer, cart }) => {
+export const Header: FC<Props> = ({ customer, startCart }) => {
   const [mobileMenuActive, setMobileMenuActive] = useState<boolean>(false)
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true)
+  const { updated, setUpdated } = useAppContext()
+
+  const [cart, dispatchCart] = useFormState(
+    () => getCartAction(),
+    startCart
+  )
+
+  useEffect(() => {
+    dispatchCart()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setUpdated(false)
+  }, [updated])
+
 
   const handleLogout = () => {
     signOut()
+    customer = null
   }
 
   return (
@@ -120,7 +136,12 @@ export const Header: FC<Props> = ({ customer, cart }) => {
               </div>
             </li>
 
-            <CustomCartDropdown cart={cart} />
+
+            <Suspense fallback={<p>Loading</p>}>
+              <CustomCartDropdown cart={cart} />
+            </Suspense>
+
+
 
             {/*<HeaderCart />*/}
 

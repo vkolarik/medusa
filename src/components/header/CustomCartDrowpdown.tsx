@@ -1,22 +1,12 @@
 "use client"
 
-import { Popover, Transition } from "@headlessui/react"
 import { Cart, LineItem } from "@medusajs/medusa"
-import { Button } from "@medusajs/ui"
-import { useParams, usePathname } from "next/navigation"
-import { Fragment, useEffect, useRef, useState } from "react"
-
+import { useParams } from "next/navigation"
 import { formatAmount } from "@lib/util/prices"
-import DeleteButton from "@modules/common/components/delete-button"
-import LineItemOptions from "@modules/common/components/line-item-options"
-import LineItemPrice from "@modules/common/components/line-item-price"
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import Thumbnail from "@modules/products/components/thumbnail"
 import * as ROUTES from "@constants/routes"
 import Image from "next/image"
 import cartIcon from "../../../public/images/icons/cart.svg"
 import Link from "next/link"
-import { ICartItem } from "../../modules/CartItem"
 import { HeaderCartItem } from "@components/header/HeaderCartItem"
 
 const CustomCartDropdown = ({
@@ -24,62 +14,17 @@ const CustomCartDropdown = ({
                             }: {
   cart?: Omit<Cart, "beforeInsert" | "afterLoad"> | null
 }) => {
-  const [activeTimer, setActiveTimer] = useState<NodeJS.Timer | undefined>(
-    undefined,
-  )
-  const [cartDropdownOpen, setCartDropdownOpen] = useState(false)
-
   const { countryCode } = useParams()
-
-  const open = () => setCartDropdownOpen(true)
-  const close = () => setCartDropdownOpen(false)
 
   const totalItems =
     cartState?.items?.reduce((acc, item) => {
       return acc + item.quantity
     }, 0) || 0
 
-  const itemRef = useRef<number>(totalItems || 0)
-
-  const timedOpen = () => {
-    open()
-
-    const timer = setTimeout(close, 5000)
-
-    setActiveTimer(timer)
-  }
-
-  const openAndCancel = () => {
-    if (activeTimer) {
-      clearTimeout(activeTimer)
-    }
-
-    open()
-  }
-
-  // Clean up the timer when the component unmounts
-  useEffect(() => {
-    return () => {
-      if (activeTimer) {
-        clearTimeout(activeTimer)
-      }
-    }
-  }, [activeTimer])
-
-  const pathname = usePathname()
-
-  // open cart dropdown when modifying the cart items, but only if we're not on the cart page
-  useEffect(() => {
-    if (itemRef.current !== totalItems && !pathname.includes("/kosik")) {
-      timedOpen()
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [totalItems, itemRef.current])
 
   return (
-    <li className="dropdown cursor-pointer relative z-[999]"
-        onMouseEnter={openAndCancel}
-        onMouseLeave={close}
+
+    <div className="dropdown cursor-pointer relative z-[999]"
     >
       <Link className="cart-icon" href={ROUTES.CART} data-items={totalItems}>
         <Image
@@ -103,15 +48,13 @@ const CustomCartDropdown = ({
                   .sort((a, b) => {
                     return a.created_at > b.created_at ? -1 : 1
                   })
-                  .map((item: LineItem, key: number) => {
+                  .map((item: LineItem, key) => {
                     return (
-                      <>
-                        <HeaderCartItem key={key} item={item} price={formatAmount({
-                          amount: item.subtotal || 0,
-                          region: cartState.region,
-                          includeTaxes: false,
-                        })} />
-                      </>
+                      <HeaderCartItem key={key} item={item} price={formatAmount({
+                        amount: item.subtotal || 0,
+                        region: cartState.region,
+                        includeTaxes: false,
+                      })} />
                     )
                   })
                 }
@@ -119,10 +62,10 @@ const CustomCartDropdown = ({
 
               <p className="border-t border-lightGrey pt-2 text-right font-semibold">
                 Cena celkem: {formatAmount({
-                  amount: cartState.subtotal || 0,
-                  region: cartState.region,
-                  includeTaxes: false,
-                }).slice(4, -3)} Kč
+                amount: cartState.subtotal || 0,
+                region: cartState.region,
+                includeTaxes: false,
+              }).slice(4, -3).replace(",", "")} Kč
               </p>
               <div className="text-center pt-3 pb-5">
                 <Link
@@ -150,7 +93,8 @@ const CustomCartDropdown = ({
           </div>
         )}
       </div>
-    </li>
+    </div>
+
   )
 }
 

@@ -1,6 +1,6 @@
 "use server"
 
-import { getCustomerAction, getCart } from "../../app/actions"
+import { getCustomerAction, getCartAction } from "../../app/actions"
 import { FC } from "react"
 import { Header } from "@components/header/Header"
 
@@ -8,9 +8,9 @@ type Props = {}
 
 export const HeaderWrapper: FC<Props> = async ({}) => {
   const customer = await getCustomerAction()
-  const cart = await getCart()
+  const cart = await getCartAction()
 
   return (
-      <Header customer={customer} cart={cart}/>
+      <Header customer={customer} startCart={cart}/>
   )
 }

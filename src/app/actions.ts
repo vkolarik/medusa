@@ -2,9 +2,10 @@
 
 import { IProductDetail, IProductPreview } from "../modules/Product"
 import { MedusaApi } from "@constants/api"
-import { getCustomer } from "@lib/data"
+import { addItem, getCustomer } from "@lib/data"
 import { Cart, Customer, LineItem } from "@medusajs/medusa"
-import { enrichLineItems, retrieveCart } from "@modules/cart/actions"
+import { enrichLineItems, getOrSetCart, retrieveCart } from "@modules/cart/actions"
+import { revalidateTag } from "next/cache"
 
 export async function getProductDetailByHandle(handle: string) : Promise<IProductDetail | null> {
   return await MedusaApi.getProductDetail(handle)
@@ -22,7 +23,7 @@ export async function getCustomerAction() : Promise<Omit<Customer, "password_has
   return await getCustomer().catch(() => null)
 }
 
-export async function getCart() : Promise<null | Omit<Cart, "refundable_amount" | "refunded_total">>{
+export async function getCartAction() : Promise<null | Omit<Cart, "refundable_amount" | "refunded_total">>{
   const cart = await retrieveCart()
 
   if (cart?.items.length) {
@@ -31,6 +32,33 @@ export async function getCart() : Promise<null | Omit<Cart, "refundable_amount" 
   }
 
   return cart
+}
+
+export async function addToCartAction({
+                                  variantId,
+                                  quantity,
+                                  countryCode,
+                                }: {
+  variantId: string
+  quantity: number
+  countryCode: string
+}) {
+  const cart = await getOrSetCart(countryCode).then((cart) => cart)
+
+  if (!cart) {
+    return "Missing cart ID"
+  }
+
+  if (!variantId) {
+    return "Missing product variant ID"
+  }
+
+  try {
+    await addItem({ cartId: cart.id, variantId, quantity })
+    //revalidateTag("cart")
+  } catch (e) {
+    return "Error adding item to cart"
+  }
 }
 
 

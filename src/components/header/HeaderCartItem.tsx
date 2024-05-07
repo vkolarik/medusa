@@ -1,4 +1,3 @@
-import { ICartItem } from "modules/CartItem"
 import { FC } from "react"
 import Image from "next/image"
 import { truncate } from "@utils/truncate"
@@ -23,10 +22,7 @@ export const HeaderCartItem: FC<{ item: LineItem, price: string}> = ({ item, pri
         <Link href={"/produkty/"+item.variant.product.handle}>{truncate(item.title, 25)}</Link>
         <p className="small">Počet: {item.quantity} ks</p>
         <p className="small">Velikost: {item.variant.title.toUpperCase()}</p>
-        <p className="small font-semibold text-right">Cena: {price.slice(4, -3)} Kč</p>
-        <DeleteButton id={item.id} className="mt-1">
-          Odebrat
-        </DeleteButton>
+        <p className="small font-semibold text-right">Cena: {price.slice(4, -3).replace(",", "")} Kč</p>
       </div>
 
 
