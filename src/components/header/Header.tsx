@@ -22,6 +22,7 @@ import CustomCartDropdown from "@components/header/CustomCartDrowpdown"
 import { useFormState } from "react-dom"
 import { getCartAction, getCustomerAction } from "../../app/actions"
 import { useAppContext } from "@context/MainContext"
+import { CustomSearchForm } from "@components/header/CustomSearchForm"
 
 type Props = {
   customer: Omit<Customer, "password_hash"> | null
@@ -96,7 +97,8 @@ export const Header: FC<Props> = ({ customer, startCart }) => {
 
         <div className="flex items-center 2xl:gap-16 xl:gap-12 lg:gap-8 gap-4">
           <div className="md:block hidden">
-            <SearchForm />
+            {/*<SearchForm />*/}
+            <CustomSearchForm />
           </div>
 
           <ul className="flex items-center lg:gap-5 gap-3">

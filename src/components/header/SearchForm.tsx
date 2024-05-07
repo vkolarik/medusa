@@ -6,6 +6,8 @@ import searchIcon from "../../../public/images/icons/search.svg"
 import { useForm } from "react-hook-form"
 import { AutoComplete, AutoCompleteCompleteEvent } from 'primereact/autocomplete';
 import { IProductPreview } from "modules/Product"
+import { searchClient } from "@lib/search-client"
+import { productsPreviewData } from "@data/products"
 
 export const SearchForm: FC = () => {
   const [items, setItems] = useState<IProductPreview[]>([]);
@@ -29,9 +31,10 @@ export const SearchForm: FC = () => {
     );
 };
 
+
 const search = (event: AutoCompleteCompleteEvent) => {
     setTimeout(() => {
-        let _filteredItems;
+        let _filteredItems
 
         if (!event.query.trim().length) {
           _filteredItems = [...items];
@@ -69,12 +72,12 @@ const itemTemplate = (item: IProductPreview) => {
       className="rounded-xl border border-grey xl:w-[20rem] lg:w-[15rem] md:w-[13rem] w-full relative flex py-1 lg:px-4 px-2 lg:mb-0 mb-2"
       onSubmit={handleSubmit(onSubmit)}
     >
-      {/* <input
-        type="text"
-        className="w-full relative outline-none pr-4 xl:text-[16px] lg:text-[14px] text-[13px]"
-        placeholder="Vyhledejte produkt..."
-        {...register("text")}
-      /> */}
+      {/*<input*/}
+      {/*  type="text"*/}
+      {/*  className="w-full relative outline-none pr-4 xl:text-[16px] lg:text-[14px] text-[13px]"*/}
+      {/*  placeholder="Vyhledejte produkt..."*/}
+      {/*  {...register("text")}*/}
+      {/*/>*/}
 
       <AutoComplete
         field="text"
@@ -82,7 +85,7 @@ const itemTemplate = (item: IProductPreview) => {
         placeholder="Vyhledejte produkt..."
         {...register("text")}
         value={selectedItem}
-        suggestions={filteredItems} 
+        suggestions={filteredItems}
         completeMethod={search}
         onChange={(e) => setSelectedItem(e.value)}
         itemTemplate={itemTemplate}
