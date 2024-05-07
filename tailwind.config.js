@@ -41,18 +41,6 @@ module.exports = {
         grey: "#7e7e7e",
         white: "#ffffff",
         lightGrey: "#e5e7eb",
-        blue: "#3b82f6",
-        blueHover: "#0757ea",
-        error: "rgb(180, 9, 9)",
-        lightBlue: "#F3F6FB",
-      },
-      borderRadius: {
-        none: "0px",
-        soft: "2px",
-        base: "4px",
-        rounded: "8px",
-        large: "16px",
-        circle: "9999px",
       },
       maxWidth: {
         "8xl": "100rem",

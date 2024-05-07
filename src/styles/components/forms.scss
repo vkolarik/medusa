@@ -31,7 +31,7 @@
 
   &.basic-form--filter {
     padding-top: 4rem !important;
-    padding-bottom: 2rem !important;
+    padding-bottom: 4rem !important;
 
     box-shadow: none !important;
 
@@ -143,5 +143,29 @@
   input[type="number"] {
     -moz-appearance: textfield;
     appearance: textfield;
+  }
+}
+
+.p-autocomplete-input {
+  width: 100% !important;
+  height: 100% !important;
+  outline: none;
+
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: flex-end !important;
+}
+
+.p-autocomplete {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: flex-end !important;
+
+  &-loader {
+    top: 0 !important;
+  }
+
+  .p-icon-spin {
+    height: 100% !important;
   }
 }
