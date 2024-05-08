@@ -58,7 +58,11 @@ const CustomControlledSearchBox = ({
         value={value}
         onChange={onChange}
         onFocus={() => setShowSearch(true)}
-        onBlur={() => setShowSearch(false)}
+        onBlur={() => {
+          setTimeout(() => {
+            setShowSearch(false)
+          }, 100);
+        }}
         className="w-full relative outline-none pr-4 xl:text-[16px] lg:text-[14px] text-[13px] font-normal"
       />
       {value && (

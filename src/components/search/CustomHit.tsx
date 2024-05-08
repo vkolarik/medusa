@@ -20,7 +20,7 @@ type CustomHitProps = {
 
 const CustomCustomHit = ({ hit }: CustomHitProps) => {
   return (
-    <Link href={""}>
+    <Link href={"/produkty/" + hit.handle}>
       <div className="flex align-items-center gap-4 items-center">
         <Image
           alt={hit.title}
