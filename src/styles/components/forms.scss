@@ -46,7 +46,7 @@
   }
 
   &:not(.basic-form--cart) {
-    padding: 2rem;
+    padding: 2rem 1rem;
     margin: auto;
 
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -66,6 +66,8 @@
 
   input[type="text"],
   input[type="number"],
+  input[type="email"],
+  input[type="tel"],
   input[type="password"],
   input[type="checkbox"],
   select {
