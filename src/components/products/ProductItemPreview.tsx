@@ -5,7 +5,7 @@ import { IProductPreview } from "modules/Product"
 import Link from "next/link"
 import { FC, useState, useTransition } from "react"
 import Image from "next/image"
-import { ProductSizes } from "./ProductSizes"
+import { CustomProductVariants } from "./CustomProductVariants"
 import Router from "next/router"
 import { twMerge } from "tailwind-merge"
 
@@ -13,8 +13,8 @@ export const ProductItemPreview: FC<{ product: IProductPreview }> = ({
   product,
 }) => {
   const [isWaiting, setIsWaiting] = useState(false)
-  const { title, image, route, sizes, price } = product
-
+  const { title, image, route, variants, price } = product
+  console.log(variants)
   return (
     <Link
       href={route}
@@ -35,7 +35,7 @@ export const ProductItemPreview: FC<{ product: IProductPreview }> = ({
           className="object-cover object-top duration-500"
           loading="lazy"
         />
-        <ProductSizes sizes={sizes} hidden={true} />
+        <CustomProductVariants variants={variants} hidden={true} />
       </div>
       <div className="py-3 space-y-2">
         <h2 className="font-semibold md:text-[20px] text-[16px] leading-6">

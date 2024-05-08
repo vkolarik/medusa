@@ -1,10 +1,9 @@
-import { FormEvent, useEffect } from "react"
+import { FormEvent } from "react"
 import { useRouter } from "next/navigation"
 import CustomSearchBoxWrapper, { CustomControlledSearchBoxProps } from "@components/search/CustomSearchBoxWrapper"
 import { FaTimes } from "react-icons/fa"
 import { useAppContext } from "@context/MainContext"
-import { useFormState } from "react-dom"
-import { getCartAction } from "../../app/actions"
+
 
 
 const CustomControlledSearchBox = ({
@@ -16,7 +15,7 @@ const CustomControlledSearchBox = ({
                                      value,
                                      ...props
                                    }: CustomControlledSearchBoxProps) => {
-  const { showSearch, setShowSearch } = useAppContext()
+  const { setShowSearch } = useAppContext()
 
 
   const handleSubmit = (event: FormEvent) => {

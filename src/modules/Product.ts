@@ -7,10 +7,16 @@ export interface IProductPreview {
   image: string
   title: string
   route: string
-  sizes: string[]
+  variants: IProductVariant[]
   price: number
   amount?: number
   colors: string[]
+}
+
+export interface IProductVariant {
+  id: string
+  title: string
+  available: boolean
 }
 
 export interface IProductSummary {
@@ -26,10 +32,16 @@ export interface IProductDetail extends IProductPreview {
 }
 
 export interface IProductSizes {
-  sizes: string[]
+  variants: string[]
   hidden?: boolean
   setSelectedSize?: Dispatch<SetStateAction<string | null>>
   selectedSize?: string | null
+}
+export interface IProductVariants {
+  variants: IProductVariant[]
+  hidden?: boolean
+  setSelectedVariant?: Dispatch<SetStateAction<string | null>>
+  selectedVariant?: string | null
 }
 
 export interface IProductColors {

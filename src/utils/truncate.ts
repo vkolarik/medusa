@@ -14,7 +14,7 @@ export const convertToPreview = (productDetail: IProductDetail) : IProductPrevie
     image: productDetail.image,
     title: productDetail.title,
     route: productDetail.route,
-    sizes: productDetail.sizes,
+    variants: productDetail.variants,
     price: productDetail.price,
     colors: productDetail.colors,
   }

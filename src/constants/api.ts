@@ -67,13 +67,12 @@ export const MedusaApi = {
           route: productPreview.handle
             ? `/produkty/${productPreview.handle}`
             : "",
-          sizes: pricedProduct.variants.map((variant) => variant.title || ""),
+          variants: pricedProduct.variants.map((variant) => ({id: variant.id || "", title: variant.title || "", available: true})),
           price: cheapestPrice?.calculated_price
             ? parseInt(cheapestPrice.calculated_price.slice(4, -3))
             : -404,
           colors: [],
         }
-
         return r
       }),
     )
@@ -162,7 +161,7 @@ export const MedusaApi = {
       image: product.thumbnail || "",
       title: product.title ? product.title : "Not found",
       route: product.handle ? `/produkty/${product.handle}` : "",
-      sizes: product.variants.map((variant) => variant.title || ""),
+      variants: product.variants.map((variant) => ({id: variant.id || "", title: variant.title || "", available: true})),
       price: cheapestPrice?.calculated_price
         ? parseInt(cheapestPrice.calculated_price.slice(4, -3))
         : -404,
@@ -173,7 +172,6 @@ export const MedusaApi = {
         : [],
       categories: product.categories,
     }
-    //console.log(product.variants)
     return r
   },
 }

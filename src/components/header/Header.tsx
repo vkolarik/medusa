@@ -35,7 +35,7 @@ export const Header: FC<Props> = ({ customer, startCart }) => {
 
   const [cart, dispatchCart] = useFormState(
     () => getCartAction(),
-    startCart
+    startCart,
   )
 
   useEffect(() => {
@@ -97,7 +97,6 @@ export const Header: FC<Props> = ({ customer, startCart }) => {
 
         <div className="flex items-center 2xl:gap-16 xl:gap-12 lg:gap-8 gap-4">
           <div className="md:block hidden">
-            {/*<SearchForm />*/}
             <CustomSearchForm />
           </div>
 
@@ -139,13 +138,8 @@ export const Header: FC<Props> = ({ customer, startCart }) => {
             </li>
 
 
-            <Suspense fallback={<p>Loading</p>}>
-              <CustomCartDropdown cart={cart} />
-            </Suspense>
+            <CustomCartDropdown cart={cart} />
 
-
-
-            {/*<HeaderCart />*/}
 
             <div className="lg:hidden block">
               <BurgerIcon
@@ -158,7 +152,7 @@ export const Header: FC<Props> = ({ customer, startCart }) => {
       </header>
 
       <div className="max-width md:hidden block z-10 bg-white relative border-b border-lightGrey pt-2">
-        <SearchForm />
+        <CustomSearchForm />
       </div>
 
       <MobileMenu active={mobileMenuActive} setActive={setMobileMenuActive} />
