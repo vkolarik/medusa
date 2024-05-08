@@ -6,6 +6,8 @@ export interface AppProviderInterface {
   setLoading: Dispatch<SetStateAction<boolean>>
   updated: boolean
   setUpdated: Dispatch<SetStateAction<boolean>>
+  showSearch: boolean
+  setShowSearch: Dispatch<SetStateAction<boolean>>
   cartProducts: ICartItem[]
   setCartProducts: Dispatch<SetStateAction<ICartItem[]>>
 }

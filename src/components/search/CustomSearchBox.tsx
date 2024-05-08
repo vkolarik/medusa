@@ -1,7 +1,10 @@
-import { FormEvent } from "react"
+import { FormEvent, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import CustomSearchBoxWrapper, { CustomControlledSearchBoxProps } from "@components/search/CustomSearchBoxWrapper"
 import { FaTimes } from "react-icons/fa"
+import { useAppContext } from "@context/MainContext"
+import { useFormState } from "react-dom"
+import { getCartAction } from "../../app/actions"
 
 
 const CustomControlledSearchBox = ({
@@ -13,6 +16,9 @@ const CustomControlledSearchBox = ({
                                      value,
                                      ...props
                                    }: CustomControlledSearchBoxProps) => {
+  const { showSearch, setShowSearch } = useAppContext()
+
+
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
     event.stopPropagation()
@@ -51,6 +57,8 @@ const CustomControlledSearchBox = ({
         spellCheck={false}
         value={value}
         onChange={onChange}
+        onFocus={() => setShowSearch(true)}
+        onBlur={() => setShowSearch(false)}
         className="w-full relative outline-none pr-4 xl:text-[16px] lg:text-[14px] text-[13px] font-normal"
       />
       {value && (

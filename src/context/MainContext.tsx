@@ -12,12 +12,15 @@ const AppContext = createContext<AppProviderInterface>({
   setLoading: () => {},
   updated: false,
   setUpdated: () => {},
+  showSearch: false,
+  setShowSearch: () => {},
 })
 
 export function AppWrapper({ children }: { children: React.ReactNode }) {
   const [cartProducts, setCartProducts] = useState<ICartItem[]>([])
   const [loading, setLoading] = useState<boolean>(true)
   const [updated, setUpdated] = useState<boolean>(false)
+  const [showSearch, setShowSearch] = useState<boolean>(false)
 
   useEffect(() => {
     setCartProducts(
@@ -34,7 +37,9 @@ export function AppWrapper({ children }: { children: React.ReactNode }) {
         loading,
         setLoading,
         updated,
-        setUpdated
+        setUpdated,
+        showSearch,
+        setShowSearch,
       }}
     >
       {children}

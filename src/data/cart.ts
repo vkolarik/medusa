@@ -6,6 +6,7 @@ export const cartData: ICartItem[] = [
   {
     id: 1,
     title: "Pánské tričko s kulatým výstřihem, 100% bavlna",
+    route: "",
     price: 559,
     size: "L",
     color: "#0000",
@@ -15,6 +16,7 @@ export const cartData: ICartItem[] = [
   {
     id: 2,
     title: "Pánské tričko s kulatým výstřihem, 100% bavlna",
+    route: "",
     price: 559,
     size: "L",
     color: "#0000",
@@ -24,6 +26,7 @@ export const cartData: ICartItem[] = [
   {
     id: 3,
     title: "Pánské tričko s kulatým výstřihem, 100% bavlna",
+    route: "",
     price: 559,
     size: "L",
     color: "#0000",
@@ -33,6 +36,7 @@ export const cartData: ICartItem[] = [
   {
     id: 4,
     title: "Pánské tričko s kulatým výstřihem, 100% bavlna",
+    route: "",
     price: 559,
     size: "L",
     color: "#0000",
