@@ -1,6 +1,9 @@
+
+//TODO
+
 describe("ProductGallery Component", () => {
     beforeEach(() => {
-      cy.visit("cz/kategorie/mikiny")
+      cy.visit("cz")
     })
 
 
