@@ -3,8 +3,6 @@ describe("Header component tests", () => {
     cy.visit("/")
   })
 
-
-
   it("renders the logo correctly", () => {
     cy.get(".logo-container").should("exist")
   })

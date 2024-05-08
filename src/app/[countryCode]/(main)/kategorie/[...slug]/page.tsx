@@ -12,7 +12,6 @@ import { getCategoriesList, getCategoryByHandle } from "@lib/data"
 import { ProductCategoryWithChildren } from "../../../../../aaa-temp/types/global"
 import { ProductCategory } from "@medusajs/medusa"
 import { getBreadcrumbsForCategory} from "@utils/breadcrumbs"
-import { useQuery } from "@utils/useQuery"
 
 const ProductCategoryComponent = async ({
                                           params,
@@ -44,13 +43,13 @@ const ProductCategoryComponent = async ({
   const helper = await getCategoriesList()
   const breadcrumbs: ILink[] = await getBreadcrumbsForCategory(category, helper.product_categories)
 
+
   return (
     <main className="max-width page w-full">
       <PageHeader
         title={category.name}
         breadcrumbs={breadcrumbs}
       />
-
 
       <div className="md:mt-8 mt-5">
         {children && (
@@ -63,6 +62,7 @@ const ProductCategoryComponent = async ({
               )
             })}
           </div>
+
         )}
       </div>
 
