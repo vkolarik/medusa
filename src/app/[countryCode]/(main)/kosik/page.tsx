@@ -1,5 +1,4 @@
 "use client"
-
 import { ILink } from "modules/Link"
 import { NextPage } from "next"
 import * as ROUTES from "@constants/routes"

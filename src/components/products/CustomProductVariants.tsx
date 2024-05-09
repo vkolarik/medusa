@@ -1,4 +1,3 @@
-import { allSizes } from "@data/sizes"
 import { IProductVariants, IProductVariant } from "modules/Product"
 import { FC } from "react"
 import { useQuery } from "@utils/useQuery"

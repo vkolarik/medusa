@@ -1,5 +1,4 @@
 "use client"
-
 import { ProductSummary } from "@components/products/ProductSummary"
 import { calculateTotalPrice } from "@utils/totalPrice"
 import { IAccountOrders } from "modules/AccountOrders"

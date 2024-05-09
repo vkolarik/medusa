@@ -1,12 +1,11 @@
 "use client"
 
-import { allSizes } from "@data/sizes"
+
 import { IProductPreview } from "modules/Product"
 import Link from "next/link"
-import { FC, useState, useTransition } from "react"
+import { FC, useState } from "react"
 import Image from "next/image"
 import { CustomProductVariants } from "./CustomProductVariants"
-import Router from "next/router"
 import { twMerge } from "tailwind-merge"
 
 export const ProductItemPreview: FC<{ product: IProductPreview }> = ({

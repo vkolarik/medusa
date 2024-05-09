@@ -3,8 +3,6 @@ import Image from "next/image"
 import cartIcon from "../../../public/images/icons/cart.svg"
 import Link from "next/link"
 import * as ROUTES from "@constants/routes"
-import { ICartItem } from "modules/CartItem"
-import { HeaderCartItem } from "./HeaderCartItem"
 import { useAppContext } from "@context/MainContext"
 import { calculateTotalPrice } from "@utils/totalPrice"
 

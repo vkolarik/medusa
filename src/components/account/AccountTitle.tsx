@@ -1,5 +1,4 @@
 "use client"
-
 import { FC } from "react"
 
 export const AccountTitle: FC<{ title: string; subtitle: string }> = ({

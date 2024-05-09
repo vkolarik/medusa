@@ -1,13 +1,12 @@
 "use client"
 
-import { FC, useEffect, useState } from "react"
+import { FC, useState } from "react"
 import Image from "next/image"
 import searchIcon from "../../../public/images/icons/search.svg"
 import { useForm } from "react-hook-form"
 import { AutoComplete, AutoCompleteCompleteEvent } from 'primereact/autocomplete';
 import { IProductPreview } from "modules/Product"
-import { searchClient } from "@lib/search-client"
-import { productsPreviewData } from "@data/products"
+
 
 export const SearchForm: FC = () => {
   const [items, setItems] = useState<IProductPreview[]>([]);

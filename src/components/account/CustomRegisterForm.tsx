@@ -1,12 +1,7 @@
 "use client"
 
 import { useFormState } from "react-dom"
-
-import Input from "@modules/common/components/input"
-import { LOGIN_VIEW } from "@modules/account/templates/login-template"
 import { signUp } from "@modules/account/actions"
-import ErrorMessage from "@modules/checkout/components/error-message"
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Link from "next/link"
 import { SubmitButton } from "@components/SubmitButton"
 

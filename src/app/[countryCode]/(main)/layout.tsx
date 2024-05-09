@@ -1,12 +1,8 @@
 import type { Metadata } from "next"
 import "@styles/main.scss"
-import { Header } from "@components/header/Header"
 import { Footer } from "@components/Footer"
 import { Toaster } from "sonner"
 import { AppWrapper } from "@context/MainContext"
-import { Suspense } from "react"
-import { Loading } from "@components/Loading"
-import { getCustomerAction } from "../../actions"
 import { HeaderWrapper } from "@components/header/HeaderWrapper"
 
 export const metadata: Metadata = {

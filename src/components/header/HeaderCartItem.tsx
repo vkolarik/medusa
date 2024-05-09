@@ -3,7 +3,7 @@ import Image from "next/image"
 import { truncate } from "@utils/truncate"
 import Link from "next/link"
 import { LineItem } from "@medusajs/medusa"
-import DeleteButton from "@modules/common/components/delete-button"
+
 
 export const HeaderCartItem: FC<{ item: LineItem, price: string}> = ({ item, price }) => {
 
