@@ -11,12 +11,7 @@ import { useFormState } from "react-dom"
 import { getCartAction } from "../../app/actions"
 
 export const CustomSearchForm: FC = () => {
-  const [isSearching, setIsSearching] = useState(false)
   const { showSearch, setShowSearch } = useAppContext()
-
-  useEffect(() => {
-    setIsSearching(showSearch)
-  }, [showSearch])
 
 
   return (
@@ -29,7 +24,7 @@ export const CustomSearchForm: FC = () => {
         <CustomSearchBox />
 
         <div
-          className={"dropdown__content absolute z-10 min-w-[160px] w-full pt-5 duration-300 bg-white p-2 border border-lightGrey " + (isSearching ? "show" : "hidden")}>
+          className={"dropdown__content absolute z-10 min-w-[160px] w-full pt-5 duration-300 bg-white p-2 border border-lightGrey " + (showSearch ? "show" : "hidden")}>
           <CustomHits hitComponent={CustomHit} />
         </div>
 
