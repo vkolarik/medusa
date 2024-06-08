@@ -9,18 +9,12 @@ import {
 import { GrClose } from "react-icons/gr"
 import gsap from "gsap"
 import { IconContext } from "react-icons"
-import { ProductDetailModalState } from "modules/Product"
-import { ProductDetailModalHeader } from "./ProductDetailModalHeader"
-import { ProductDetailCalculator } from "./ProductDetailCalculator"
 import { ProductDetailSizesTable } from "./ProductDetailSizesTable"
 
 export const ProductDetailModal: FC<{
   image: string
   setActiveModal: Dispatch<SetStateAction<boolean>>
 }> = ({ image, setActiveModal }) => {
-  const [headerState, setHeaderState] = useState<ProductDetailModalState>(
-    ProductDetailModalState.CALCULATOR
-  )
   const popupRef = useRef<HTMLDivElement>(null)
   const popupInfoRef = useRef<HTMLDivElement>(null)
   const popupBgRef = useRef<HTMLDivElement>(null)
@@ -83,17 +77,9 @@ export const ProductDetailModal: FC<{
           </div>
 
           <div className="px-4 lg:px-8 md:pt-8 pt-4">
-            <ProductDetailModalHeader
-              state={headerState}
-              setState={setHeaderState}
-            />
-
             <div>
-              {headerState === ProductDetailModalState.CALCULATOR ? (
-                <ProductDetailCalculator image={image} />
-              ) : (
-                <ProductDetailSizesTable />
-              )}
+
+              <ProductDetailSizesTable />
 
               <div className="pt-8">
                 <h2 className="font-semibold lg:text-[22px] md:text-[19px] text-[16px] md:mb-3 mb-2">

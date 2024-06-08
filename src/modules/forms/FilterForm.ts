@@ -1,8 +1,7 @@
 export interface IFilterForm {
   sizes: string[]
-  colors: string[]
   sorting: string
-  categories: string[]
+  price: string[]
 }
 
 export interface ISorting {

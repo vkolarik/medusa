@@ -1,22 +1,18 @@
 import { FormEvent } from "react"
-import { useRouter } from "next/navigation"
 import CustomSearchBoxWrapper, { CustomControlledSearchBoxProps } from "@components/search/CustomSearchBoxWrapper"
 import { FaTimes } from "react-icons/fa"
 import { useAppContext } from "@context/MainContext"
 
-
-
 const CustomControlledSearchBox = ({
-                                     inputRef,
-                                     onChange,
-                                     onReset,
-                                     onSubmit,
-                                     placeholder,
-                                     value,
-                                     ...props
-                                   }: CustomControlledSearchBoxProps) => {
+  inputRef,
+  onChange,
+  onReset,
+  onSubmit,
+  placeholder,
+  value,
+  ...props
+}: CustomControlledSearchBoxProps) => {
   const { setShowSearch } = useAppContext()
-
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
@@ -76,8 +72,6 @@ const CustomControlledSearchBox = ({
 }
 
 const CustomSearchBox = () => {
-  const router = useRouter()
-
   return (
     <CustomSearchBoxWrapper>
       {(props) => {

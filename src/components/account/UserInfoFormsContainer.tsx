@@ -1,13 +1,13 @@
 "use client"
 
 import { userInfoForms } from "@data/userInfoForms"
-import { IUserInfo, IUserInfoForm } from "modules/UserInfo"
 import { FC, useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import Image from "next/image"
 import { SubmitButton } from "@components/SubmitButton"
 import { Form } from "@components/forms/Form"
 import { personalInfoForm } from "@data/forms"
+import { IUserInfo, IUserInfoForm } from "modules/account/UserInfo"
 
 export const UserInfoFormsContainer: FC<{ data: IUserInfo }> = ({ data }) => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false)

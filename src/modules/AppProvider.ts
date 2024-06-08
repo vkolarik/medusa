@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react"
-import { ICartItem } from "./CartItem"
+import { LineItem } from "@medusajs/medusa"
 
 export interface AppProviderInterface {
   loading: boolean
@@ -8,6 +8,6 @@ export interface AppProviderInterface {
   setUpdated: Dispatch<SetStateAction<boolean>>
   showSearch: boolean
   setShowSearch: Dispatch<SetStateAction<boolean>>
-  cartProducts: ICartItem[]
-  setCartProducts: Dispatch<SetStateAction<ICartItem[]>>
+  cartProductsSize: number
+  setCartProductsSize: Dispatch<SetStateAction<number>>
 }

@@ -1,7 +1,8 @@
 "use client"
+
 import { ProductSummary } from "@components/products/ProductSummary"
-import { calculateTotalPrice } from "@utils/totalPrice"
-import { IAccountOrders } from "modules/AccountOrders"
+import { calculateTotalPrice } from "@utils/prices"
+import { IAccountOrders } from "modules/account/AccountOrders"
 import { IProductSummary } from "modules/Product"
 import { FC } from "react"
 

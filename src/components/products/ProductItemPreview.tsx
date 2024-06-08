@@ -1,6 +1,5 @@
 "use client"
 
-
 import { IProductPreview } from "modules/Product"
 import Link from "next/link"
 import { FC, useState } from "react"
@@ -13,7 +12,7 @@ export const ProductItemPreview: FC<{ product: IProductPreview }> = ({
 }) => {
   const [isWaiting, setIsWaiting] = useState(false)
   const { title, image, route, variants, price } = product
-  console.log(variants)
+
   return (
     <Link
       href={route}

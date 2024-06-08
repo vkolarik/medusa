@@ -1,8 +1,9 @@
 "use server"
+
 import { NextPage } from "next"
-import { getCustomer } from "@lib/data"
 import { redirect } from "next/navigation"
 import CustomLoginForm from "@components/account/CustomLoginForm"
+import { getCustomer } from "@utils/apiActions/signUp"
 
 const SignIn: NextPage = async () => {
   const customer  = await getCustomer().catch(() => null)

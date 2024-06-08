@@ -1,17 +1,12 @@
 import Medusa from "@medusajs/medusa-js"
 import { IProductDetail, IProductPreview } from "../modules/Product"
-import {
-  getProductByHandle, getProductsByCategoryHandle,
-  getProductsListWithSort,
-  getRegion,
-  retrievePricedProductById,
-} from "@lib/data"
-import { getProductPrice } from "@lib/util/get-product-price"
 import { Region } from "@medusajs/medusa"
 import { PricedProduct } from "@medusajs/medusa/dist/types/pricing"
 import medusaRequest from "@constants/medusaFetch"
 import { convertToPreview } from "@utils/truncate"
-import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
+import { getRegion } from "@utils/regions"
+import { getProductPrice } from "@utils/apiActions/getProductPrice"
+import { getProductsByCategoryHandle, getProductsListWithSort, retrievePricedProductById } from "@utils/apiActions/getProductData"
 
 export const MedusaApiLibrary = new Medusa({
   baseUrl: process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL!!,

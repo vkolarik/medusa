@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react"
-import { ICartItem } from "./CartItem"
-import { ProductCategory } from "@medusajs/medusa"
+import { Cart, LineItem, ProductCategory, ProductVariant } from "@medusajs/medusa"
+import { ILink } from "./Link"
 
 export interface IProductPreview {
   id: number
@@ -20,9 +20,11 @@ export interface IProductVariant {
 }
 
 export interface IProductSummary {
-  item: ICartItem
+  item: LineItem
   canBeDeleted?: boolean
   setLoading?: Dispatch<SetStateAction<boolean>>
+  cart?: Omit<Cart, "beforeInsert" | "afterLoad"> | null
+  setUpdated?: () => void
 }
 
 export interface IProductDetail extends IProductPreview {
@@ -37,15 +39,12 @@ export interface IProductSizes {
   setSelectedSize?: Dispatch<SetStateAction<string | null>>
   selectedSize?: string | null
 }
+
 export interface IProductVariants {
   variants: IProductVariant[]
   hidden?: boolean
   setSelectedVariant?: Dispatch<SetStateAction<string | null>>
   selectedVariant?: string | null
-}
-
-export interface IProductColors {
-  colors: string[]
 }
 
 export interface IProductCalculator {
@@ -55,17 +54,34 @@ export interface IProductCalculator {
   gender: "male" | "female"
 }
 
-export enum ProductDetailModalState {
-  CALCULATOR,
-  TABLE,
-}
-
-export interface IProductDetailModalHeader {
-  setState: Dispatch<SetStateAction<ProductDetailModalState>>
-  state: ProductDetailModalState
-}
-
 export interface IProductDetailSizesTable {
   theads: string[]
   tbody: (string | number)[][]
+}
+
+export interface ProductProps {
+  activeProduct: IProductDetail | null
+  categoryProductDetails: IProductDetail[] | null
+  breadcrumbs: ILink[]
+}
+
+export type ProductPreviewType = {
+  id: string
+  title: string
+  handle: string | null
+  thumbnail: string | null
+  created_at?: Date
+  price?: {
+    calculated_price: string
+    original_price: string
+    difference: string
+    price_type: "default" | "sale"
+  }
+  isFeatured?: boolean
+}
+
+export type CalculatedVariant = ProductVariant & {
+  calculated_price: number
+  calculated_price_type: "sale" | "default"
+  original_price: number
 }

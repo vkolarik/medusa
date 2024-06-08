@@ -3,10 +3,9 @@ import { FC } from "react"
 import { useQuery } from "@utils/useQuery"
 
 export const CustomProductVariants: FC<IProductVariants> = ({
-                                                              variants,
-                                                              hidden = false,
-                                                            }) => {
-
+  variants,
+  hidden = false,
+}) => {
   const { getQueryString, createQueryString } = useQuery()
   if (!variants) return null
 
@@ -15,6 +14,7 @@ export const CustomProductVariants: FC<IProductVariants> = ({
     createQueryString("variant", size)
   }
 
+  // TODO
   const isAvailable = (variant: string) => {
     // if (!variants) return false
     // //console.log("size "+size+", variants "+variants)
@@ -37,13 +37,16 @@ export const CustomProductVariants: FC<IProductVariants> = ({
               onClick={() => handleSelection(variant.title)}
               className={`text-center p-0.5 border border-lightGrey leading-none ${
                 isAvailable(variant.title) ? "text-black" : "opacity-75 grey"
+              } uppercase lg:text-[14px] text-[12px] duration-300 ${
+                isAvailable(variant.title)
+                  ? `${!hidden ? "cursor-pointer hover:bg-blueHover hover:text-white" : ""}`
+                  : ""
               }
-uppercase lg:text-[14px] text-[12px] duration-300
-  ${isAvailable(variant.title)
-                ? "cursor-pointer hover:bg-blueHover hover:text-white"
-                : ""
-              }
-  ${getQueryString("variant") === variant.title ? "bg-blue text-white" : ""}`}
+                 ${
+                   getQueryString("variant") === variant.title
+                     ? "bg-blue text-white"
+                     : ""
+                 }`}
             >
               {variant.title}
             </p>

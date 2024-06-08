@@ -1,4 +1,4 @@
-import { ICheckbox } from "modules/Inputs"
+import { ICheckbox, IOption } from "modules/forms/Inputs"
 import { FieldValues, Path } from "react-hook-form"
 import React from "react"
 
@@ -17,15 +17,16 @@ export const Checkbox: <T extends FieldValues>(
     <div className={`${noPaddingOnMobile ? "md:" : ""}mb-4 form__input`}>
       <label htmlFor={id}>{placeholder}</label>
       <div className="w-full h-full flex flex-col gap-y-1 mt-1">
-        {options.map((option: string, key: number) => {
+        {options.map((option: string | IOption, key: number) => {
+          const isOptionString = typeof(option) === "string"
           return (
-            <label key={key} htmlFor={option} className="checkbox-container">
-              {option}
+            <label key={key} htmlFor={isOptionString ? option : option.value} className="checkbox-container">
+              {isOptionString ? option : option.label}
               <input
                 type="checkbox"
                 readOnly={readOnly}
-                id={option}
-                value={option}
+                id={isOptionString ? option : option.value}
+                value={isOptionString ? option : option.value}
                 {...register(id as Path<T>, {
                   required,
                 })}

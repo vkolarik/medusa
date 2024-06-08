@@ -1,4 +1,4 @@
-import { IOption } from "modules/Inputs"
+import { IOption } from "modules/forms/Inputs"
 
 export const priceCategories: IOption[] = [
   {

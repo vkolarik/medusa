@@ -36,6 +36,7 @@ export const ProductGallery: FC<{ images: string[]; title: string }> = ({
             onClick={() => setIndex(index)}
             src={img}
             layout="fill"
+            objectFit="contain"
             alt={`${title} - obr. ${index + 1}`}
           />
 

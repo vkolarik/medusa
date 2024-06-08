@@ -1,4 +1,4 @@
-import { IBasicInput, InputType } from "modules/Inputs"
+import { IBasicInput, InputType } from "modules/forms/Inputs"
 import { FieldValues, Path } from "react-hook-form"
 
 export const BasicInput: <T extends FieldValues>(

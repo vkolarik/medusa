@@ -1,7 +1,7 @@
-import { IUserInfoForm } from "modules/UserInfo"
 import userIcon from "../../public/images/icons/user.svg"
 import emailIcon from "../../public/images/icons/email.svg"
 import passwordIcon from "../../public/images/icons/password.svg"
+import { IUserInfoForm } from "modules/account/UserInfo"
 
 export const userInfoForms: IUserInfoForm[] = [
   {

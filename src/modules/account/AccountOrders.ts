@@ -1,4 +1,4 @@
-import { IProductSummary } from "./Product"
+import { IProductSummary } from "../Product"
 
 export interface IAccountOrders {
   id: number

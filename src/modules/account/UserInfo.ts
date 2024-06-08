@@ -1,4 +1,4 @@
-import { IRegisterData } from "./Register"
+import { IRegisterData } from "../Register"
 
 export interface IUserInfo extends Omit<IRegisterData, "gender"> {
   id: number

@@ -5,62 +5,41 @@ import { Loading } from "@components/Loading"
 import { PageHeader } from "@components/PageHeader"
 import { ProductGallery } from "@components/products/detail/ProductGallery"
 import { ProductContainer } from "@components/products/ProductContainer"
-import { productsPreviewData } from "@data/products"
-import type { ILink } from "modules/Link"
-import { getCategoryProductDetailsByHandle, getProductDetailByHandle } from "app/actions"
 import { CartWrapper } from "@components/products/detail/CartWrapper"
-import { notFound } from "next/navigation"
-import medusaRequest from "@constants/medusaFetch"
-import { getCategoriesList } from "@lib/data"
-import { getBreadcrumbsForProduct } from "@utils/breadcrumbs"
 import { convertToPreview } from "@utils/truncate"
+import { getProductData } from "@utils/apiActions/getProductData"
 
 const ProductDetail = async ({ params }: { params: { slug: string } }) => {
-  const activeProduct = await getProductDetailByHandle(params.slug)
-
-  if (!activeProduct) notFound()
-
-
-  //if activeProduct is assigned to a category, then the category handle is the handle, else use "obleceni"
-  const handle: string = activeProduct.categories && activeProduct.categories.length > 0 ? activeProduct.categories[0].handle : "obleceni"
-
-  const categoryProductDetails = await getCategoryProductDetailsByHandle(handle)
-
-  //cast categoryProductDetails to IProductPreview[] | null
-
-  const { product_categories } = await getCategoriesList()
-
-  const breadcrumbs = await getBreadcrumbsForProduct(activeProduct, product_categories)
+  const data = await getProductData(params.slug)
 
   return (
     <main className="max-width page w-full">
-      {!activeProduct ? (
-        <Loading />
-      ) : (
+      {data.activeProduct && (
         <>
-          <PageHeader breadcrumbs={breadcrumbs} />
+          <PageHeader breadcrumbs={data.breadcrumbs} />
 
           <div className="flex md:flex-row flex-col lg:gap-8 gap-4 md:mt-8 mt-5">
             <Suspense fallback={<Loading />}>
               <ProductGallery
-                images={activeProduct.images}
-                title={activeProduct.title}
+                images={data.activeProduct.images ?? null}
+                title={data.activeProduct.title ?? null}
               />
             </Suspense>
 
             <div className="md:space-y-5 space-y-3 flex flex-col justify-center lg:w-2/3 md:w-1/2 w-full">
               <div className="pb-3 border-b border-lightGrey h-max">
                 <h1 className="font-semibold lg:text-[35px] md:text-[27px] text-[22px] w-4/5 lg:leading-10 leading-7">
-                  {activeProduct.title}
+                  {data.activeProduct.title}
                 </h1>
-                <p className="my-3 grey--larger">{activeProduct.description}</p>
+                <p className="my-3 grey--larger">
+                  {data.activeProduct.description}
+                </p>
                 <h2 className="font-semibold text-blue lg:text-[28px] md:text-[24px] text-[19px]">
-                  {activeProduct.price} Kč
+                  {data.activeProduct.price} Kč
                 </h2>
               </div>
 
-              <CartWrapper activeProduct={activeProduct} />
-
+              <CartWrapper activeProduct={data.activeProduct} />
             </div>
           </div>
 
@@ -69,7 +48,14 @@ const ProductDetail = async ({ params }: { params: { slug: string } }) => {
               Podobné produkty
             </h2>
             <ProductContainer
-              data={categoryProductDetails?.filter(productDetail => productDetail.route !== activeProduct.route).map(productDetail => convertToPreview(productDetail))!}
+              data={
+                data.categoryProductDetails
+                  ?.filter(
+                    (productDetail) =>
+                      productDetail.route !== data.activeProduct?.route
+                  )
+                  .map((productDetail) => convertToPreview(productDetail))!
+              }
             />
           </div>
         </>

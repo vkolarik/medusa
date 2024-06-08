@@ -1,4 +1,4 @@
-import { IAccountOrders } from "modules/AccountOrders"
+import { IAccountOrders } from "modules/account/AccountOrders"
 import image from "../../public/images/model.png"
 
 export const accountOrders: IAccountOrders[] = [

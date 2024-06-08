@@ -1,18 +1,12 @@
 "use client"
+
 import React, { FC, useState } from "react"
-import { FilterButton } from "@components/products/FilterButton"
-import { Filter } from "@components/products/Filter"
 import { IProductDetail } from "../../../modules/Product"
-import Link from "next/link"
-import { ProductColors } from "@components/products/detail/ProductColors"
-import { AddToCartButton } from "@components/products/detail/AddToCartButton"
 import { CustomProductVariants } from "@components/products/CustomProductVariants"
 import { ProductDetailModal } from "@components/products/detail/ProductDetailModal"
-import { Button } from "@medusajs/ui"
-import { addToCart } from "@modules/cart/actions"
 import { useParams } from "next/navigation"
 import { toast } from "sonner"
-import { addToCartAction } from "../../../app/actions"
+import { addToCartAction } from "../../../utils/apiActions/actions"
 import { useAppContext } from "@context/MainContext"
 import { useQuery } from "@utils/useQuery"
 
@@ -22,7 +16,7 @@ type Props = {
 
 export const CartWrapper: FC<Props> = ({ activeProduct }) => {
   const [selectedVariant, setSelectedVariant] = useState<string | null>(null)
-  const [selectedColor, setSelectedColor] = useState<string | null>(null)
+  const { cartProductsSize, setCartProductsSize } = useAppContext()
   const [showModal, setShowModal] = useState<boolean>(false)
   const { getQueryString } = useQuery()
   const { updated, setUpdated } = useAppContext()
@@ -44,6 +38,8 @@ export const CartWrapper: FC<Props> = ({ activeProduct }) => {
     e.preventDefault()
     setIsAdding(true)
 
+    setCartProductsSize(cartProductsSize + 1)
+
     addToCartAction({
       variantId: variantId,
       quantity: 1,
@@ -55,7 +51,6 @@ export const CartWrapper: FC<Props> = ({ activeProduct }) => {
     })
   }
 
-
   return (
     <>
 
@@ -65,7 +60,6 @@ export const CartWrapper: FC<Props> = ({ activeProduct }) => {
           setSelectedVariant={setSelectedVariant}
           selectedVariant={selectedVariant}
         />
-
 
         {showModal && (
           <ProductDetailModal
@@ -81,13 +75,7 @@ export const CartWrapper: FC<Props> = ({ activeProduct }) => {
           Průvodce velikostmi
         </button>
       </div>
-
-      {/*<ProductColors colors={activeProduct.colors} />*/}
-
-      {/*<AddToCartButton*/}
-      {/*  product={activeProduct}*/}
-      {/*/>*/}
-
+      
       <button
         className="button text-center font-medium z-5 w-max"
         onClick={(e) => handleAddToCart(e)}

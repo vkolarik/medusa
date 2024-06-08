@@ -1,6 +1,6 @@
-import { IProductDetail } from "../modules/Product"
-import { ILink } from "../modules/Link"
-import { ProductCategoryWithChildren } from "../aaa-temp/types/global"
+import { IProductDetail } from "../../modules/Product"
+import { ILink } from "../../modules/Link"
+import { ProductCategoryWithChildren } from "modules/Category"
 
 export async function getBreadcrumbsForProduct(activeProduct: IProductDetail, productCategories: ProductCategoryWithChildren[]): Promise<ILink[]> {
   if (!activeProduct.categories || activeProduct.categories.length === 0) {

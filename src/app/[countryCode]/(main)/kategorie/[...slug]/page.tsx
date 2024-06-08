@@ -1,75 +1,60 @@
 "use server"
+
 import { PageHeader } from "@components/PageHeader"
-import { ILink } from "modules/Link"
-import Link from "next/link"
 import { ProductContainer } from "@components/products/ProductContainer"
-import { IProductPreview } from "../../../../../modules/Product"
 import { FilterWrapper } from "@components/products/FilterWrapper"
-import { notFound } from "next/navigation"
-import { getCategoryProductPreviewsByHandle } from "../../../../actions"
-import { getCategoriesList, getCategoryByHandle } from "@lib/data"
-import { ProductCategoryWithChildren } from "../../../../../aaa-temp/types/global"
 import { ProductCategory } from "@medusajs/medusa"
-import { getBreadcrumbsForCategory} from "@utils/breadcrumbs"
+import { categoriesData } from "@data/categories"
+import CategoryPreview from "@components/products/CategoryPreview"
+import { getCategoriesData } from "@utils/apiActions/getCategoriesData"
 
 const ProductCategoryComponent = async ({
-                                          params,
-                                          searchParams,
-                                        }: {
+  params,
+}: {
   params: { slug: string[] }
-  searchParams: {
-    price: string
-    sorting: string
-    gender: string
-    sizes: string
-    colors: string
-    categories: string
-  }
 }) => {
-  const { product_categories } = await getCategoryByHandle(
-    params.slug,
-  ).then((product_categories) => product_categories)
-
-  if (!product_categories[0]) {
-    notFound()
-  }
-  const category: ProductCategoryWithChildren = product_categories[0]
-
-  const children: ProductCategory[] = category.category_children
-
-  let categoryProducts: IProductPreview[] | null = await getCategoryProductPreviewsByHandle(params.slug[0])
-
-  const helper = await getCategoriesList()
-  const breadcrumbs: ILink[] = await getBreadcrumbsForCategory(category, helper.product_categories)
-
+  const data = await getCategoriesData(params.slug)
 
   return (
     <main className="max-width page w-full">
-      <PageHeader
-        title={category.name}
-        breadcrumbs={breadcrumbs}
-      />
+      {data && (
+        <>
+          <PageHeader
+            title={data.category.name}
+            breadcrumbs={data.breadcrumbs}
+          />
 
-      <div className="md:mt-8 mt-5">
-        {children && (
-          <div className="flex flex-wrap gap-2 w-full border-b border-lightGray pb-4">
-            {children.map((childCategory: ProductCategory) => {
-              return (
-                <Link key={childCategory.id} className="button" href={"/kategorie/" + childCategory.handle}>
-                  {childCategory.name}
-                </Link>
-              )
-            })}
+          <div className="md:mt-8 mt-5 border-t border-lightGray pt-8">
+            {data.categoryChildren && (
+              <div className="xl:flex grid md:grid-cols-2 grid-cols-1 xl:gap-0 md:gap-4 gap-2 flex-wrap w-full">
+                {data.categoryChildren.map((childCategory: ProductCategory, index: number) => (
+                  <CategoryPreview
+                    key={index}
+                    link={"/kategorie/" + childCategory.handle}
+                    linkClassName={`${index != data.categoryChildren.length -1 ? "xl:pr-4 pr-0" : ""} xl:w-1/4 w-full`}
+                    sizes="2xl:h-[30rem] xl:h-[25rem] lg:h-[20rem] sm:h-[15rem] h-[13rem]"
+                    backgroundImage={`url(${categoriesData.find(c => c.route === "/kategorie/" + params.slug)?.image})`}
+                    title={childCategory.name}
+                  />
+                ))}
+              </div>
+            )}
           </div>
 
-        )}
-      </div>
-
-      <FilterWrapper />
-
-      <ProductContainer data={categoryProducts || []} />
-
+          {/* productContainer contains ProductPreviews, Filter and NoData component => display this element when 
+              1) category has products => products and filter will be displayed
+              2) category has neither subcategories nor products => NoData component will be displayed
+          */}
+          {data.categoryProducts && (data.categoryProducts.length > 0 || data.categoryChildren.length === 0) && (
+            <>
+              <FilterWrapper />
+              <ProductContainer data={data.categoryProducts || []} />
+            </>
+          )}
+        </>
+      )}
     </main>
   )
 }
+
 export default ProductCategoryComponent

@@ -1,4 +1,4 @@
-import { IRadioInput, IOption } from "modules/Inputs"
+import { IRadioInput, IOption } from "modules/forms/Inputs"
 import { FieldValues, Path } from "react-hook-form"
 import React from "react"
 

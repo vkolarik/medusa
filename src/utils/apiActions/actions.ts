@@ -1,11 +1,10 @@
 'use server'
 
-import { IProductDetail, IProductPreview } from "../modules/Product"
+import { IProductDetail, IProductPreview } from "../../modules/Product"
 import { MedusaApi } from "@constants/api"
-import { addItem, getCustomer } from "@lib/data"
 import { Cart, Customer, LineItem } from "@medusajs/medusa"
-import { enrichLineItems, getOrSetCart, retrieveCart } from "@modules/cart/actions"
-import { revalidateTag } from "next/cache"
+import { getCustomer } from "./signUp"
+import { addItem, enrichLineItems, getOrSetCart, retrieveCart } from "./cart"
 
 export async function getProductDetailByHandle(handle: string) : Promise<IProductDetail | null> {
   return await MedusaApi.getProductDetail(handle)
@@ -35,10 +34,10 @@ export async function getCartAction() : Promise<null | Omit<Cart, "refundable_am
 }
 
 export async function addToCartAction({
-                                  variantId,
-                                  quantity,
-                                  countryCode,
-                                }: {
+  variantId,
+  quantity,
+  countryCode,
+}: {
   variantId: string
   quantity: number
   countryCode: string

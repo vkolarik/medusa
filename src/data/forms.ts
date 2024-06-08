@@ -1,15 +1,15 @@
-import { IGeneralInput, InputType } from "modules/Inputs"
+import { IGeneralInput, InputType } from "modules/forms/Inputs"
 import { statesData } from "./countries"
 import { IRegisterData } from "modules/Register"
 import { ISigninData } from "modules/Login"
-import { ICartForm } from "modules/CartForms"
-import { IFilterForm } from "modules/FilterForm"
+import { ICartForm } from "modules/cart/CartForms"
+import { IFilterForm } from "modules/forms/FilterForm"
 import { allSizes } from "./sizes"
 import { allColors } from "./colors"
 import { allSorting } from "./sorting"
 import { priceCategories } from "./prices"
-import { IUserInfo } from "modules/UserInfo"
 import { IProductCalculator } from "modules/Product"
+import { IUserInfo } from "modules/account/UserInfo"
 
 export const loginInputs: IGeneralInput<ISigninData>[] = [
   {
@@ -31,16 +31,16 @@ export const loginInputs: IGeneralInput<ISigninData>[] = [
   },
 ]
 
-export const registerInputs1: IGeneralInput<IRegisterData>[] = [
+export const registerInputs: IGeneralInput<IRegisterData>[] = [
   {
     placeholder: "Jméno",
-    id: "name",
+    id: "first_name",
     required: "Jméno je povinné",
     type: InputType.TEXT,
   },
   {
     placeholder: "Příjmení",
-    id: "surname",
+    id: "last_name",
     required: "Příjmení je povinné",
     type: InputType.TEXT,
   },
@@ -62,11 +62,11 @@ export const registerInputs1: IGeneralInput<IRegisterData>[] = [
     maxLengthErr: "Heslo musí mít maximálně 40 znaků",
   },
   {
-    placeholder: "Stát",
-    id: "state",
-    required: "Stát je povinný",
-    type: InputType.SELECT,
-    options: statesData,
+    placeholder: "Mobil",
+    id: "phone",
+    required: "Mobil je povinný",
+    pattern: /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i,
+    type: InputType.TEXT,
   },
 ]
 
@@ -202,36 +202,21 @@ export const filterForm: IGeneralInput<IFilterForm>[] = [
     options: allSorting,
   },
   {
-    placeholder: "Pohlaví",
-    id: "gender",
-    options: [
-      { value: "male", label: "MUŽ" },
-      { value: "female", label: "ŽENA" },
-    ],
-    type: InputType.RADIO,
-  },
-  {
     placeholder: "Velikosti",
     id: "sizes",
     type: InputType.CHECKBOX,
     options: allSizes,
   },
   {
-    placeholder: "Barvy",
-    id: "colors",
-    type: InputType.CHECKBOX,
-    options: allColors,
-  },
-  {
     placeholder: "Cena",
     id: "price",
-    type: InputType.RADIO,
+    type: InputType.CHECKBOX,
     options: priceCategories,
   },
 ]
 
 export const personalInfoForm: IGeneralInput<IUserInfo>[] = [
-  ...registerInputs1,
+  ...registerInputs,
   ...registerInputs2,
   {
     placeholder: "Mobil",

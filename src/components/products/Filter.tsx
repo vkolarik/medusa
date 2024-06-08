@@ -2,7 +2,7 @@ import { SubmitButton } from "@components/SubmitButton"
 import { Form } from "@components/forms/Form"
 import { filterForm } from "@data/forms"
 import { useQuery } from "@utils/useQuery"
-import { IFilterForm } from "modules/FilterForm"
+import { IFilterForm } from "modules/forms/FilterForm"
 import { Dispatch, FC, SetStateAction } from "react"
 import { useForm } from "react-hook-form"
 import { IconContext } from "react-icons"
@@ -12,34 +12,46 @@ export const Filter: FC<{
   isActive: boolean
   setIsActive: Dispatch<SetStateAction<boolean>>
 }> = ({ isActive, setIsActive }) => {
-  const { getQueryString, createQueryStringArray } = useQuery()
+  const { getQueryString, createQueryStringArray, resetQueries } = useQuery()
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm<IFilterForm>({
     defaultValues: {
-      categories:
-        (getQueryString("categories") as unknown as (string | undefined)[]) ??
-        ([] as (string | undefined)[]),
-      colors:
-        (getQueryString("colors") as unknown as (string | undefined)[]) ??
+      price:
+        (getQueryString("price") as unknown as (string | undefined)[]) ??
         ([] as (string | undefined)[]),
       sizes:
         (getQueryString("sizes") as unknown as (string | undefined)[]) ??
         ([] as (string | undefined)[]),
-      sorting: getQueryString("sorting") ?? "",
+      sorting: getQueryString("sorting") ?? "default",
     },
   })
 
   const onSubmit: any = async (data: IFilterForm, e: Event) => {
-    const query = Object.entries(data).map(([key, value]) => ({
+    resetQueries()
+
+    const query = Object.entries(data)
+      .filter(([_, value]) => value && value.length > 0) 
+      .map(([key, value]) => ({
       name: key,
       value,
     }))
 
     createQueryStringArray(query)
+  }
+
+  const onReset = () => {
+    reset({
+      price: [],
+      sizes: [],
+      sorting: "default",
+    })
+
+    resetQueries()
   }
 
   return (
@@ -67,7 +79,15 @@ export const Filter: FC<{
       >
         <Form data={filterForm} register={register} errors={errors} />
 
-        <div className="flex justify-end">
+        <div className="flex justify-end gap-2">
+          <button 
+            type="button" 
+            className="button button--small button--light" 
+            onClick={onReset}
+          >
+            Resetovat
+          </button>
+          
           <SubmitButton text="Filtrovat" color="dark" />
         </div>
       </form>

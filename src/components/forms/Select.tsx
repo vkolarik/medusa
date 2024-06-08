@@ -1,4 +1,4 @@
-import { ISelect, IOption } from "modules/Inputs"
+import { ISelect, IOption } from "modules/forms/Inputs"
 import { FieldValues, Path } from "react-hook-form"
 
 export const Select: <T extends FieldValues>(

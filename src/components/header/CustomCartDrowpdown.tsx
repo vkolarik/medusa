@@ -1,32 +1,22 @@
 "use client"
 
 import { Cart, LineItem } from "@medusajs/medusa"
-import { useParams } from "next/navigation"
-import { formatAmount } from "@lib/util/prices"
 import * as ROUTES from "@constants/routes"
 import Image from "next/image"
 import cartIcon from "../../../public/images/icons/cart.svg"
 import Link from "next/link"
 import { HeaderCartItem } from "@components/header/HeaderCartItem"
+import { formatAmount } from "@utils/prices"
+import { useAppContext } from "@context/MainContext"
 
-const CustomCartDropdown = ({
-                              cart: cartState,
-                            }: {
+const CustomCartDropdown = ({ cart: cartState }: {
   cart?: Omit<Cart, "beforeInsert" | "afterLoad"> | null
 }) => {
-  const { countryCode } = useParams()
-
-  const totalItems =
-    cartState?.items?.reduce((acc, item) => {
-      return acc + item.quantity
-    }, 0) || 0
-
+  const { cartProductsSize } = useAppContext()
 
   return (
-
-    <div className="dropdown cursor-pointer relative z-[999]"
-    >
-      <Link className="cart-icon" href={ROUTES.CART} data-items={totalItems}>
+    <div className="dropdown cursor-pointer relative z-[999]">
+      <Link className="cart-icon" href={ROUTES.CART} data-items={cartProductsSize}>
         <Image
           src={cartIcon.src}
           alt="Trend Trove - Košík"
@@ -94,7 +84,6 @@ const CustomCartDropdown = ({
         )}
       </div>
     </div>
-
   )
 }
 

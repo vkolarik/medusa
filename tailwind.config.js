@@ -42,7 +42,8 @@ module.exports = {
         white: "#ffffff",
         lightGrey: "#e5e7eb",
         blue: "#3b82f6",
-        blueHover: "#0757ea"
+        blueHover: "#0757ea",
+        lightBlue: "#F3F6FB",
       },
       maxWidth: {
         "8xl": "100rem",

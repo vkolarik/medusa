@@ -64,7 +64,7 @@ export interface ICheckbox<T extends FieldValues> {
   id: Path<T> | string
   required?: string
   register: UseFormRegister<T>
-  options: string[]
+  options: string[] | IOption[]
   type: InputType
   noPaddingOnMobile?: boolean
   readOnly?: boolean

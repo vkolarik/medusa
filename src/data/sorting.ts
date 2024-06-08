@@ -1,4 +1,4 @@
-import { ISorting } from "modules/FilterForm"
+import { ISorting } from "modules/forms/FilterForm"
 
 export const allSorting: ISorting[] = [
   {

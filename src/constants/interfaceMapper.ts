@@ -5,5 +5,4 @@ export const InterfaceMapper = {
   mapPricedProductToIProductDetail: (pricedProduct : PricedProduct) : IProductDetail | null => {
     return null
   }
-
 }

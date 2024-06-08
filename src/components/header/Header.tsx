@@ -1,23 +1,28 @@
 "use client"
 
-import { FC, Suspense, useEffect, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import Link from "next/link"
+import { useFormState } from "react-dom"
+
 import logo from "../../../public/images/logo.svg"
 import Image from "next/image"
 import user from "../../../public/images/icons/user.svg"
+import { FaAngleDown } from "react-icons/fa"
+import { BurgerIcon } from "./HamburgerIcon"
+
 import { mainLinks } from "@data/links"
 import { IHeaderDropdown, ILink } from "modules/Link"
-import { FaAngleDown } from "react-icons/fa"
-import * as ROUTES from "../../constants/routes"
-import { BurgerIcon } from "./HamburgerIcon"
+
 import { MobileMenu } from "./MobileMenu"
-import { signOut } from "@modules/account/actions"
-import { Cart, Customer } from "@medusajs/medusa"
 import CustomCartDropdown from "@components/header/CustomCartDrowpdown"
-import { useFormState } from "react-dom"
-import { getCartAction } from "../../app/actions"
-import { useAppContext } from "@context/MainContext"
 import { CustomSearchForm } from "@components/header/CustomSearchForm"
+
+import { Cart, Customer } from "@medusajs/medusa"
+import * as ROUTES from "../../constants/routes"
+import { getCartAction } from "../../utils/apiActions/actions"
+import { useAppContext } from "@context/MainContext"
+import { toast } from "sonner"
+import { signOut } from "@utils/apiActions/signOut"
 
 type Props = {
   customer: Omit<Customer, "password_hash"> | null
@@ -26,7 +31,7 @@ type Props = {
 
 export const Header: FC<Props> = ({ customer, startCart }) => {
   const [mobileMenuActive, setMobileMenuActive] = useState<boolean>(false)
-  const { updated, setUpdated } = useAppContext()
+  const { updated, setUpdated, setCartProductsSize } = useAppContext()
 
   const [cart, dispatchCart] = useFormState(
     () => getCartAction(),
@@ -43,7 +48,15 @@ export const Header: FC<Props> = ({ customer, startCart }) => {
   const handleLogout = () => {
     signOut()
     customer = null
+    toast.success("Odhlášení bylo úspěšné")
   }
+
+  useEffect(() => {
+    const items = cart?.items ?? []
+    setCartProductsSize(items?.reduce((acc, item) => {
+      return acc + (item.quantity || 0);
+    }, 0) || 0)
+  }, [cart])
 
   return (
     <div className="header-wrapper md:border-b border-lightGrey z-50 bg-white fixed top-0 left-0 w-full">
@@ -132,9 +145,7 @@ export const Header: FC<Props> = ({ customer, startCart }) => {
               </div>
             </li>
 
-
             <CustomCartDropdown cart={cart} />
-
 
             <div className="lg:hidden block">
               <BurgerIcon

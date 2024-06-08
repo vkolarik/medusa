@@ -1,18 +1,20 @@
-import { useAppContext } from "@context/MainContext"
-import { storeInStorage } from "@utils/storage"
+import { removeItem } from "@utils/apiActions/cart"
 import { Dispatch, FC, SetStateAction } from "react"
 
 export const RemoveIcon: FC<{
-  itemId: number
+  cartId: string
+  lineId: string
   setLoading: Dispatch<SetStateAction<boolean>>
-}> = ({ itemId, setLoading }) => {
-  const { cartProducts, setCartProducts } = useAppContext()
+  setUpdated?: () => void
+}> = ({ cartId, lineId, setLoading, setUpdated }) => {
 
   const removeProduct = () => {
     setLoading(true)
-    const filteredProducts = cartProducts.filter((c) => c.id !== itemId)
-    setCartProducts(filteredProducts)
-    storeInStorage("session", "products", filteredProducts)
+    removeItem({
+      cartId,
+      lineId
+    })
+    if (setUpdated) setUpdated()
     setLoading(false)
   }
 

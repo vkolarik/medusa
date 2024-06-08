@@ -1,4 +1,3 @@
-import { PathParamsContext } from "next/dist/shared/lib/hooks-client-context.shared-runtime"
 import { usePathname, useSearchParams, useRouter } from "next/navigation"
 import { useCallback } from "react"
 
@@ -39,6 +38,14 @@ export const useQuery = () => {
     [searchParams]
   )
 
+  const resetQueries = useCallback(
+    () => {
+      router.push(pathname, { scroll: false })
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [searchParams]
+  )
+
   const getQueryString = useCallback(
     (name: string) => {
       return searchParams.get(name)
@@ -52,5 +59,6 @@ export const useQuery = () => {
     removeQueryString,
     getQueryString,
     createQueryStringArray,
+    resetQueries
   }
 }

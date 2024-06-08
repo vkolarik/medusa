@@ -1,16 +1,18 @@
+"use client"
+
 import {
   IBasicInput,
   ICheckbox,
   IRadioInput,
   ISelect,
   InputType,
-} from "modules/Inputs"
+} from "modules/forms/Inputs"
 import { BasicInput } from "./BasicInput"
 import { FieldValues } from "react-hook-form"
 import { Select } from "./Select"
-import { IForm } from "modules/Form"
 import { RadioInput } from "./RadioInput"
 import { Checkbox } from "./Checkbox"
+import { IForm } from "modules/forms/Form"
 
 export const Form: <T extends FieldValues>(props: IForm<T>) => JSX.Element = <
   T extends FieldValues

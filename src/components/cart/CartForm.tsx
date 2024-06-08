@@ -1,6 +1,6 @@
 import { Form } from "@components/forms/Form"
 import { cartAddress, cartDelivery, cartPersonalInfo } from "@data/forms"
-import { ICartForm } from "modules/CartForms"
+import { ICartForm } from "modules/cart/CartForms"
 import { FC } from "react"
 import { UseFormRegister } from "react-hook-form"
 

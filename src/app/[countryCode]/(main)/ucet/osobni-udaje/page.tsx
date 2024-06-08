@@ -3,7 +3,7 @@
 import { AccountHeader } from "@components/account/AccountHeader"
 import { AccountTitle } from "@components/account/AccountTitle"
 import { UserInfoFormsContainer } from "@components/account/UserInfoFormsContainer"
-import { IUserInfo } from "../../../../../modules/UserInfo"
+import { IUserInfo } from "../../../../../modules/account/UserInfo"
 import { NextPage } from "next"
 
 const PersonalInfo: NextPage = () => {
