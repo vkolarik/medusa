@@ -10,16 +10,7 @@ export const CustomProductVariants: FC<IProductVariants> = ({
   if (!variants) return null
 
   const handleSelection = (size: string) => {
-    if (!isAvailable(size)) return
     createQueryString("variant", size)
-  }
-
-  // TODO
-  const isAvailable = (variant: string) => {
-    // if (!variants) return false
-    // //console.log("size "+size+", variants "+variants)
-    // return variants.some((variant: IProductVariant) => variant.title.toUpperCase() === size.toUpperCase())
-    return true
   }
 
   return (
@@ -35,15 +26,10 @@ export const CustomProductVariants: FC<IProductVariants> = ({
             <p
               key={key}
               onClick={() => handleSelection(variant.title)}
-              className={`text-center p-0.5 border border-lightGrey leading-none ${
-                isAvailable(variant.title) ? "text-black" : "opacity-75 grey"
-              } uppercase lg:text-[14px] text-[12px] duration-300 ${
-                isAvailable(variant.title)
-                  ? `${!hidden ? "cursor-pointer hover:bg-blueHover hover:text-white" : ""}`
-                  : ""
-              }
+              className={`text-center p-0.5 border border-lightGrey leading-none text-black uppercase lg:text-[14px]
+                 text-[12px] duration-300 ${!hidden ? "cursor-pointer hover:bg-blueHover hover:text-white" : ""}
                  ${
-                   getQueryString("variant") === variant.title
+                   getQueryString("variant") === variant?.title && !hidden
                      ? "bg-blue text-white"
                      : ""
                  }`}

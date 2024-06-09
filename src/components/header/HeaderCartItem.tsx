@@ -19,7 +19,7 @@ export const HeaderCartItem: FC<{ item: LineItem, price: string}> = ({ item, pri
       <div className="space-y-1">
         <Link href={"/produkty/"+item.variant.product.handle}>{truncate(item.title, 25)}</Link>
         <p className="small">Počet: {item.quantity} ks</p>
-        <p className="small">Velikost: {item.variant.title.toUpperCase()}</p>
+        <p className="small">Velikost: {item.variant?.title?.toUpperCase()}</p>
         <p className="small font-semibold">Cena: {price.slice(4, -3).replace(",", "")} Kč</p>
       </div>
 

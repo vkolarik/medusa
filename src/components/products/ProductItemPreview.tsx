@@ -32,6 +32,8 @@ export const ProductItemPreview: FC<{ product: IProductPreview }> = ({
           layout="fill"
           className="object-cover object-top duration-500"
           loading="lazy"
+          placeholder="blur"
+          blurDataURL={image}
         />
         <CustomProductVariants variants={variants} hidden={true} />
       </div>

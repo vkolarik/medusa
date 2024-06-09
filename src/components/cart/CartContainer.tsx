@@ -8,30 +8,47 @@ import { CartForm } from "@components/cart/CartForm"
 import { AccountStatus } from "modules/account/AccountStatus"
 import { useAppContext } from "@context/MainContext"
 import { ProductSummary } from "@components/products/ProductSummary"
-import { calculateTotalPrice, formatAmount } from "@utils/prices"
-import { ICartForm } from "modules/cart/CartForms"
+import { calculateTotalPrice } from "@utils/prices"
 import { useForm } from "react-hook-form"
 import { SubmitButton } from "@components/SubmitButton"
 import { EmptyCart } from "@components/cart/EmptyCart"
 import { Loading } from "@components/Loading"
 import { getCartAction } from "@utils/apiActions/actions"
-import { Cart, LineItem } from "@medusajs/medusa"
+import { AddressPayload, Cart, Customer, LineItem } from "@medusajs/medusa"
 import { useFormState } from "react-dom"
 import { getCart } from "@utils/apiActions/cart"
-import { RegionInfo } from "medusa-react"
+import { addressInputs } from "@data/forms"
+import { useRouter } from "next/navigation"
+import { ICartForm } from "modules/cart/CartForms"
+import { finishOrder, setPaymentMethod } from "@utils/apiActions/checkout"
 
 type Props = {
   startCart: null | Omit<Cart, "refundable_amount" | "refunded_total">
+  customer: Omit<Customer, "password_hash"> | null
 }
 
-const CartContainer: FC<Props> = ({ startCart }) => {
+const CartContainer: FC<Props> = ({ startCart, customer }) => {
+  const [message, formAction] = useFormState(finishOrder, {
+    cartId: startCart?.id as string
+  })
   const deliveryPrice = 125
   const { setCartProductsSize, loading, setLoading } = useAppContext()
   const [btnLoading, setBtnLoading] = useState<boolean>(false)
-  const [isDisabled, setIsDisabled] = useState<boolean>(false)
-  // TODO: jestli je uzivatel prihlasen, nastavit na active misto guest
+  const router = useRouter()
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm<ICartForm>()
+
+  const [cart, dispatchCart] = useFormState(() => getCartAction(), startCart)
+  const [updated, setUpdated] = useState<number>(0)
+  const [cartItems, setCartItems] = useState<LineItem[]>([])
+
   const [accountStatus, setAccountStatus] = useState<AccountStatus>(
-    AccountStatus.GUEST
+    customer ? AccountStatus.ACTIVE : AccountStatus.GUEST
   )
 
   const breadcrumbs: ILink[] = [
@@ -41,23 +58,28 @@ const CartContainer: FC<Props> = ({ startCart }) => {
     },
   ]
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ICartForm>()
+  useEffect(() => {
+    setLoading(true)
 
-  const [cart, dispatchCart] = useFormState(
-    () => getCartAction(),
-    startCart,
-  )
-  const [updated, setUpdated] = useState<number>(0)
-  const [cartItems, setCartItems] = useState<LineItem[]>([])
+    const updatePayment = async () => {
+      await updatePaymentMethod("stripe");
+    };
+  
+    updatePayment();
+  }, [])
 
   const onSubmit: any = async (data: ICartForm, e: Event) => {
     e.preventDefault()
-    setIsDisabled(true)
     setBtnLoading(true)
+
+    const formData = new FormData()
+    Object.entries(data).forEach(([key, value]) => {
+      formData.append(key, value)
+    })
+
+    finishOrder({
+      cartId: cart?.id as string
+    }, formData)
 
     // toast.success('Registrace byla úspěšná')
     // toast.error('ddddddd')
@@ -66,33 +88,72 @@ const CartContainer: FC<Props> = ({ startCart }) => {
   }
 
   useEffect(() => {
+    if (message !== null) console.log(message)
+  }, [message])
+
+  useEffect(() => {
+    if (!customer) return;
+    const dataEntries = Object.entries(customer);
+
+    dataEntries.forEach(([key, value], index) => {
+      // If the key is "billing_address", process the address
+      if (key === "billing_address") {
+        if (value) {
+          // If the address is stored, set values
+          const address = value as AddressPayload;
+          Object.entries(address).forEach(([addressKey, addressValue]) => {
+            setValue(addressKey as keyof ICartForm, addressValue ?? "-");
+          });
+        } else {
+          // If the address is not stored, show "-"
+          addressInputs.map(a => a.id).forEach((id) => {
+            setValue(id as keyof ICartForm, "-");
+          });
+        }
+      } else {
+        // Set value for the other keys
+        setValue(key as keyof ICartForm, (value ?? "-") as string);
+      }
+    });
+  }, [customer, setValue]);
+
+  useEffect(() => {
     const fetchCart = async () => {
       try {
-        let currentCart = await getCart(cart?.id ?? "");
+        let currentCart = await getCart(cart?.id ?? "")
         const items = currentCart?.items ?? []
-        setCartItems(items);  
-        setCartProductsSize(items?.reduce((acc, item) => {
-          return acc + (item.quantity || 0);
-        }, 0) || 0)
+        setCartItems(items)
+        setCartProductsSize(
+          items?.reduce((acc, item) => {
+            return acc + (item.quantity || 0)
+          }, 0) || 0
+        )
+        setLoading(false)
       } catch (error) {
-        console.error("Error fetching cart:", error);
+        console.error("Error fetching cart:", error)
+        setLoading(false)
+      }
+    }
+
+    fetchCart()
+  }, [cart?.id, updated])
+
+  const payment = watch("payment");
+
+  useEffect(() => {
+    const updatePayment = async () => {
+      if (payment) {
+        await updatePaymentMethod(payment);
       }
     };
-
-    fetchCart();
-  }, [cart?.id, updated]);
-
-  const getFormattedPrice = (price: number): number => {
-    const p = formatAmount({
-      amount: price || 0,
-      region: cart?.region as RegionInfo,
-      includeTaxes: false,
-    })
-
-    console.log((p.slice(4, -3).replace(",", "")))
-    return Number((p.slice(4, -3).replace(",", "")))
-  }
   
+    updatePayment();
+  }, [payment]);  
+
+  const updatePaymentMethod = async (value: string) => {
+    await setPaymentMethod(value);
+  };
+
   return (
     <main className="page max-width w-full">
       {loading && <Loading />}
@@ -105,31 +166,28 @@ const CartContainer: FC<Props> = ({ startCart }) => {
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className="h-full lg:border-r border-lightGrey py-5 xl:pr-10 pr-5 lg:w-1/2 w-full">
-              <div className="flex items-center gap-3">
-                <button
-                  className={`${
-                    accountStatus === AccountStatus.GUEST
-                      ? "button button--small"
-                      : "button button--light button--small"
-                  }`}
-                  onClick={() => setAccountStatus(AccountStatus.GUEST)}
-                  type="button"
-                >
-                  Pokračovat bez přihlášení
+              {!customer ? (
+                <div className="flex items-center gap-3">
+                  <button
+                    className="button button--small"
+                    onClick={() => setAccountStatus(AccountStatus.GUEST)}
+                    type="button"
+                  >
+                    Pokračovat bez přihlášení
+                  </button>
+                  <button
+                    className="button button--light button--small"
+                    onClick={() => router.push(ROUTES.LOGIN)}
+                    type="button"
+                  >
+                    Přihlásit se
+                  </button>
+                </div>
+              ) : (
+                <button className="button button--small pointer-events-none" type="button">
+                  Přihlášený uživatel
                 </button>
-                {/* TODO: pokud je uziv. prihlaseny, nezobrazovat text prihlasit se, ale neco jineho */}
-                <button
-                  className={`${
-                    accountStatus === AccountStatus.ACTIVE
-                      ? "button button--small"
-                      : "button button--light button--small"
-                  }`}
-                  onClick={() => setAccountStatus(AccountStatus.ACTIVE)}
-                  type="button"
-                >
-                  Přihlásit se
-                </button>
-              </div>
+              )}
 
               <CartForm errors={errors} register={register} />
             </div>
@@ -182,7 +240,6 @@ const CartContainer: FC<Props> = ({ startCart }) => {
 
               <div className="flex justify-end lg:mt-0 mt-8">
                 <SubmitButton
-                  isDisabled={isDisabled}
                   loading={btnLoading}
                   text="Dokončit objednávku"
                 />

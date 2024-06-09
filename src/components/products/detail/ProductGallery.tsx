@@ -5,6 +5,7 @@ import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen"
 import Slideshow from "yet-another-react-lightbox/plugins/slideshow"
 import "yet-another-react-lightbox/styles.css"
 import Image from "next/image"
+import placeholderImg from "../../../../public/images/placeholder.png"
 
 export const ProductGallery: FC<{ images: string[]; title: string }> = ({
   images,

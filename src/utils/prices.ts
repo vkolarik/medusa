@@ -32,7 +32,7 @@ export const formatAmount = ({
 
   return convertToLocale({
     amount: taxAwareAmount,
-    currency_code: region.currency_code,
+    currency_code: region?.currency_code,
     ...rest,
   })
 }

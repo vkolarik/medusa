@@ -8,8 +8,6 @@ export const CartForm: FC<{
   register: UseFormRegister<ICartForm>
   errors: any
 }> = ({ register, errors }) => {
-  // TODO: zobrazovat form, kdyz je uziv. prihlaseny? napr. nasetovat mu ty hodnoty do formu a dat tam readonly?
-
   return (
     <div className="basic-form py-8 basic-form--cart mt-8 w-full">
       <h2 className="uppercase font-medium mb-1 lg:text-[18px] md:text-[16px] text-[15px]">

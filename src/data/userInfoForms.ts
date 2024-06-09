@@ -7,14 +7,13 @@ export const userInfoForms: IUserInfoForm[] = [
   {
     icon: userIcon.src,
     values: [
-      "name",
-      "surname",
-      "state",
-      "street",
-      "cadastral_number",
-      "city",
+      "first_name",
+      "last_name",
       "phone",
-      "zip_code",
+      "city",
+      "postal_code",
+      "address_1",
+      "province"
     ],
   },
   {
@@ -23,6 +22,6 @@ export const userInfoForms: IUserInfoForm[] = [
   },
   {
     icon: passwordIcon.src,
-    values: ["password"],
+    values: ["new_password", "old_password", "confirm_password"],
   },
 ]

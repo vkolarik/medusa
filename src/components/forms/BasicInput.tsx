@@ -19,19 +19,23 @@ export const BasicInput: <T extends FieldValues>(
   readOnly,
 }: IBasicInput<T>) => {
   const error = errors[id]
+  const showLabel = type !== InputType.PASSWORD || !readOnly || id === "new_password";
+  const labelContent = type !== InputType.PASSWORD || !readOnly ? placeholder : "Heslo";
 
   return (
-    <div className={`${noPaddingOnMobile ? "md:" : ""}mb-4 form__input`}>
-      <label htmlFor={id}>{placeholder}</label>
+    <div className={`${noPaddingOnMobile ? "md:" : ""} form__input ${showLabel ? "mb-4" : ""}`}>
+      {showLabel && (
+        <label htmlFor={id}>{labelContent}</label>
+      )}
 
       <input
-        className={`${error ? "mb-3" : "mb-0"}`}
+        className={`${error ? "mb-3" : "mb-0"} ${type === InputType.PASSWORD && readOnly ? "hidden opacity-0 h-0" : ""}`}
         id={id}
         type={type}
         placeholder={placeholder}
         readOnly={readOnly}
         {...register(id as Path<T>, {
-          required,
+          required: readOnly ? false : required,
           pattern,
           maxLength: max,
           minLength: min,

@@ -5,11 +5,10 @@ import { ISigninData } from "modules/Login"
 import { ICartForm } from "modules/cart/CartForms"
 import { IFilterForm } from "modules/forms/FilterForm"
 import { allSizes } from "./sizes"
-import { allColors } from "./colors"
 import { allSorting } from "./sorting"
 import { priceCategories } from "./prices"
 import { IProductCalculator } from "modules/Product"
-import { IUserInfo } from "modules/account/UserInfo"
+import { StorePostCustomersCustomerReq } from "@medusajs/medusa"
 
 export const loginInputs: IGeneralInput<ISigninData>[] = [
   {
@@ -70,7 +69,7 @@ export const registerInputs: IGeneralInput<IRegisterData>[] = [
   },
 ]
 
-export const registerInputs2: IGeneralInput<IRegisterData>[] = [
+export const addressInputs: IGeneralInput<IRegisterData>[] = [
   {
     placeholder: "Město",
     id: "city",
@@ -79,40 +78,37 @@ export const registerInputs2: IGeneralInput<IRegisterData>[] = [
   },
   {
     placeholder: "Ulice",
-    id: "street",
+    id: "address_1",
     required: "Ulice je povinná",
     type: InputType.TEXT,
   },
   {
     placeholder: "Číslo popisné",
-    id: "cadastral_number",
+    id: "province",
     required: "Číslo popisné je povinné",
     type: InputType.TEXT,
   },
   {
     placeholder: "PSČ",
-    id: "zip_code",
+    id: "postal_code",
     required: "PSČ je povinné",
     type: InputType.TEXT,
-  },
-  {
-    placeholder: "Pohlaví",
-    id: "gender",
-    options: [
-      { value: "male", label: "MUŽ" },
-      { value: "female", label: "ŽENA" },
-    ],
-    type: InputType.RADIO,
-  },
+  }
 ]
 
 export const cartPersonalInfo: IGeneralInput<ICartForm>[] = [
   {
-    placeholder: "Jméno a příjmení",
-    id: "name",
+    placeholder: "Jméno",
+    id: "first_name",
     required: "Jméno je povinné",
     type: InputType.TEXT,
-    pattern: /^\S+@\S+$/i,
+    noPaddingOnMobile: true,
+  },
+  {
+    placeholder: "Příjmení",
+    id: "last_name",
+    required: "Příjmení je povinné",
+    type: InputType.TEXT,
     noPaddingOnMobile: true,
   },
   {
@@ -134,14 +130,6 @@ export const cartPersonalInfo: IGeneralInput<ICartForm>[] = [
 
 export const cartAddress: IGeneralInput<ICartForm>[] = [
   {
-    placeholder: "Stát",
-    id: "state",
-    required: "Stát je povinný",
-    type: InputType.SELECT,
-    options: statesData,
-    noPaddingOnMobile: true,
-  },
-  {
     placeholder: "Město",
     id: "city",
     required: "Město je povinné",
@@ -150,30 +138,26 @@ export const cartAddress: IGeneralInput<ICartForm>[] = [
   },
   {
     placeholder: "Ulice",
-    id: "street",
+    id: "address_1",
     required: "Ulice je povinná",
     type: InputType.TEXT,
     noPaddingOnMobile: true,
   },
   {
     placeholder: "Číslo popisné",
-    id: "cadastral_number",
+    id: "province",
     required: "Číslo popisné je povinné",
     type: InputType.TEXT,
     noPaddingOnMobile: true,
   },
   {
     placeholder: "PSČ",
-    id: "zip_code",
+    id: "postal_code",
     required: "PSČ je povinné",
+    pattern: /^[0-9\s]+$/,
     type: InputType.TEXT,
     noPaddingOnMobile: true,
-  },
-  {
-    placeholder: "Poznámka",
-    id: "note",
-    type: InputType.TEXT,
-  },
+  }
 ]
 
 export const cartDelivery: IGeneralInput<ICartForm>[] = [
@@ -215,16 +199,39 @@ export const filterForm: IGeneralInput<IFilterForm>[] = [
   },
 ]
 
-export const personalInfoForm: IGeneralInput<IUserInfo>[] = [
+export const personalInfoForm: IGeneralInput<StorePostCustomersCustomerReq>[] = [
   ...registerInputs,
-  ...registerInputs2,
+  ...addressInputs,
   {
-    placeholder: "Mobil",
-    id: "phone",
-    required: "Mobil je povinný",
-    pattern: /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i,
-    type: InputType.TEXT,
+    placeholder: "Staré heslo",
+    id: "old_password",
+    required: "Heslo je povinné",
+    type: InputType.PASSWORD,
+    min: 5,
+    max: 40,
+    minLengthErr: "Heslo musí mít alespoň 5 znaků",
+    maxLengthErr: "Heslo musí mít maximálně 40 znaků",
   },
+  {
+    placeholder: "Nové heslo",
+    id: "new_password",
+    required: "Heslo je povinné",
+    type: InputType.PASSWORD,
+    min: 5,
+    max: 40,
+    minLengthErr: "Heslo musí mít alespoň 5 znaků",
+    maxLengthErr: "Heslo musí mít maximálně 40 znaků",
+  },
+  {
+    placeholder: "Heslo znovu",
+    id: "confirm_password",
+    required: "Heslo je povinné",
+    type: InputType.PASSWORD,
+    min: 5,
+    max: 40,
+    minLengthErr: "Heslo musí mít alespoň 5 znaků",
+    maxLengthErr: "Heslo musí mít maximálně 40 znaků",
+  }
 ]
 
 export const productDetailCalculator: IGeneralInput<IProductCalculator>[] = [

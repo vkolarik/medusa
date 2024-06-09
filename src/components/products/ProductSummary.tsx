@@ -44,7 +44,7 @@ export const ProductSummary: FC<IProductSummary> = ({
             {truncate(title, 50)}
           </p>
           <div className="flex 2xl:gap-12 md:gap-6 gap-1 md:flex-row flex-col">
-            <p className="small">Velikost: {variant.title?.toUpperCase()}</p>
+            <p className="small">Velikost: {variant?.title?.toUpperCase()}</p>
             <p className="small">Množství: {quantity} ks</p>
             <p className="block md:hidden font-semibold xl:text-[18px] text-[13px] w-full">
               Cena:{" "}

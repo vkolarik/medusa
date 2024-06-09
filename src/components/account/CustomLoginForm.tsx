@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { FC, useEffect } from "react"
+import { FC, useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import * as ROUTES from "@constants/routes"
 import { ISigninData } from "modules/Login"
@@ -15,11 +15,28 @@ import { logCustomerIn } from "@utils/apiActions/login"
 
 export const CustomLoginForm: FC = () => {
   const [message, formAction] = useFormState(logCustomerIn, null)
+  const [loadingBtn, setLoadingBtn] = useState<boolean>(false)
   
   const {
     register,
-    formState: { errors }
+    formState: { errors },
+    handleSubmit
   } = useForm<ISigninData>()
+
+  const onSubmit: any = async (
+    data: ISigninData,
+    e: Event
+  ) => {
+    e.preventDefault()
+    setLoadingBtn(true)
+
+    const formData = new FormData()
+    Object.entries(data).forEach(([key, value]) => {
+      formData.append(key, value)
+    })
+
+    logCustomerIn(null, formData)
+  }
 
   useEffect(() => {
     if (message !== null) handleMessage(message)
@@ -27,7 +44,7 @@ export const CustomLoginForm: FC = () => {
 
   return (
     <main className="max-width login md:py-36 py-12">
-      <form className="basic-form" action={formAction}>
+      <form className="basic-form" onSubmit={handleSubmit(onSubmit)}>
         <div className="w-full mb-4 md:mb-8 text-center">
           <h1 className="md:mb-1 text-[22px] md:text-[25px] uppercase">
             Přihlásit se
@@ -50,7 +67,8 @@ export const CustomLoginForm: FC = () => {
       </p>
 
       <div className="ease-in duration-200 mt-5 md:mt-8 flex justify-center">
-        <SubmitButton text={"Přihlásit se"} />
+        <SubmitButton text={"Přihlásit se"}
+          loading={loadingBtn} />
       </div>
 
 

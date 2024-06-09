@@ -7,17 +7,34 @@ import { Form } from "@components/forms/Form"
 import { useForm } from "react-hook-form"
 import { StorePostCustomersReq } from "@medusajs/medusa"
 import { useFormState } from "react-dom"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { handleMessage } from "@utils/errors"
 import { signUp } from "@utils/apiActions/signUp"
 
 const CustomRegisterForm = () => {
   const [message, formAction] = useFormState(signUp, null)
+  const [loadingBtn, setLoadingBtn] = useState<boolean>(false)
   
   const {
     register,
-    formState: { errors }
+    formState: { errors },
+    handleSubmit
   } = useForm<StorePostCustomersReq>()
+
+  const onSubmit: any = async (
+    data: StorePostCustomersReq,
+    e: Event
+  ) => {
+    e.preventDefault()
+    setLoadingBtn(true)
+
+    const formData = new FormData()
+    Object.entries(data).forEach(([key, value]) => {
+      formData.append(key, value)
+    })
+
+    signUp(null, formData)
+  }
 
   useEffect(() => {
     if (message !== null) handleMessage(message)
@@ -25,7 +42,7 @@ const CustomRegisterForm = () => {
 
   return (
     <form className="basic-form basic-form--register"
-    action={formAction}>
+      onSubmit={handleSubmit(onSubmit)}>
       <div className="w-full mb-4 md:mb-8 text-center">
         <h1 className="md:mb-1 text-[22px] md:text-[25px] uppercase">
           Registrace
@@ -52,7 +69,7 @@ const CustomRegisterForm = () => {
       </div>
 
       <div className="flex justify-center">
-        <SubmitButton isDisabled={false} text={"Registrovat"} />
+        <SubmitButton loading={loadingBtn} text={"Registrovat"} />
       </div>
     </form>
   )

@@ -6,4 +6,4 @@ nutno doresit:
 
 - odstranit TODO v projektu
 - oddelat sablonu
-- images loading
+- otestovat historii objednavek v profilu
