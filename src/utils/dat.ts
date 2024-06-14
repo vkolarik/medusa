@@ -1,7 +1,9 @@
-function formatDate(date: Date) {
-  const day = date.getDate().toString().padStart(2, '0');
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const year = date.getFullYear();
+export function formatDate(input: string): string {
+  const date = new Date(input);
+
+  const day = date.getUTCDate();
+  const month = date.getUTCMonth() + 1; // getUTCMonth() is zero-based
+  const year = date.getUTCFullYear();
 
   return `${day}.${month}.${year}`;
 }

@@ -1,5 +1,8 @@
+"use client"
+
 import { FC, useEffect, useState } from "react";
 import { FaExclamationCircle } from "react-icons/fa";
+
 
 export const NoData: FC<{ subtitle?: string }> = ({ subtitle }) => {
   const [noDataSubtitle, setNoDataSubtitle] = useState("")

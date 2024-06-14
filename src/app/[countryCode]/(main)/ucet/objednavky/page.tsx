@@ -24,6 +24,7 @@ const Orders: NextPage = async () => {
         title="Objednávky"
         subtitle="Na této stránce si můžete zobrazit Vaše staré objednávky."
       />
+
       <AccountOrdersContainer data={orders ?? []} />
     </main>
   )
