@@ -33,6 +33,7 @@ const CartContainer: FC<Props> = ({ startCart, customer }) => {
   })
   const deliveryPrice = 125
   const { setCartProductsSize, loading, setLoading } = useAppContext()
+
   const [btnLoading, setBtnLoading] = useState<boolean>(false)
   const router = useRouter()
   const {
@@ -44,7 +45,8 @@ const CartContainer: FC<Props> = ({ startCart, customer }) => {
   } = useForm<ICartForm>()
 
   const [cart, dispatchCart] = useFormState(() => getCartAction(), startCart)
-  const [updated, setUpdated] = useState<number>(0)
+  //const [updated, setUpdated] = useState<number>(0)
+  const { updated, setUpdated } = useAppContext()
   const [cartItems, setCartItems] = useState<LineItem[]>([])
 
   const [accountStatus, setAccountStatus] = useState<AccountStatus>(
@@ -154,11 +156,20 @@ const CartContainer: FC<Props> = ({ startCart, customer }) => {
     await setPaymentMethod(value);
   };
 
+
+  const [cartSize, setCartSize] = useState(0);
+
+  useEffect(() => {
+    // Calculate the total number of items in the cart
+    const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+    setCartSize(totalItems);
+  }, [cartItems]);
+
   return (
     <main className="page max-width w-full">
       {loading && <Loading />}
 
-      {cart && cart.items.length > 0 ? (
+      {cart && cart.items.length > 0 && cartSize > 0 ? (
         <>
           <PageHeader title={"Košík"} breadcrumbs={breadcrumbs} />
           <form
@@ -203,7 +214,7 @@ const CartContainer: FC<Props> = ({ startCart, customer }) => {
                         canBeDeleted={true}
                         setLoading={setLoading}
                         cart={cart}
-                        setUpdated={() => setUpdated(updated + 1)}
+                        setUpdated={() => setUpdated(true)}
                       />
                     )
                   })}

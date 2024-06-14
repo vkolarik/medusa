@@ -17,7 +17,6 @@ export const AccountOrdersContainer: FC<{ data: Order[] }> = ({
     <div className="lg:max-h-[90vh] lg:overflow-y-auto lg:pr-5 relative min-h-[15rem]">
       {data.length > 0 ? data.map((order: Order, key: number) => {
         console.log(order)
-        // const { cart, items } = item
         return (
           <div key={key}>
             <div className="flex justify-between lg:py-2 py-1">
@@ -76,14 +75,6 @@ export const AccountOrdersContainer: FC<{ data: Order[] }> = ({
                     <p className="md:block hidden font-semibold text-right xl:text-[18px] text-[14px] whitespace-nowrap">
                       {formatedPrice}
                     </p>
-                    {/*{canBeDeleted && setLoading && (*/}
-                    {/*  <RemoveIcon*/}
-                    {/*    cartId={item.cart_id}*/}
-                    {/*    lineId={item.id}*/}
-                    {/*    setLoading={setLoading}*/}
-                    {/*    setUpdated={setUpdated}*/}
-                    {/*  />*/}
-                    {/*)}*/}
                   </div>
                 </li>
                 )
@@ -91,9 +82,7 @@ export const AccountOrdersContainer: FC<{ data: Order[] }> = ({
             </div>
           </div>
         )
-      }) : <p>sikokot</p>}
+      }) : <NoData subtitle="Musíte nejprve udělat objednávku" />}
     </div>
   )
 }
-
-// <NoData subtitle="Musíte nejprve udělat objednávku" />
