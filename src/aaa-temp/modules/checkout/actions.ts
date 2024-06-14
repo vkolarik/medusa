@@ -176,6 +176,8 @@ export async function setPaymentMethod(providerId: string) {
   if (!cartId) throw new Error("No cartId cookie found")
 
   try {
+    console.log("-------- setPaymentMethod ----------")
+    console.log("cartId: "+cartId+", providerId: "+providerId)
     const cart = await setPaymentSession({ cartId, providerId })
     revalidateTag("cart")
     return cart

@@ -45,7 +45,6 @@ const CartContainer: FC<Props> = ({ startCart, customer }) => {
   } = useForm<ICartForm>()
 
   const [cart, dispatchCart] = useFormState(() => getCartAction(), startCart)
-  //const [updated, setUpdated] = useState<number>(0)
   const { updated, setUpdated } = useAppContext()
   const [cartItems, setCartItems] = useState<LineItem[]>([])
 
@@ -60,15 +59,23 @@ const CartContainer: FC<Props> = ({ startCart, customer }) => {
     },
   ]
 
-  useEffect(() => {
+
+
+  /*const updatePayment = async () => {
+    await updatePaymentMethod("manual");
+  };
+
+  updatePayment();*/
+
+  /*useEffect(() => {
     setLoading(true)
 
     const updatePayment = async () => {
-      await updatePaymentMethod("stripe");
+      await updatePaymentMethod("manual");
     };
   
     updatePayment();
-  }, [])
+  }, [setLoading])*/
 
   const onSubmit: any = async (data: ICartForm, e: Event) => {
     e.preventDefault()
@@ -79,9 +86,15 @@ const CartContainer: FC<Props> = ({ startCart, customer }) => {
       formData.append(key, value)
     })
 
+    console.log(formData)
+    console.log("----------- try finish order -----------")
+    console.log("----------- "+cart?.payment_session+" -----------")
+
     finishOrder({
       cartId: cart?.id as string
     }, formData)
+
+    router.push('/kosik/dekujeme', { scroll: false })
 
     // toast.success('Registrace byla úspěšná')
     // toast.error('ddddddd')
@@ -157,7 +170,7 @@ const CartContainer: FC<Props> = ({ startCart, customer }) => {
   };
 
 
-  const [cartSize, setCartSize] = useState(0);
+  const [cartSize, setCartSize] = useState(cartItems.length || 0);
 
   useEffect(() => {
     // Calculate the total number of items in the cart

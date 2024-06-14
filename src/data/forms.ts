@@ -167,11 +167,11 @@ export const cartDelivery: IGeneralInput<ICartForm>[] = [
     type: InputType.RADIO,
     options: [
       {
-        value: "card",
+        value: "manual",
         label: "platební karta",
       },
       {
-        value: "delivery",
+        value: "manual",
         label: "dobírka",
       },
     ],

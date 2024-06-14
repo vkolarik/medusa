@@ -6,15 +6,28 @@ import { updateCart } from "./cart"
 import { revalidateTag } from "next/cache"
 import { redirect } from "next/navigation"
 import { getMedusaHeaders, medusaClient } from "@utils/config"
+import { createPaymentSessions } from "@lib/data"
 
 export async function finishOrder(currentState: {
   cartId: string
 }, formData: FormData) {
   try {
+
+    console.log("----------  create_payment_session   ----------")
+    await createPaymentSessions(currentState.cartId)
+    console.log("----------  setting address  ----------")
     await setAddresses(currentState, formData)
+    console.log("----------  setting address  ----------")
+    await setPaymentMethod("manual")
+    console.log("----------  setting shipping method  ----------")
+    await setShippingMethod("so_01HR5E95GBZ4YV1B4Q1XTH0B85")
+    console.log("----------  completing cart  ----------")
     await completeCart(currentState.cartId)
+    console.log("----------  placing order  ----------")
     await placeOrder()
+    console.log("----------  order placed  ----------")
   } catch (error: any) {
+    console.log("----------  error: "+error.toString()+"  ----------")
     return error.toString()
   }
 }
@@ -73,9 +86,11 @@ export async function setPaymentMethod(providerId: string) {
 
   try {
     const cart = await setPaymentSession({ cartId, providerId })
+    console.log("-------- payment session set ----------")
     revalidateTag("cart")
     return cart
   } catch (error: any) {
+    console.log("-------- payment session error: "+error.toString())
     throw error
   }
 }
@@ -97,7 +112,6 @@ export async function placeOrder() {
   if (cart?.type === "order") {
     const countryCode = cart.data.shipping_address?.country_code?.toLowerCase()
     cookies().set("_medusa_cart_id", "", { maxAge: -1 })
-    redirect(`/${countryCode}/order/confirmed/${cart?.data.id}`)
   }
 
   return cart
