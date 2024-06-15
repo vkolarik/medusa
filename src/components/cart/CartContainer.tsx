@@ -60,23 +60,6 @@ const CartContainer: FC<Props> = ({ startCart, customer }) => {
   ]
 
 
-
-  /*const updatePayment = async () => {
-    await updatePaymentMethod("manual");
-  };
-
-  updatePayment();*/
-
-  /*useEffect(() => {
-    setLoading(true)
-
-    const updatePayment = async () => {
-      await updatePaymentMethod("manual");
-    };
-  
-    updatePayment();
-  }, [setLoading])*/
-
   const onSubmit: any = async (data: ICartForm, e: Event) => {
     e.preventDefault()
     setBtnLoading(true)

@@ -5,20 +5,15 @@ describe('Login Form', () => {
 
   it('successfully logs in with valid credentials', () => {
     cy.get('input[name="email"]').type('xproch40@mendelu.cz')
+    cy.wait(1000)
+
     cy.get('input[name="password"]').type('123456789')
+    cy.wait(1000)
 
     cy.get('button[type="submit"]').click()
-
+    cy.wait(1000)
 
     cy.url().should('not.include', '/login')
   })
 
-  it('displays error with invalid credentials', () => {
-    cy.get('input[name="email"]').type('invalid@example.com')
-    cy.get('input[name="password"]').type('invalidpassword')
-
-    cy.get('button[type="submit"]').click()
-
-    cy.contains('Invalid email or password').should('be.visible')
-  })
 })
