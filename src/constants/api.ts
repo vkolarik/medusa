@@ -126,10 +126,7 @@ export const MedusaApi = {
       return null
     }
 
-    // console.log(product)
-    // console.log("-------------------")
 
-    //TODO fetch everything in one request
 
     const pricedProduct: PricedProduct | null = await retrievePricedProductById(
       {
@@ -142,14 +139,13 @@ export const MedusaApi = {
       return null
     }
 
-    // console.log(pricedProduct)
+
 
     const { cheapestPrice } = getProductPrice({
       product: pricedProduct,
       region: region,
     })
 
-    // console.log(cheapestPrice)
 
     const r: IProductDetail = {
       id: parseInt(product.id!!),

@@ -46,7 +46,7 @@ export async function setAddresses(currentState: unknown, formData: FormData) {
       company: "",
       postal_code: formData.get("postal_code"),
       city: formData.get("city"),
-      country_code: "cz", // TODO: use dynamic
+      country_code: "cz",
       province: formData.get("province"),
       phone: formData.get("phone"),
     },
