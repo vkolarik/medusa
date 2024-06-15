@@ -96,10 +96,7 @@ const CartContainer: FC<Props> = ({ startCart, customer }) => {
 
     router.push('/kosik/dekujeme', { scroll: false })
 
-    // toast.success('Registrace byla úspěšná')
-    // toast.error('ddddddd')
-    // setBtnText('Přihlásit se')
-    // setIsDisabled(false)
+
   }
 
   useEffect(() => {
