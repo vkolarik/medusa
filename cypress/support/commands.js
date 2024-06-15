@@ -7,7 +7,7 @@
 // commands please read more here:
 // https://on.cypress.io/custom-commands
 // ***********************************************
-//TODO tady dám přihlášení až bude ready.
+
 //
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
