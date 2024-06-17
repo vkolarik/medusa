@@ -59,7 +59,6 @@ const CartContainer: FC<Props> = ({ startCart, customer }) => {
     },
   ]
 
-
   const onSubmit: any = async (data: ICartForm, e: Event) => {
     e.preventDefault()
     setBtnLoading(true)
