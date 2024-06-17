@@ -3,8 +3,8 @@
 import { StorePostCartsCartReq } from "@medusajs/medusa"
 import { cookies } from "next/headers"
 import { updateCart } from "./cart"
-import { revalidateTag } from "next/cache"
-import { redirect } from "next/navigation"
+//import { revalidateTag } from "next/cache"
+//import { redirect } from "next/navigation"
 import { getMedusaHeaders, medusaClient } from "@utils/config"
 import { createPaymentSessions } from "@lib/data"
 
@@ -57,7 +57,7 @@ export async function setAddresses(currentState: unknown, formData: FormData) {
 
   try {
     await updateCart(cartId, data)
-    revalidateTag("cart")
+    //revalidateTag("cart")
   } catch (error: any) {
     return error.toString()
   }
@@ -74,7 +74,7 @@ export async function setShippingMethod(shippingMethodId: string) {
 
   try {
     await addShippingMethod({ cartId, shippingMethodId })
-    revalidateTag("cart")
+    //revalidateTag("cart")
   } catch (error: any) {
     throw error
   }
@@ -87,7 +87,7 @@ export async function setPaymentMethod(providerId: string) {
   try {
     const cart = await setPaymentSession({ cartId, providerId })
     console.log("-------- payment session set ----------")
-    revalidateTag("cart")
+    //revalidateTag("cart")
     return cart
   } catch (error: any) {
     console.log("-------- payment session error: "+error.toString())
@@ -104,7 +104,7 @@ export async function placeOrder() {
 
   try {
     cart = await completeCart(cartId)
-    revalidateTag("cart")
+    //revalidateTag("cart")
   } catch (error: any) {
     throw error
   }
