@@ -1,48 +1,16 @@
 "use client"
 
-import Link from "next/link"
-import { registerInputs as registerInputs } from "@data/forms"
-import { SubmitButton } from "@components/SubmitButton"
-import { Form } from "@components/forms/Form"
-import { useForm } from "react-hook-form"
-import { StorePostCustomersReq } from "@medusajs/medusa"
 import { useFormState } from "react-dom"
-import { useEffect, useState } from "react"
-import { handleMessage } from "@utils/errors"
+
 import { signUp } from "@utils/apiActions/signUp"
+import Link from "next/link"
+import { SubmitButton } from "@components/SubmitButton"
 
 const CustomRegisterForm = () => {
   const [message, formAction] = useFormState(signUp, null)
-  const [loadingBtn, setLoadingBtn] = useState<boolean>(false)
-  
-  const {
-    register,
-    formState: { errors },
-    handleSubmit
-  } = useForm<StorePostCustomersReq>()
-
-  const onSubmit: any = async (
-    data: StorePostCustomersReq,
-    e: Event
-  ) => {
-    e.preventDefault()
-    setLoadingBtn(true)
-
-    const formData = new FormData()
-    Object.entries(data).forEach(([key, value]) => {
-      formData.append(key, value)
-    })
-
-    signUp(null, formData)
-  }
-
-  useEffect(() => {
-    if (message !== null) handleMessage(message)
-  }, [message])
 
   return (
-    <form className="basic-form basic-form--register"
-      onSubmit={handleSubmit(onSubmit)}>
+    <form className="basic-form basic-form--register" action={formAction}>
       <div className="w-full mb-4 md:mb-8 text-center">
         <h1 className="md:mb-1 text-[22px] md:text-[25px] uppercase">
           Registrace
@@ -52,11 +20,74 @@ const CustomRegisterForm = () => {
         </p>
       </div>
 
-      <Form data={registerInputs} errors={errors} register={register} />
+      <div className="w-full form__input">
+        <label htmlFor="first_name">Jméno</label>
+
+        <input
+          id="first_name"
+          type="text"
+          placeholder="Jméno"
+          name="first_name"
+          required
+          autoComplete="given-name"
+        />
+      </div>
+
+      <div className="w-full form__input">
+        <label htmlFor="last_name">Příjmení</label>
+
+        <input
+          id="last_name"
+          type="text"
+          placeholder="Příjmení"
+          name="last_name"
+          required
+          autoComplete="family-name"
+        />
+      </div>
+
+      <div className="form__input">
+        <label htmlFor="email">Email</label>
+
+        <input
+          id="email"
+          placeholder="Email"
+          name="email"
+          required
+          type="email"
+          autoComplete="email"
+        />
+      </div>
+
+      <div className="form__input">
+        <label htmlFor="phone">Telefon</label>
+
+        <input
+          id="phone"
+          placeholder="Telefon"
+          name="phone"
+          type="tel"
+          autoComplete="tel"
+        />
+      </div>
+
+      <div className="form__input">
+        <label htmlFor="password">Heslo</label>
+
+        <input
+          id="password"
+          placeholder="Heslo"
+          name="password"
+          required
+          type="password"
+          autoComplete="new-password"
+        />
+      </div>
+
+      {message && <p>{message}</p>}
 
       <div className="my-4">
-        <p>
-          Vytvořením účtu souhlasíte s{" "}
+        <p>Vytvořením účtu souhlasíte s{" "}
           <Link href="/gdpr" className="underline">
             GDPR
           </Link>{" "}
@@ -64,13 +95,13 @@ const CustomRegisterForm = () => {
           <Link href="/obchodni-podminky" className="underline">
             obchodními podmínkami
           </Link>
-          .
-        </p>
+          .</p>
       </div>
 
       <div className="flex justify-center">
-        <SubmitButton loading={loadingBtn} text={"Registrovat"} />
+        <SubmitButton isDisabled={false} text={"Registrovat"} />
       </div>
+
     </form>
   )
 }
