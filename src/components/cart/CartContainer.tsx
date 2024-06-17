@@ -78,8 +78,6 @@ const CartContainer: FC<Props> = ({ startCart, customer }) => {
     }, formData)
 
     router.push('/kosik/dekujeme', { scroll: false })
-
-
   }
 
   useEffect(() => {
@@ -111,6 +109,10 @@ const CartContainer: FC<Props> = ({ startCart, customer }) => {
       }
     });
   }, [customer, setValue]);
+
+  useEffect(() => {
+    setLoading(true)
+  }, [])
 
   useEffect(() => {
     const fetchCart = async () => {
@@ -160,9 +162,7 @@ const CartContainer: FC<Props> = ({ startCart, customer }) => {
 
   return (
     <main className="page max-width w-full">
-      {loading && <Loading />}
-
-      {cart && cart.items.length > 0 && cartSize > 0 ? (
+      {loading ? <Loading /> : cart && cart.items.length > 0 && cartSize > 0 ? (
         <>
           <PageHeader title={"Košík"} breadcrumbs={breadcrumbs} />
           <form

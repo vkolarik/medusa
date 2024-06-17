@@ -1,7 +1,7 @@
 "use server"
 
-import { getCustomer } from "@lib/data"
-import { notFound, redirect } from "next/navigation"
+import { getCustomer } from "@utils/apiActions/signUp"
+import { redirect } from "next/navigation"
 
 export default async function CustomAccountPageLayout(
   {

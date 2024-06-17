@@ -4,9 +4,8 @@ import { StorePostCartsCartReq } from "@medusajs/medusa"
 import { cookies } from "next/headers"
 import { updateCart } from "./cart"
 import { revalidateTag } from "next/cache"
-import { redirect } from "next/navigation"
 import { getMedusaHeaders, medusaClient } from "@utils/config"
-import { createPaymentSessions } from "@lib/data"
+
 
 export async function finishOrder(currentState: {
   cartId: string
@@ -154,4 +153,16 @@ export async function setPaymentSession({
     .setPaymentSession(cartId, { provider_id: providerId }, headers)
     .then(({ cart }) => cart)
     .catch((err) => console.log(err))
+}
+
+export async function createPaymentSessions(cartId: string) {
+  const headers = getMedusaHeaders(["cart"])
+
+  return medusaClient.carts
+    .createPaymentSessions(cartId, headers)
+    .then(({ cart }) => cart)
+    .catch((err) => {
+      console.log(err)
+      return null
+    })
 }

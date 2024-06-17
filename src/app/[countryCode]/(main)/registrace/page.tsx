@@ -1,8 +1,8 @@
 "use server"
 import {NextPage} from "next"
 import CustomRegisterForm from "@components/account/CustomRegisterForm"
-import {getCustomer} from "@lib/data"
 import {redirect} from "next/navigation"
+import { getCustomer } from "@utils/apiActions/signUp"
 
 const Register: NextPage = async () => {
     const customer = await getCustomer().catch(() => null)
