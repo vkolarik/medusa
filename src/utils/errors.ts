@@ -11,7 +11,7 @@ export const handleMessage = (message: string) => {
 }
 
 const errorMessagesMap: { [key: string]: string } = {
-  'A customer with the given email already has an account. Log in instead.': 'Uživatel s tímto emailem již existuje',
+  'A customer with the given email already has an account. Log in instead': 'Uživatel s tímto emailem již existuje',
   'Invalid email format': 'Neplatný formát emailu',
   'Password must be at least 6 characters long': 'Heslo musí mít alespoň 6 znaků',
   'First name is required': 'Jméno je povinné',

@@ -15,7 +15,12 @@ export const signUp = async (_currentState: unknown, formData: FormData) => {
   } as StorePostCustomersReq
 
   try {
-    await createCustomer(customer)
+    const customerResponse = await createCustomer(customer)
+
+    if (!customerResponse.success) {
+      return customerResponse.data
+    }
+
     await getToken({ email: customer.email, password: customer.password }).then(
       () => {
         revalidateTag("customer")
@@ -31,8 +36,18 @@ export const createCustomer = async (data: StorePostCustomersReq) => {
 
   return medusaClient.customers
   .create(data, headers)
-  .then(({ customer }) => customer)
-  .catch((err) => console.log(err))
+  .then(({ customer }) => {
+    return {
+      success: true,
+      data: customer
+    }
+  })
+  .catch((err) => {
+    return {
+      success: false,
+      data: err?.response?.data?.message
+    }
+  })
 }
 
 export async function getCustomer() {
